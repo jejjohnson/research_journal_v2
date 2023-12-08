@@ -1,0 +1,99 @@
+# Table of Contents
+#
+# Myst will respect:
+# 1. New pages
+#      - file: relative/path/to/page
+# 2. New sections without an associated page
+#      - title: Folder Title
+#        sections: ...
+# 3. New sections with an associated page
+#      - file: relative/path/to/page
+#        sections: ...
+#
+# Note: Titles defined on pages here are not recognized.
+#
+# This spec is based on the JupyterBook table of contents.
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+chapters:
+  - title: GMTL
+    sections:
+      - file: GMTL/overview
+      - title: Framework
+        sections:
+          - file: GMTL/framework/problem
+          - file: GMTL/framework/tasks
+  - title: Scientific ML
+    sections:
+      - file: sciml/overview.md
+      - title: Notation
+        sections:
+          - file: sciml/notation/notation
+          - file: sciml/notation/operators
+          - file: sciml/notation/st_data_rep
+      - title: Physical Models
+        sections:
+          - file: sciml/physics/pde_anatomy
+          - file: sciml/physics/qg_formulation
+          - file: sciml/physics/swm_formulation
+          - title: Whirlwind Tour
+            sections:
+              - file: sciml/param_est
+              - file: sciml/state_est
+      - title: ML Models
+        sections:
+          - title: Neural Fields
+            sections:
+              - file: sciml/ml_models/nerfs/overview
+              - file: sciml/ml_models/nerfs/formulation
+              - file: sciml/ml_models/nerfs/literature_review
+              - file: sciml/ml_models/nerfs/pinns
+              - file: sciml/ml_models/nerfs/training
+              - file: sciml/ml_models/nerfs/qg
+              - file: sciml/ml_models/nerfs/modulation
+          - title: DA with Obs
+            sections:
+              - file: sciml/data_assimilation/da_obs/da_obs
+              - file: sciml/data_assimilation/da_obs/interpolation
+              - file: sciml/data_assimilation/da_obs/deq
+              - file: sciml/data_assimilation/da_obs/dyn_model
+              - file: sciml/data_assimilation/da_obs/da_obs_cascade
+  - title: Resources
+    sections:
+      - file: resources/learning_ml
+      - file: resources/good_code
+      - file: resources/ides
+      - title: Software Stacks
+        sections:
+          - file: resources/dl_stack
+          - file: resources/earthsci_stack
+          - file: resources/scale_stack
+          - file: resources/sci_py_stack
+      - title: Remote Computing
+        sections:
+          - file: resources/remote_computing/ssh  
+          - file: resources/remote_computing/conda  
+          - file: resources/remote_computing/jlab  
+          - file: resources/remote_computing/organize  
+  - title: Cheatsheets
+    sections:
+      - file: cheatsheets/bash
+      - file: cheatsheets/cli
+      - file: cheatsheets/python
+      - file: cheatsheets/pytorch
+  - title: My Portfolio
+    sections:
+      - file: portfolio/overview
+      - file: portfolio/research
+      - file: portfolio/specialities
+      - file: portfolio/work
+  - title: Project Notes
+    sections:
+      - title: IGEO 2023
+        sections:
+          - file: notes/projects/2023_igeo/ai_forecasters
+          - file: notes/projects/2023_igeo/database
+          - file: notes/projects/2023_igeo/data_access
+          

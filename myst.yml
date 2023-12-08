@@ -1,0 +1,14 @@
+version: 1
+site:
+  nav: []
+  actions:
+    - title: Learn More
+      url: https://mystmd.org/guide
+  domains: []
+  template: book-theme
+project:
+  title: Research Notebook
+  github: https://github.com/jejjohnson/research_notebook
+  keywords: []
+  open_access: true
+  license: CC-BY-4.0
