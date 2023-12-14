@@ -14,6 +14,12 @@
 Overview of Different Platforms [[Source](https://climateset.github.io/)]
 ```
 
+**Focus**. 
+Some things I'll focus on are the following engineering details:
+* Dataset(s) Used
+* Main Model Architecture
+* Training Time + Resources
+
 ***
 
 ## Weather
@@ -195,7 +201,7 @@ Figure for Stormer Addition.
 
 ## Climate
 
-Below are a list of 
+Below are a list of benchmark datasets **and** SOTA algorithms which might be useful for training ML Models.
 
 ### Benchmark Datasets
 
