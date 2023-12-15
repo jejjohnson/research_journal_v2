@@ -60,7 +60,18 @@ Learned Initializations for Optimizing Coordinate-Based Neural Representation - 
 ---
 ## Generative Models
 
-### Normalizing Flows
+
+:::{tip} Manifold Diffusion Fields - [Elhag et. al., 2023](https://doi.org/10.48550/arXiv.2305.15586) - [ARXIV](https://arxiv.org/abs/2305.15586)
+:class: dropdown
+> The authors decompose the coordinate system using the eigen-functions of the Laplace-Beltrami Operator.
+
+***
+
+**Experiments**.
+
+They generate unconditional samples for ERA5 data.
+
+:::
 
 Neural Radiance Flow for 4D View Synthesis and Video Processing - Du et al (2021) - ICCV - [Project](https://yilundu.github.io/nerflow/)
 
@@ -77,3 +88,4 @@ Neural Radiance Flow for 4D View Synthesis and Video Processing - Du et al (2021
 * Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains - [Project](https://bmild.github.io/fourfeat/) | [Code Demo](https://github.com/GlassyWing/fourier-feature-networks)
 * Fourier Neural Operator for Parametric Partial Differential Equations - [Paper](https://arxiv.org/abs/2010.08895) | [Code](https://github.com/zongyi-li/fourier_neural_operator) | [Project](https://zongyi-li.github.io/neural-operator/) | [Paper Explained](https://www.youtube.com/watch?v=IaS72aHrJKE) | [Anima AnandKumar](https://www.youtube.com/watch?v=Bd4KvlmGbY4)
 * SIREN: Implicit Neural Representations with Periodic Activation Functions - [Paper Explained](https://www.youtube.com/watch?v=Q5g3p9Zwjrk) | [Project](https://www.vincentsitzmann.com/siren/) | [Jax](https://github.com/KeunwooPark/siren-jax) | [PyTorch](https://github.com/lucidrains/siren-pytorch)
+

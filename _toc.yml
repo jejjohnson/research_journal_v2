@@ -97,6 +97,7 @@ chapters:
           - file: notes/projects/2023_igeo/ai_forecast_litreview
           - file: notes/projects/2023_igeo/database
           - file: notes/projects/2023_igeo/data_access
+          - file: notes/projects/2023_igeo/ai_storylines
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview

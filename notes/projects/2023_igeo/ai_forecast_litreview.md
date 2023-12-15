@@ -214,7 +214,7 @@ ClimateBench [[Watson-Parris, et al, 2022](https://doi.org/10.1029/2021MS002954)
 
 #### [**ClimateSet**](https://climateset.github.io/)
 
-The *ClimateSet* platform offers uses access to some climate datasets
+The *ClimateSet* [[Kaltenborn, et. al., 2023](https://doi.org/10.48550/arXiv.2311.03721)] platform offers uses access to some climate datasets
 
 
 ```{figure} https://climateset.github.io/climate_set_overview.png
