@@ -5,3 +5,6 @@
 
 * [Bash](./bash.md)
 * [Command Line](./cli.md)
+
+
+[**Example Document**](https://blaylockbk.github.io/Carpenter_Workshop/matplotlib.html)

@@ -83,6 +83,11 @@ chapters:
       - file: cheatsheets/cli
       - file: cheatsheets/python
       - file: cheatsheets/pytorch
+      - title: Cookbook
+        sections:
+          - file: cookbook/filtering
+          - file: cookbook/anomalies
+          - file: cookbook/spatial_mean
   - title: My Portfolio
     sections:
       - file: portfolio/overview
@@ -97,7 +102,8 @@ chapters:
           - file: notes/projects/2023_igeo/ai_forecast_litreview
           - file: notes/projects/2023_igeo/database
           - file: notes/projects/2023_igeo/data_access
-          - file: notes/projects/2023_igeo/ai_storylines
+          - file: notes/projects/2023_igeo/ai_4_attrs
+          # - file: notes/projects/2023_igeo/ai_storylines
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview

@@ -9,7 +9,7 @@ authors:
       - UCM
       - IGEO
     orcid: 0000-0002-6739-0053
-    email: jemanjohnson34@gmail.com
+    email: juanjohn@ucm.es
 license: CC-BY-4.0
 keywords: simulations
 abbreviations:

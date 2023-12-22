@@ -173,3 +173,28 @@ We can start with:
 1. Pre-Train - global, climate simulations (CMIP6)
 2. Fine-Tune - global, reanalysis data (ERA5/GLORYS/HYCOM)
 3. Fine-Tune - regional, reanalysis data (GLORYS/HYCOM)
+
+
+***
+
+
+```{figure} https://royalsocietypublishing.org/cms/asset/f62e78c7-907d-4444-bbae-c35875d8e3b6/rsta20200097f01.gif
+:name: earth-sys-decomp
+:width: 490px
+:alt: Random image of the beach or ocean!
+:align: center
+
+A schematic for physics-Based, hybrid-Based and machine learning-Based numerical weather prediction. [[Schultz et. al., 2022](https://doi.org/10.1098/rsta.2020.0097)]
+```
+
+
+
+
+```{figure} https://royalsocietypublishing.org/cms/asset/53e23382-cc25-40e6-b171-4e98af779a34/rsta20200097f04.gif
+:name: earth-sys-decomp
+:width: 490px
+:alt: Random image of the beach or ocean!
+:align: center
+
+A schematic for physics-Based, hybrid-Based and machine learning-Based numerical weather prediction. [[Fig 4, Schultz et. al., 2022](https://doi.org/10.1098/rsta.2020.0097)]
+```
