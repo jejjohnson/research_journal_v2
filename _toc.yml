@@ -103,6 +103,7 @@ chapters:
           - file: notes/projects/2023_igeo/database
           - file: notes/projects/2023_igeo/data_access
           - file: notes/projects/2023_igeo/ai_4_attrs
+          - file: notes/projects/2023_igeo/ai_4_attrs_model
           # - file: notes/projects/2023_igeo/ai_storylines
       - title: ML4EO
         sections:

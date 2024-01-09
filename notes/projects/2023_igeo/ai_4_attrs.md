@@ -82,6 +82,41 @@ So we can use pure observations, reanalysis data (e.g., ERA5), or simulations wi
 
 ***
 
+## Workflow
+
+
+### 1 - Define Interested Processes
+
+We typically need to define which extreme variables we are interested in and what processes we believe govern them. 
+So for example, we might be interested in extremes in precipitation and we believe that the processes of Mediterranean warming and Jet streams are causal factors which cause these extremes.
+
+
+**Careful**: Not all extreme events are extensions of non-extreme phenomena.
+
+
+### 2 - Analyze Spatiotemporal Correlations.
+
+We need to ensure that we have extremes that are independent of one another.
+So we can do some analysis for both the spatial and temporal domains.
+For example, in the spatial domain we can use variagrams and information theory metrics.
+For the temporal domain, we can use autocorrelation functions.
+For both, we can use information theory metrics.
+
+### 3 - Samples
+
+
+### 4 Describe Extreme Value Distribution
+
+
+### 5 - Fit Parameters
+
+
+
+### 6 - Post Analysis
+
+
+***
+
 ### Filtering
 
 First, we perform some sort of filtering procedure to remove ... from the spatiotemporal cube. 
