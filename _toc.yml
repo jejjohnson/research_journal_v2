@@ -33,21 +33,13 @@ chapters:
           - file: sciml/physics/pde_anatomy
           - file: sciml/physics/qg_formulation
           - file: sciml/physics/swm_formulation
+          - file: sciml/physics/elliptical_pde_solver
           - title: Whirlwind Tour
             sections:
               - file: sciml/param_est
               - file: sciml/state_est
       - title: ML Models
         sections:
-          - title: Neural Fields
-            sections:
-              - file: sciml/ml_models/nerfs/overview
-              - file: sciml/ml_models/nerfs/formulation
-              - file: sciml/ml_models/nerfs/literature_review
-              - file: sciml/ml_models/nerfs/pinns
-              - file: sciml/ml_models/nerfs/training
-              - file: sciml/ml_models/nerfs/qg
-              - file: sciml/ml_models/nerfs/modulation
           - title: DA with Obs
             sections:
               - file: sciml/data_assimilation/da_obs/da_obs
@@ -102,13 +94,6 @@ chapters:
           - file: notes/projects/2023_igeo/ai_4_storylines
           - file: notes/projects/2023_igeo/ai_4_regional_param
           - file: notes/sensitivity_analysis/demo
-          # - file: notes/projects/2023_igeo/ai_forecasters
-          # - file: notes/projects/2023_igeo/ai_forecast_litreview
-          # - file: notes/projects/2023_igeo/database
-          # - file: notes/projects/2023_igeo/data_access
-          # - file: notes/projects/2023_igeo/ai_4_attrs
-          # - file: notes/projects/2023_igeo/ai_4_attrs_model
-          # - file: notes/projects/2023_igeo/ai_storylines
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview
@@ -141,10 +126,14 @@ chapters:
             - file: notes/extremes/modeling/emulator
       - title: Emulators
         sections:
+          - file: notes/ai4nwp/emulators
           - file: notes/ai4nwp/ai_forecasters
       - title: ML4EO
         sections:
           - title: Geo Problems
+            sections:
+            - file: notes/ml4eo/geo_probs/interpolation
+            - file: notes/ml4eo/geo_probs/inv_problem
           - title: Geo DataTypes
             sections:
             - file: notes/ml4eo/geodata_types/observations
@@ -181,6 +170,7 @@ chapters:
           - file: notes/abstractions/notation/notation_basic
           - file: notes/abstractions/notation_modeling
           - file: notes/abstractions/notation/notation_operators
+          - file: notes/abstractions/notation/diff_ops
           - file: notes/abstractions/notation/notation
           - file: notes/abstractions/notation/operators
           - file: notes/abstractions/notation/st_data_rep
@@ -188,6 +178,34 @@ chapters:
       - title: Uncertainty
         sections:
         - file: notes/uncertainty/writeup
-        
+      - title: Bayesian
+        sections:
+        - file: notes/bayesian/models
+        - file: notes/bayesian/inference
+        - file: notes/bayesian/variational_inference
+        - file: notes/bayesian/cond_variational_inference
+        - file: notes/bayesian/confidence_intervals
+      - title: Neural Fields
+        sections:
+          - file: notes/nerfs/overview
+          - file: notes/nerfs/formulation
+          - file: notes/nerfs/literature_review
+          - file: notes/nerfs/pinns
+          - file: notes/nerfs/training
+          - file: notes/nerfs/qg
+          - file: notes/nerfs/modulation
+          - file: notes/nerfs/uncertainty
+      - title: State Space Models
+        sections:
+          - file: notes/state_space/dyn_sys
+          - file: notes/state_space/markov
+          - file: notes/state_space/gauss_markov
+          - file: notes/state_space/kalman_filter
+          - file: notes/state_space/ens_kalman_filter
+          - file: notes/state_space/dmm
+      - title: Data Assimilation
+        sections:
+          - file: notes/da/oi
+          - file: notes/state_space/4dvarnet
         
           

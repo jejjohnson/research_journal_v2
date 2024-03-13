@@ -12,11 +12,6 @@ authors:
     email: jemanjohnson34@gmail.com
 license: CC-BY-4.0
 keywords: data-assimilation, open-science
-abbreviations:
-    SW: Shallow Water
-    QG: Quasi-Geostrophic
-    PDE: Partial Differential Equation
-    RHS: Right Hand Side
 ---
 
 ## Coordinates and Domain
