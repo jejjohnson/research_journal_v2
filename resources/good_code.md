@@ -1,7 +1,87 @@
 # Good Code
 
 
+***
+## **File Management**
 
+> Most time is spent within the CLI... 
+> One needs to be rather fluent in this otherwise we'll have problems.
+
+* [pathlib](https://docs.python.org/3/library/pathlib.html)
+* [fsspec](https://github.com/fsspec)
+* [upath](https://github.com/fsspec/universal_pathlib)
+* **[CloudPathLib](https://github.com/drivendataorg/cloudpathlib)** - nice package for dealing with cloud data.
+* [toolz](https://toolz.readthedocs.io/en/latest/api.html)
+
+***
+## Code Management
+
+* Git
+* GitHub/ GitLab
+
+
+***
+## **Data Management**
+
+> Code is not static and neither is data.
+
+* [dvc](https://dvc.org/)
+
+
+***
+## AI Assistance
+
+> Docstrings, Testing, StackOverFlow searches...
+
+* GitHub Copilot - [Guides](https://www.youtube.com/playlist?list=PLj6YeMhvp2S5_hvBl2SE-7YCHYlLQ0bPt)
+
+
+***
+## **Deployment**
+
+* Streamlit
+* FastAPI
+
+***
+## Environment Management
+
+* conda
+* pip
+* poetry
+* [Daytona](https://github.com/daytonaio/daytona) + DevContainer
+
+
+
+***
+## Configuration Management
+
+* Hydra
+* Hydra-Zen
+* Typer
+
+***
+## Code Quality
+
+* Ruff
+* Pyright
+* MyPy
+* Isort
+* pre-commit-config
+
+***
+## Continuous Integration
+
+* GitHub Actions
+* DVC
+
+***
+## Performance Checks
+
+* Scalene
+
+
+
+***
 ## Logging
 
 This is something I often use whenever I am in the process of building software and I think there are some key things that need to be documented. It is often much better than print statements. I often do this when I'm not really sure if what I did is correct in the process. It's really important to log. Especially when you're doing server computing and you need a history of what was going on.
@@ -61,7 +141,6 @@ Something that we all should do but don't always do. It's important for the long
 * [How to Package Your Python Code](https://python-packaging.readthedocs.io/en/latest/)
 ```
 
-## Type Checking
 
 
 ## Continuous Integration
@@ -72,3 +151,10 @@ Something that we all should do but don't always do. It's important for the long
 1. JupyterLab - Prototyping, Remote Computing
 2. VSCode - Package Management, Remote Computing
 3. Remote Computing - SSH (JLab, VSCode)
+
+
+
+
+
+
+

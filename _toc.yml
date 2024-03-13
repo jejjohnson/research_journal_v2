@@ -28,11 +28,6 @@ chapters:
   - title: Scientific ML
     sections:
       - file: sciml/overview.md
-      - title: Notation
-        sections:
-          - file: sciml/notation/notation
-          - file: sciml/notation/operators
-          - file: sciml/notation/st_data_rep
       - title: Physical Models
         sections:
           - file: sciml/physics/pde_anatomy
@@ -71,12 +66,17 @@ chapters:
           - file: resources/earthsci_stack
           - file: resources/scale_stack
           - file: resources/sci_py_stack
+          - file: resources/xarray_stack
+          - file: resources/jax_stack
       - title: Remote Computing
         sections:
           - file: resources/remote_computing/ssh  
           - file: resources/remote_computing/conda  
           - file: resources/remote_computing/jlab  
           - file: resources/remote_computing/organize  
+      - title: Software Reviews
+        sections:
+          - file: resources/software_reviews/numpyro
   - title: Cheatsheets
     sections:
       - file: cheatsheets/bash
@@ -98,14 +98,96 @@ chapters:
     sections:
       - title: IGEO 2023
         sections:
-          - file: notes/projects/2023_igeo/ai_forecasters
-          - file: notes/projects/2023_igeo/ai_forecast_litreview
-          - file: notes/projects/2023_igeo/database
-          - file: notes/projects/2023_igeo/data_access
-          - file: notes/projects/2023_igeo/ai_4_attrs
-          - file: notes/projects/2023_igeo/ai_4_attrs_model
+          - file: notes/projects/2023_igeo/igeo_overview
+          - file: notes/projects/2023_igeo/ai_4_storylines
+          - file: notes/projects/2023_igeo/ai_4_regional_param
+          - file: notes/sensitivity_analysis/demo
+          # - file: notes/projects/2023_igeo/ai_forecasters
+          # - file: notes/projects/2023_igeo/ai_forecast_litreview
+          # - file: notes/projects/2023_igeo/database
+          # - file: notes/projects/2023_igeo/data_access
+          # - file: notes/projects/2023_igeo/ai_4_attrs
+          # - file: notes/projects/2023_igeo/ai_4_attrs_model
           # - file: notes/projects/2023_igeo/ai_storylines
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview
+      - title: ITI 2023
+        sections:
+          - file: notes/projects/2024_iti/writeup
+  - title: Notes
+    sections:
+      - title: Extremes
+        sections:
+          - title: Background
+            sections:
+            - file: notes/extremes/evt
+            - file: notes/extremes/eva
+            - file: notes/extremes/evp
+            - file: notes/extremes/eve
+          - title: Feature Extraction
+            sections:
+            - file: notes/extremes/algo
+            - file: notes/extremes/features/extremes_extract
+            - file: notes/extremes/features/extremes_manual
+          - title: Modeling
+            sections:
+            - file: notes/extremes/modeling/modeling_overview
+            - file: notes/extremes/modeling/unconditional
+            - file: notes/extremes/modeling/latent
+            - file: notes/extremes/modeling/covariates
+            - file: notes/extremes/modeling/spatial
+            - file: notes/extremes/modeling/dynamical
+            - file: notes/extremes/modeling/emulator
+      - title: Emulators
+        sections:
+          - file: notes/ai4nwp/ai_forecasters
+      - title: ML4EO
+        sections:
+          - title: Geo Problems
+          - title: Geo DataTypes
+            sections:
+            - file: notes/ml4eo/geodata_types/observations
+            - file: notes/ml4eo/geodata_types/simulations
+            - file: notes/ml4eo/geodata_types/reanalysis
+          - title: Geo DataStructures
+            sections:
+            - file: notes/ml4eo/geodata_structure/geods_overview
+          - title: Geo DataBases
+            sections:
+            - file: notes/ml4eo/geodata_access/earthaccess.md
+            - file: notes/ml4eo/geodata_access/aemet.md
+            - file: notes/ml4eo/geodata_access/cdsapi.md
+            - file: notes/ml4eo/geodata_access/mds.md
+            - file: notes/ml4eo/geodata_access/gee.md
+            - file: notes/ml4eo/geodata_access/climetlab.md
+          - title: Geo Operations
+            sections:
+            - file: notes/ml4eo/geo_ops/geo_ops_overview
+            - file: notes/ml4eo/geo_ops/spatial_mean
+            - file: notes/ml4eo/geo_ops/filtering
+            - file: notes/ml4eo/geo_ops/climatology
+            - file: notes/ml4eo/geo_ops/anomalies
+            - file: notes/ml4eo/geo_ops/interpolation
+            - file: notes/ml4eo/geo_ops/geodata
+      - file: notes/abstractions/glossary
+      - title: Learning vs Estimation
+        sections:
+        - file: notes/abstractions/learning_vs_estimation/lve_overview
+        - file: notes/abstractions/learning_vs_estimation/lve_1_density_estimation
+        - file: notes/abstractions/learning_vs_estimation/lve_2_prediction
+      - title: Notation
+        sections:
+          - file: notes/abstractions/notation/notation_basic
+          - file: notes/abstractions/notation_modeling
+          - file: notes/abstractions/notation/notation_operators
+          - file: notes/abstractions/notation/notation
+          - file: notes/abstractions/notation/operators
+          - file: notes/abstractions/notation/st_data_rep
+          - file: notes/abstractions/notation/notation_basic
+      - title: Uncertainty
+        sections:
+        - file: notes/uncertainty/writeup
+        
+        
           
