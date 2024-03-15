@@ -130,6 +130,7 @@ chapters:
           - file: notes/ai4nwp/ai_forecasters
       - title: ML4EO
         sections:
+          - file: notes/ml4eo/overview
           - title: Geo Problems
             sections:
             - file: notes/ml4eo/geo_probs/interpolation
@@ -153,13 +154,24 @@ chapters:
           - title: Geo Operations
             sections:
             - file: notes/ml4eo/geo_ops/geo_ops_overview
+            - file: notes/ml4eo/geo_ops/software
             - file: notes/ml4eo/geo_ops/spatial_mean
             - file: notes/ml4eo/geo_ops/filtering
             - file: notes/ml4eo/geo_ops/climatology
             - file: notes/ml4eo/geo_ops/anomalies
             - file: notes/ml4eo/geo_ops/interpolation
             - file: notes/ml4eo/geo_ops/geodata
-      - file: notes/abstractions/glossary
+          - title: Geo Interpolation
+            sections:
+            - file: notes/ml4eo/geo_interp/geo_interp
+            - file: notes/ml4eo/geo_interp/nonparametric
+            - file: notes/ml4eo/geo_interp/coordinates
+            - file: notes/ml4eo/geo_interp/field_based
+            - file: notes/ml4eo/geo_interp/dynamical
+      - title: Abstractions
+        sections:
+        - file: notes/abstractions/overview
+        - file: notes/abstractions/glossary
       - title: Learning vs Estimation
         sections:
         - file: notes/abstractions/learning_vs_estimation/lve_overview
