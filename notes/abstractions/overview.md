@@ -1,7 +1,7 @@
 ---
-title: ML4EO
+title: ML4EO Abstractions
 subject: ML4EO
-short_title: ML4EO
+short_title: Overview
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
@@ -15,7 +15,37 @@ keywords: notation
 ---
 
 
+## Goals
 
+* Objective
+* Task
+
+## Estimation vs Learning
+
+> Using models as a means of estimating or predicting a QoI.
+
+> Using models as a means of *learning*.
+
+## Modeling & Simulation
+
+* Earth System
+* Abstraction -> Model
+* Measurements -> Data
+* Model -> Predictions
+
+
+***
+## **Hierarchical Assemblage of Hypothesis**
+
+* Conservation Laws
+* System Discretization
+* Process Parameterization
+* Uncertainty Quantification
+* Solution Procedure
+* Sensitivity Analysis
+* Iterative Hypothesis Refinement
+
+***
 ## **ML4EO**
 
 
@@ -33,8 +63,16 @@ keywords: notation
 * Model
 * Solution Procedure
 
-
+***
 ### **Geo Operations**
+
+***
+### **Game of Spatiotemporal Dependencies**
+
+* IID
+* Partial
+* Global
+* Autoregressive
 
 ***
 ## **Operator Learning**
@@ -45,6 +83,12 @@ keywords: notation
 * Shape
 * Transformation
 
+
+
+***
+## **Hierarchical Sequence of Decisions**
+
+
 ***
 ## **Data-Driven Modeling Elements**
 
@@ -52,10 +96,6 @@ keywords: notation
 * State
 * Quantity of Interest
 * Latent Variable
-
-***
-## **Hierarchical Sequence of Decisions**
-
 
 ***
 ## **Bayesian Modeling**
@@ -70,6 +110,28 @@ keywords: notation
 * Inference
 
 ***
+## **Discretization**
+
+* Regular
+* Rectilinear
+* Curvilinear
+* Unstructured - FEM/FVM/GNNs (line segments, triangles, quadrilateral, tetrahedral)
+* Point Clouds
+
+***
+## **Parameterization Complexity**
+
+**Parametric**
+* Linear
+* Basis Function
+* Neural Network
+
+**Functional**
+* Neural Fields
+* Deep ONets
+* Neural Operators
+
+***
 ## **Machine Learning Abstractions**
 
 * Data Module
@@ -77,6 +139,15 @@ keywords: notation
 * Criteria
 * Optimizer
 * Learner
+
+***
+## **Model Form**
+
+- Parametric
+- Generative
+- Conditional Parametric
+- Conditional Generative
+- Dynamical
 
 ***
 ## **Software**

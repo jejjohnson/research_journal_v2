@@ -18,7 +18,25 @@ In general, there are two concrete tasks that we may wish to do:
 1. Estimate some quantity of interest(QoI) given some observations and parameters.
 2. Learn the parameters of a model given some observations.
 
+In other words, if you have a model: you make an estimation.
+If you do not have a model: you need to learn one.
+
+
 ## Estimation
+
+> When you already have a model, $f$, for the data and you want to estimate a value of the state, z, or a quantity of interest, u, given observations, y. Objective-based is the inverse prob formulation and the amortized-based is the skipped.
+
+We can further separate this into two classes: 1) hard predictory and a 2) soft predictor.
+A hard predictor gives an "exact" value for what you're interested in.
+A soft predictor gives a score value for what you're interested in. 
+The big difference is the hard predictor is looking for the value of the QoI whereas the soft predictor is weighing the possible values of the QoI.
+
+We can further distinguish the estimation problem based on the discretization of the QoI: **continuous** and **discrete**.
+If the QoI is continuous, we continue to call it an estimation task.
+If the QoI is discrete, then we can label it a detection task.
+Some estimation tasks include regression, variable-to-variable, denoising, and calibration.
+Some detection tasks include classification, segmentation, anomaly detection, and clustering.
+
 
 We are interested in the estimation problem.
 So ultimately, we have some QoI, $u$, we are interested in estimating given some observations, $y$, and parameters $\theta$. 
@@ -60,6 +78,8 @@ $$
 
 ***
 ## Learning
+
+> When a model, $f$, is not available for the observations, $y$, you need learning. You need to learn the parameters for the model that you believe best fits the data.
 
 $$
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}}{\text{argmin}}

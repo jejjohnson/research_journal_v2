@@ -93,7 +93,7 @@ chapters:
           - file: notes/projects/2023_igeo/igeo_overview
           - file: notes/projects/2023_igeo/ai_4_storylines
           - file: notes/projects/2023_igeo/ai_4_regional_param
-          - file: notes/sensitivity_analysis/demo
+
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview
@@ -161,6 +161,9 @@ chapters:
             - file: notes/ml4eo/geo_ops/anomalies
             - file: notes/ml4eo/geo_ops/interpolation
             - file: notes/ml4eo/geo_ops/geodata
+          - title: Geo Models
+            sections:
+            - file: notes/ml4eo/geo_models/whirlwind
           - title: Geo Interpolation
             sections:
             - file: notes/ml4eo/geo_interp/geo_interp
@@ -168,6 +171,7 @@ chapters:
             - file: notes/ml4eo/geo_interp/coordinates
             - file: notes/ml4eo/geo_interp/field_based
             - file: notes/ml4eo/geo_interp/dynamical
+            - file: notes/ml4eo/geo_interp/geo_interp_mvp
       - title: Abstractions
         sections:
         - file: notes/abstractions/overview
@@ -175,8 +179,11 @@ chapters:
       - title: Learning vs Estimation
         sections:
         - file: notes/abstractions/learning_vs_estimation/lve_overview
-        - file: notes/abstractions/learning_vs_estimation/lve_1_density_estimation
-        - file: notes/abstractions/learning_vs_estimation/lve_2_prediction
+        - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
+        # - title: Examples
+          # sections:
+          # - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
+          # - file: notes/abstractions/learning_vs_estimation/examples/lve_2_prediction
       - title: Notation
         sections:
           - file: notes/abstractions/notation/notation_basic
@@ -219,5 +226,8 @@ chapters:
         sections:
           - file: notes/da/oi
           - file: notes/state_space/4dvarnet
-        
+      - title: Sensitivity Analysis
+        sections:
+          - file: notes/sensitivity_analysis/demo
+          - file: notes/sensitivity_analysis/sa_problem
           

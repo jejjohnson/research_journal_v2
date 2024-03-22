@@ -69,6 +69,11 @@ $$
 \end{aligned}
 $$
 
+## Problem Approaches
+
+* **Cycle-GAN**
+* Inverse Problem w/ Plug-in-Play Prior
+
 ## Foundational Models
 
 This pipeline is a general pipeline to be able to translate between different satellites. 
@@ -93,3 +98,20 @@ In all cases, we can derive many variables just with the radiance values.
 **Sea Surface Temperature**.
 
 **Colour**
+
+
+***
+
+**Levels of Difficulty**
+
+* Collocated Images
+* Take Intersection of Channels
+* Unpaired Image-2-Image
+* Geostationary vs Orbiting
+
+
+***
+
+* NextGEMS (Model Development) --> Destination Earth (AI Component)
+- IFS -> ECMWF
+- ICON -> Germany

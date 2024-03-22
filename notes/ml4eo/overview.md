@@ -15,6 +15,69 @@ keywords: notation
 ---
 
 
+***
+## Community
+
+I personally think that the community needs an upgrade about what's possible.
+
+### Good News 
+
+Tackling problems at a global scale requires resources and talent that the academic community does not have. 
+So we need to leave these experiments up to larger entities like Google, NVidia, ECMWF.
+
+#### Multi-Platform Language: JAX
+
+The more I work with JAX, the more I am convinced that this is the greatest addition to the scientific commuity.
+It allows you to do autodiff, JIT your code, and automatic vectorization.
+In addition, it is hardware agnostic so you can use it with CPUs, GPUs, and TPUs with a very intuitive way to scale it.
+The best part is that it keeps the exact same API as one that everyone is familiar with: numpy and scipy.
+
+***
+#### AutoDifferentiation
+
+I think there is a great opportunity to rethink how we do our science now that we have autodifferentiation. 
+In fact all numerical methods should take into account the fact that we can do many optimization problems using autodiff.
+In addition, there are many cases where we cannt write down the functional form to optimize our system.
+It shifts the thinking of *what we want to optimize* instead of *how to optimize what we want*.
+
+
+***
+#### Inference: MCMC
+
+It's time for MCMC to make a comeback.
+Many papers say that they did not use MCMC because *it was too expensive*.
+For many problems that academics face, this is not true.
+MCMC is very scalable nowadays.
+In fact, if you factor in the time it took you get the approximate inference scheme to work then it might be even faster.
+Even in the cases where MCMC isn't scalable, there are a number methods that are available to speed-up MCMC, scale-up MCMC, or speed-up the convergence.
+
+***
+#### Clustering
+
+I think clustering is undervalued within the community. 
+
+**Dimensionality**. 
+It gives us a way to deal with dimensionality.
+We can use clustering regimes to partition a spatial field or discretize a continuous field.
+Its a nice way to reduce the complexity of our system and look for patterns.
+
+**Similarity**.
+It also gives us a way to find similar instances of a phenomena of our choosing.
+For example, we may have the perfect example of a jet-stream and we want to acquire similar instances.
+One could using clustering to.
+This is known in many geoscience communities as analogous.
+
+
+
+
+On an academic scale, there are many things we can do!
+
+* Academic Scale - MCMC, AutoDiff
+* Discovery - Clustering, Equation Discovery
+
+Bad News
+* 
+
 
 ***
 ### **Problem Formulations**
