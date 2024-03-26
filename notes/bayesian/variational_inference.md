@@ -76,145 +76,6 @@ $$
 * Limited theory and guarantees for variational mehtods
 
 
----
-## Variational Distribution
-
-We defined the variationa distribution as $q(z|x)$. However, we have many types of variational distributions we can impose. For example, we have some of the following:
-
-* *Gaussian*, $q(z)$
-* *Mixture Distribution*, $\sum_{k}^{K}\pi_k \mathbb{P}$
-* *Bijective Transform* (Flow), $q(z|\tilde{z})$
-* *Stochastic Transform* (Encoder, Amortized), $q(z|x)$
-* *Conditional*, $q(z|x,y)$
-
-Below we will go through each of them and outline some potential strengths and weaknesses of each of the methods.
-
----
-### Simple, $q(z)$
-
-This is the simplest case where we often assume a very simple distribution can describe the distribution.
-
-$$
-q(z) = \mathcal{N}(z|\boldsymbol{\mu_\theta},\boldsymbol{\Sigma_\theta})
-$$
-
-If we take each of the Gaussian parameters as full matrices, we end up with:
-
-$$
-\boldsymbol{\mu_\theta}:=\boldsymbol{\mu} \in \mathbb{R}^D, \hspace{5mm} \boldsymbol{\Sigma_\theta}:=\boldsymbol{\Sigma} \in \mathbb{R}^{D\times D};
-$$
-
-For very high dimensional problems, these are a lot of parameters to learn. Now, we can have various simplifications (or complications) with this. For example, we can simplify the mean, $\boldsymbol{\mu}$, to be zero. The majority of the changes will come from the covariance. Here are a few modifications.
-
-
-**Full Covariance**
-
-This is when we parameterize our covariance to be a full covariance matrix. $\boldsymbol{\Sigma_\theta} := \boldsymbol{\Sigma}$. This is easily the most expensive and the most complex of the Gaussian types.
-
-**Lower Cholesky**
-
-We can also parameterize our covariance to be a lower triangular matrix, i.e. $\boldsymbol{\Sigma_\theta} := \mathbf{L}$, that satisfies the cholesky decomposition, i.e. $\mathbf{LL}^\top = \boldsymbol{\Sigma}$. This reduces the number of parameters of the full covariance by a factor. It also has desireable properties when parameterizing covariance matrices that are computationally attractive, e.g. positive definite.
-
-**Diagonal Covariance**
-
-We can parameterize our covariance matrix to be a diagonal, i.e. $\boldsymbol{\Sigma_\theta} := \text{diag}(\boldsymbol{\sigma})$. This is a very drastic simplification of our model which limits the expressivity. However, there are immense computational benefits For example, a d-dimensional multivariate Gaussian rv with a mean and a diagonal covariance is the same as the product of $d$ univeriate Gaussians.
-
-$$
-q(z) = \mathcal{N}\left(\boldsymbol{\mu_\theta}, \text{diag}(\boldsymbol{\sigma_\theta})\right) = \prod_{d}^D \mathcal{N}(\mu_d, \sigma_d )
-$$
-
-This is also known as the **mean-field** approximation and it is a very common starting point in practical VI algorithms.
-
-**Low Rank Multivariate Normal**
-
-Another parameterization is a low rank matrix with a diagonal matrix, i.e. $\boldsymbol{\Sigma_\theta} := \mathbf{W}\mathbf{W}^\top + \mathbf{D}$ where $\mathbf{W} \in \mathbb{R}^{D\times d}, \mathbf{D} \in \mathbb{R}^{D\times D}$. We assume that our parameterization can be low dimensional which might be appropriate for some applications. This allows for some computationally efficient schemes that make use of the Woodbury Identity and the matrix determinant lemma.
-
-**Orthogonal Decoupled**
-
-One interesting approach is to map the variational parameters via a subspace parameterization. For exaple, we can define the mean and variance like so:
-
-$$
-\begin{aligned}
-\boldsymbol{\mu_\theta} &= \boldsymbol{\Psi}_{\boldsymbol{\mu}} \mathbf{a} \\
-\boldsymbol{\Sigma_\theta} &= \boldsymbol{\Psi}_{\boldsymbol{\Sigma}} \mathbf{A} \boldsymbol{\Psi}_{\boldsymbol{\Sigma}}^\top + \mathbf{I}
-\end{aligned}
-$$
-
-This is a bit of a spin off of the Low-Rank Multivariate Normal approach. However, this method takes care and provides a low-rank method for both the mean and the covariance. They argue that we would be able to put more computational effort in the mean function (computationally easy) and less computational effort for the covariance (computationally intensive).
-
-*Source*: [Orthogonally Decoupled Variational Gaussian Process]() - Salimbeni et al (2018)
-
-
-
-**Delta Distribution**
-
-This is probably the distribution with the least amount of parameters. We set the covariance matrix to $0$, i.e. $\boldsymbol{\Sigma_\theta}:=\mathbf{0}$, and we let all of the mass rest on mean points, $\boldsymbol{\mu_\theta}:=\boldsymbol{\mu}=\mathbf{u}$.
-
-$$
-q(z) = \delta(z - \hat{z})
-$$
-
----
-### Mixture Distribution
-
-The principal behind this is that a simple base distribution, e.g. Gaussian, is not expressive enough. However, a mixture of simple distributions, e.g. Mixture of Gaussians, will be more expressive. So the idea is to choose simple base distribution and replicate it $k$ times. Then, we then do a normalized weighted summation of each component to produce our mixture distribution.
-
-$$
-q(z) = \sum_{k}^K\pi_k \mathbb{P}_k
-$$
-
-where $0 \leq \pi_k \leq 1$ and $\sum_{k}^K\pi_k=1$. For example, we can use a Gaussian distribution
-
-$$
-p_\theta(z) = \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-$$
-
-where $\theta = \{\pi_k, \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k \}_k^K$ are potentially learned parameters.. And the mixture distribution will be
-
-$$
-q_{\boldsymbol \theta}(\mathbf{z}) = \sum_{k}^K \pi_k \mathcal{N}(\mathbf{z} |\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
-$$
-
-Again, we are free to parameterize the covariances as flexible or restrictive as possible. For example we can have full, cholesky, low-rank or diagonal. In addition we can *tie* some of the parameters together. For example, we can have the same covariance matrix for every $k^\text{th}$ component, e.g. $\boldsymbol{\Sigma}_k=\boldsymbol{\Sigma}$. Even for VAEs, this becomes a prior distribution which has noticable improvement over the standard Gaussian prior.
-
-**Note**: in principal, a mixture distribution is very powerful and has the ability to estimate any distribution, e.g. univariate with enough components. However, like with most problems, the issue is estimating the best parameters just from observations.
-
-
----
-### Bijective Transformation (Flow)
-
-It may be that the variational distribution, $q$, is not sufficiently expressive enough even with the complex Gaussian parameterization and/or the mixture distribution. So another option is to use a bijective transformation to map the data from a simple base distribution, e.g. Gaussian, to a more complex distribution for our variational parameter, $z$.
-
-$$
-\mathbf{z} = \boldsymbol{T_\phi}(\tilde{\mathbf{z}})
-$$
-
-We hope that the resulting variational distribution, $q(z)$, acts a better approximation to the data. Because our transformation is bijective, we can
-
-variational parameter, $z$, to a simple base distribution st we ha
-$$
-q(z) = p_e(\tilde{z})|\boldsymbol{\nabla}_\mathbf{z}\boldsymbol{T_\phi}^{-1}(\mathbf{z})|
-$$
-
-where $|\boldsymbol{\nabla}_\mathbf{z} \cdot|$ is the determinant Jacobian of the transformation, $\boldsymbol{T_\phi}$.
-
----
-### Stochastic Transformation (Encoder, Amortization)
-
-Another type of transformation is a stochastic transformation. This is given by $q(z|x)$. In this case, we assume some non-linear. For example, a Gaussian distribution with a parameterized mean and variance via neural networks
-
-$$
-q(\mathbf{z}|\mathbf{x}) = \mathcal{N}\left(\boldsymbol{\mu_\phi}(\mathbf{x}), \boldsymbol{\sigma_\phi}(\mathbf{x})\right)
-$$
-
-or more appropriately
-
-$$
-q(\mathbf{z}|\mathbf{x}) = \mathcal{N}\left(\boldsymbol{\mu}, \text{diag}(\exp (\boldsymbol{\sigma}^2_{\log}) )\right), \hspace{4mm} (\boldsymbol{\mu}, \boldsymbol{\sigma}^2_{\log}) = \text{NN}_{\boldsymbol \theta}(\mathbf{x})
-$$
-
-It can be very difficult to try and have a variational distribution that is complicated enough to cover the whole posterior. So often, we use a variational distribution that is conditioned on the observations, i.e. $q(z|x)$. This is known as an encoder because we encode the observations to obey th
-
 
 
 
@@ -434,6 +295,151 @@ This doesn't actually work because **we need** a transformation from $x$ to $z$.
 $$
  \mathcal{L}_{\text{ELBO}}={\color{blue}\mathbb{E}_{q_\phi(z)}\left[ \log p(x|z) p(z)\right]} - {\color{green} \mathbb{E}_{q_\phi(z)}\left[ \log q_\phi(z) \right]}.
 $$
+
+---
+## Variational Distribution
+
+We defined the variationa distribution as $q(z|x)$. However, we have many types of variational distributions we can impose. For example, we have some of the following:
+
+* *Gaussian*, $\mathcal{N}(\boldsymbol{z}|\mathbf{m},\mathbf{S})$
+* *Mixture Distribution*, $\sum_{k}^{K}\pi_k p(\boldsymbol{z}|\boldsymbol{\theta})$
+* *Bijective Transform* (Flow), $q(z|\tilde{z})$
+* *Stochastic Transform* (Encoder, Amortized), $q(z|x)$
+* *Conditional*, $q(z|x,y)$
+
+Below we will go through each of them and outline some potential strengths and weaknesses of each of the methods.
+
+---
+### Simple, $q(z)$
+
+This is the simplest case where we often assume a very simple distribution can describe the distribution.
+
+$$
+q(z) = \mathcal{N}(z|\boldsymbol{\mu_\theta},\boldsymbol{\Sigma_\theta})
+$$
+
+If we take each of the Gaussian parameters as full matrices, we end up with:
+
+$$
+\boldsymbol{\mu_\theta}:=\boldsymbol{\mu} \in \mathbb{R}^D, \hspace{5mm} \boldsymbol{\Sigma_\theta}:=\boldsymbol{\Sigma} \in \mathbb{R}^{D\times D};
+$$
+
+For very high dimensional problems, these are a lot of parameters to learn. Now, we can have various simplifications (or complications) with this. For example, we can simplify the mean, $\boldsymbol{\mu}$, to be zero. The majority of the changes will come from the covariance. Here are a few modifications.
+
+***
+#### **Full Covariance**
+
+This is when we parameterize our covariance to be a full covariance matrix. $\boldsymbol{\Sigma_\theta} := \boldsymbol{\Sigma}$. This is easily the most expensive and the most complex of the Gaussian types.
+
+***
+#### **Lower Cholesky**
+
+We can also parameterize our covariance to be a lower triangular matrix, i.e. $\boldsymbol{\Sigma_\theta} := \mathbf{L}$, that satisfies the cholesky decomposition, i.e. $\mathbf{LL}^\top = \boldsymbol{\Sigma}$. This reduces the number of parameters of the full covariance by a factor. It also has desireable properties when parameterizing covariance matrices that are computationally attractive, e.g. positive definite.
+
+***
+#### **Diagonal Covariance**
+
+We can parameterize our covariance matrix to be a diagonal, i.e. $\boldsymbol{\Sigma_\theta} := \text{diag}(\boldsymbol{\sigma})$. This is a very drastic simplification of our model which limits the expressivity. However, there are immense computational benefits For example, a d-dimensional multivariate Gaussian rv with a mean and a diagonal covariance is the same as the product of $d$ univeriate Gaussians.
+
+$$
+q(z) = \mathcal{N}\left(\boldsymbol{\mu_\theta}, \text{diag}(\boldsymbol{\sigma_\theta})\right) = \prod_{d}^D \mathcal{N}(\mu_d, \sigma_d )
+$$
+
+This is also known as the **mean-field** approximation and it is a very common starting point in practical VI algorithms.
+
+***
+#### **Low Rank Multivariate Normal**
+
+Another parameterization is a low rank matrix with a diagonal matrix, i.e. $\boldsymbol{\Sigma_\theta} := \mathbf{W}\mathbf{W}^\top + \mathbf{D}$ where $\mathbf{W} \in \mathbb{R}^{D\times d}, \mathbf{D} \in \mathbb{R}^{D\times D}$. We assume that our parameterization can be low dimensional which might be appropriate for some applications. This allows for some computationally efficient schemes that make use of the Woodbury Identity and the matrix determinant lemma.
+
+***
+#### **Orthogonal Decoupled**
+
+One interesting approach is to map the variational parameters via a subspace parameterization. For exaple, we can define the mean and variance like so:
+
+$$
+\begin{aligned}
+\boldsymbol{\mu_\theta} &= \boldsymbol{\Psi}_{\boldsymbol{\mu}} \mathbf{a} \\
+\boldsymbol{\Sigma_\theta} &= \boldsymbol{\Psi}_{\boldsymbol{\Sigma}} \mathbf{A} \boldsymbol{\Psi}_{\boldsymbol{\Sigma}}^\top + \mathbf{I}
+\end{aligned}
+$$
+
+This is a bit of a spin off of the Low-Rank Multivariate Normal approach. However, this method takes care and provides a low-rank method for both the mean and the covariance. They argue that we would be able to put more computational effort in the mean function (computationally easy) and less computational effort for the covariance (computationally intensive).
+
+*Source*: [Orthogonally Decoupled Variational Gaussian Process]() - Salimbeni et al (2018)
+
+
+
+#### **Delta Distribution**
+
+This is probably the distribution with the least amount of parameters. We set the covariance matrix to $0$, i.e. $\boldsymbol{\Sigma_\theta}:=\mathbf{0}$, and we let all of the mass rest on mean points, $\boldsymbol{\mu_\theta}:=\boldsymbol{\mu}=\mathbf{u}$.
+
+$$
+q(z) = \delta(z - \hat{z})
+$$
+
+---
+### Mixture Distribution
+
+The principal behind this is that a simple base distribution, e.g. Gaussian, is not expressive enough. However, a mixture of simple distributions, e.g. Mixture of Gaussians, will be more expressive. So the idea is to choose simple base distribution and replicate it $k$ times. Then, we then do a normalized weighted summation of each component to produce our mixture distribution.
+
+$$
+q(z) = \sum_{k}^K\pi_k \mathbb{P}_k
+$$
+
+where $0 \leq \pi_k \leq 1$ and $\sum_{k}^K\pi_k=1$. For example, we can use a Gaussian distribution
+
+$$
+p_\theta(z) = \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
+$$
+
+where $\theta = \{\pi_k, \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k \}_k^K$ are potentially learned parameters.. And the mixture distribution will be
+
+$$
+q_{\boldsymbol \theta}(\mathbf{z}) = \sum_{k}^K \pi_k \mathcal{N}(\mathbf{z} |\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+$$
+
+Again, we are free to parameterize the covariances as flexible or restrictive as possible. For example we can have full, cholesky, low-rank or diagonal. In addition we can *tie* some of the parameters together. For example, we can have the same covariance matrix for every $k^\text{th}$ component, e.g. $\boldsymbol{\Sigma}_k=\boldsymbol{\Sigma}$. Even for VAEs, this becomes a prior distribution which has noticable improvement over the standard Gaussian prior.
+
+**Note**: in principal, a mixture distribution is very powerful and has the ability to estimate any distribution, e.g. univariate with enough components. However, like with most problems, the issue is estimating the best parameters just from observations.
+
+
+---
+### Bijective Transformation (Flow)
+
+It may be that the variational distribution, $q$, is not sufficiently expressive enough even with the complex Gaussian parameterization and/or the mixture distribution. So another option is to use a bijective transformation to map the data from a simple base distribution, e.g. Gaussian, to a more complex distribution for our variational parameter, $z$.
+
+$$
+\mathbf{z} = \boldsymbol{T_\phi}(\tilde{\mathbf{z}})
+$$
+
+We hope that the resulting variational distribution, $q(z)$, acts a better approximation to the data. Because our transformation is bijective, we can
+
+variational parameter, $z$, to a simple base distribution st we ha
+$$
+q(z) = p_e(\tilde{z})|\boldsymbol{\nabla}_\mathbf{z}\boldsymbol{T_\phi}^{-1}(\mathbf{z})|
+$$
+
+where $|\boldsymbol{\nabla}_\mathbf{z} \cdot|$ is the determinant Jacobian of the transformation, $\boldsymbol{T_\phi}$.
+
+---
+### Stochastic Transformation (Encoder, Amortization)
+
+Another type of transformation is a stochastic transformation. This is given by $q(z|x)$. In this case, we assume some non-linear. For example, a Gaussian distribution with a parameterized mean and variance via neural networks
+
+$$
+q(\mathbf{z}|\mathbf{x}) = \mathcal{N}\left(\boldsymbol{\mu_\phi}(\mathbf{x}), \boldsymbol{\sigma_\phi}(\mathbf{x})\right)
+$$
+
+or more appropriately
+
+$$
+q(\mathbf{z}|\mathbf{x}) = \mathcal{N}\left(\boldsymbol{\mu}, \text{diag}(\exp (\boldsymbol{\sigma}^2_{\log}) )\right), \hspace{4mm} (\boldsymbol{\mu}, \boldsymbol{\sigma}^2_{\log}) = \text{NN}_{\boldsymbol \theta}(\mathbf{x})
+$$
+
+It can be very difficult to try and have a variational distribution that is complicated enough to cover the whole posterior. So often, we use a variational distribution that is conditioned on the observations, i.e. $q(z|x)$. This is known as an encoder because we encode the observations to obey th
+
+
 
 
 <!-- ---

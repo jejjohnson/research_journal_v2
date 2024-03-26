@@ -77,8 +77,10 @@ $$
 \left[ 
     p(\boldsymbol{y}|\boldsymbol{x}^*,\boldsymbol{\theta}) 
 \right] 
-\right] &= \int_{\boldsymbol{x}^*}\int_{\boldsymbol{\theta}}
+\right] &= 
+\int_{\boldsymbol{x}^*}\int_{\boldsymbol{\theta}}
 p(\boldsymbol{y}|\boldsymbol{x}^*,\boldsymbol{\theta})
+p(\boldsymbol{\theta}|\mathcal{D})p(\boldsymbol{x})
 d\boldsymbol{\theta}d\boldsymbol{x}^*
 \end{aligned}
 $$
@@ -104,7 +106,7 @@ $$
 \text{Prior Distribution}: && &&
 \boldsymbol{x} &\sim \mathcal{N}(\mathbf{x}\mid \mathbf{m},\mathbf{S}) \\
 \text{Data Likelihood}: && &&
-\boldsymbol{y} &\sim \mathcal{N}(\mathbf{y}\mid \boldsymbol{h}(\mathbf{x},\boldsymbol{\theta}), \mathbf{Q}) \\
+\boldsymbol{y} &\sim \mathcal{N}(\mathbf{y}\mid \boldsymbol{h}(\mathbf{x},\boldsymbol{\theta}), \boldsymbol{\Sigma}_\mathbf{y}) \\
 \text{Linear Operator}: && &&
 \boldsymbol{h}(\mathbf{x},\boldsymbol{\theta}) &= \mathbf{Wx} + \mathbf{b}
 \end{aligned}
@@ -126,15 +128,15 @@ Q: Array["Dy Dy"] = ...    # observation covariance matrix
 **Prediction Function**
 $$
 \begin{aligned}
-p(\mathbf{y}) &= \int \mathcal{N}(\mathbf{x}\mid \mathbf{m},\mathbf{S})
-\mathcal{N}(\mathbf{y}\mid \mathbf{Wx} + \mathbf{b}, \mathbf{Q}) \\
-&= \mathcal{N}(\mathbf{y}\mid \mathbf{Fm}, \mathbf{FSF}^T+\mathbf{Q})
+p(\mathbf{y}) &= \int \mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu}_\mathbf{x},\boldsymbol{\Sigma}_\mathbf{x})
+\mathcal{N}(\mathbf{y}\mid \mathbf{Wx} + \mathbf{b}, \boldsymbol{\Sigma}_\mathbf{y}) \\
+&= \mathcal{N}(\mathbf{y}\mid \mathbf{W}\boldsymbol{\mu}_\mathbf{x}, \mathbf{W}\boldsymbol{\mu}_\mathbf{x}\mathbf{W}^T+\boldsymbol{\Sigma}_\mathbf{y})
 \end{aligned}
 $$
 
 ```python
-y_mu: Array["Dy"] = F @ m + b
-y_cov: Array["Dy Dy"] = F @ S @ F.T + Q
+y_mu: Array["Dy"] = W @ mu_x + b
+y_cov: Array["Dy Dy"] = W @ sigma_x @ W.T + Q
 ```
 
 **Sample Function**
@@ -191,3 +193,20 @@ $$
 Some example methods include:
 * Sequential Monte Carlo
 * Ensemble Points
+
+
+***
+
+
+We take a Gaussian potential on a new observation with an arbitrary likelihood given functions for conditional moments and make a Gaussian approximation.
+The equation is given as so:
+$$
+\begin{aligned}
+p(\boldsymbol{z}_t | \boldsymbol{y}_t, \boldsymbol{x}_t, \boldsymbol{y}_{1:t-1}, \boldsymbol{x}_{1:t-1}) 
+&\propto 
+p(\boldsymbol{z}_t | \boldsymbol{y}_{1:t-1}, \boldsymbol{x}_{1:t-1}) 
+p(\boldsymbol{y}_t | \boldsymbol{z}_t, \boldsymbol{x}_t) \\
+&= N(\boldsymbol{x}_t | \mathbf{m}, \mathbf{P}) 
+\hspace{2mm}\mathbb{E}_{\boldsymbol{x}_t}\left[p(\boldsymbol{y}_t |\boldsymbol{z}_t, \boldsymbol{x}_t)\right]
+\end{aligned}
+$$

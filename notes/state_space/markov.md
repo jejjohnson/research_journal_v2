@@ -1,8 +1,7 @@
 ---
-title: Markov Model
-subject: Jax Approximate Ocean Models
-# subtitle: How can I estimate the state AND the parameters?
-short_title: Markov Models
+title: State Space Models
+subject: State Space Models
+short_title: State-Space Models
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
@@ -26,38 +25,79 @@ The main source of inspiration for this is the lecture from the Probabilistic ML
 Consider a large dimensional dataset, e.g. a data cube. This will be of size: 
 
 $$
-\mathbf{x} \in \mathbf{R}^D
+\boldsymbol{y} \in \mathbf{R}^{D}
 $$
 
 But let's assume that it is a spatio-temporal dataset. Then we can decompose the dimension, $D$ into the following components.
 
 $$
-D = [ \text{space} \times \text{T} \times \text{vars}]
+\text{Dimensions} = [  \text{Time} \times \text{Space} \times \text{Variables}]
+$$
+
+So we can rewrite this with this decomposition
+
+$$
+\boldsymbol{y} \in \mathbf{R}^{D_t \times D_y \times D_\Omega}
 $$
 
 
+This poses some immediate problems when we consider the full decomposition.
 
-### High Dimensionality
+**High Dimensionality**.
+This is a very high dimensional dataset.
+For example, if we have a very long time series like $1,000$ time steps, then we will have a massive $D$-dimensional vector for the input variable.
 
-This is a very high dimensional dataset. For example, if we have a very long time series like $1,000$ time steps, then we will have a massive $D$-dimensional vector for the input variable.
+**Time Dependencies**.
+These time dependencies are very difficult to model. 
+They are highly correlated, especially at very near, e.g. $t-1$, $t$, and $t-1$.
 
-### Time Dependencies
+Let's say we are given a sequence of measurements, $\boldsymbol{y}_n$.
 
-These time dependences are very difficult to model. They are highly correlated, especially at very near, e.g. $t-1$, $t$, and $t-1$.
+$$
+\begin{aligned}
+\mathcal{D} &= \left\{ \boldsymbol{y}_n \right\}_{n=1}^{N_t},
+&& &&
+\boldsymbol{y}_n\in\mathbb{R}^{D_y}
+\end{aligned}
+$$
 
+How do we find an appropriate generative model for this sequence of measurements?
 
 ---
 ## Schematic
 
 This method seeks to decouple time by enforcing the Markov assumption.
 
-```{figure} ./assets/markov_chain_graph.png
----
-height: 300px
-name: markov_chain_graph
----
+```{figure} https://www.researchgate.net/profile/Pierre-Jacob-2/publication/234140260/figure/fig1/AS:652600408023049@1532603470889/The-state-space-model.png
+:alt: markov_model
+:width: 500px
+:align: center
+
 A graphical model for the dependencies between the variables x and z. Notice how z only depends on the previous time step. 
 ```
+
+This gives us the classical state-space formulation
+
+$$
+\begin{aligned}
+\text{Initial Distribution}: && &&
+\boldsymbol{z}_0 &\sim 
+p(\boldsymbol{z}_0;\boldsymbol{\theta}) \\
+\text{Markovian Dynamics Model}: && &&
+\boldsymbol{z}_t &\sim  
+p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1};\boldsymbol{\theta}) \\
+\text{Measurement Model}: && &&
+\boldsymbol{y}_t &\sim 
+p(\boldsymbol{y}_t|\boldsymbol{z}_{t};\boldsymbol{\theta}) \\
+\end{aligned}
+$$
+
+Here, we have an *initial distribution* as a prior over the first state, $\boldsymbol{z}_0$.
+We have a *dynamics model* as the prior over the forward state transitions.
+We have a *measurement model* as a generative model for the observations of the latent state.
+
+
+
 
 
 The key is that by enforcing these Markovian assumptions, we have a directed graph structure that results in very efficient inference. This is all due to the Markov property due to the chain structure. 
@@ -67,176 +107,210 @@ The key is that by enforcing these Markovian assumptions, we have a directed gra
 ## Markov Properties
 
 
+***
 ### Property of States
 
-Given $z_{t-1}$, $z_t$ is independent of any other of the previous states, e.g. $z_{t-2}, z_{t-3}, \ldots$.
+> Given the immediate past, the present state is independent of the entire history before it.
+
+Given $\boldsymbol{z}_{t-1}$, $\boldsymbol{z}_t$ is independent of any other of the previous states, e.g. $\boldsymbol{z}_{t-2}, \boldsymbol{z}_{t-3}, \ldots$.
 
 $$
-p(z_t | z_{1:t-1}, x_{1:t-1}) = p(z_t|z_{t-1})
+p(\boldsymbol{z}_t | \boldsymbol{z}_{1:t-1}, \boldsymbol{y}_{1:t-1}) = p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1})
 $$(markov_prop_states)
 
-This is enforcing some kind of *local memory* within our system. So even if we have the full system of observed variables, $x_{1:T}$, and the posterior states, $z_{1:T}$, we still only have the dependencies on the previous time step.
+This is enforcing some kind of *local memory* within our system. 
+So even if we have the full system of observed variables, $\boldsymbol{y}_{1:T}$, and the posterior states, $\boldsymbol{z}_{1:T}$, we still only have the dependencies on the previous time step:
 
 $$
-p(z_{t-1}|z_{1:T}, x_{1:T}) = p(z_{t-1}|z_t)
+p(\boldsymbol{z}_{t-1}|\boldsymbol{z}_{1:T}, \boldsymbol{y}_{1:T}) = 
+p(\boldsymbol{z}_{t-1}|\boldsymbol{z}_t)
 $$
 
-Bottom line: The past is independent of the future given the present.
+Bottom line - **the past is independent of the future given the present**.
 
-
+***
 ### Conditional Independence of Measurements
 
-We assume that the measurement, $x_t$, given the current state, $z_t$, is conditionally independent of the measurements and its histories.
+> The current measurement is conditionally independent of the past measurements and states given the current state.
+
+We assume that the measurement, $\boldsymbol{y}_t$, given the current state, $\boldsymbol{z}_t$, is conditionally independent of the measurements and its histories.
 
 $$
-p(x_t|z_{1:t}, x_{1:t-1}) = p(x_t|z_t)
+p(\boldsymbol{y}_t|\boldsymbol{z}_{1:t}, \boldsymbol{y}_{1:t-1}) = p(\boldsymbol{y}_t|\boldsymbol{z}_t)
 $$
 
-So as you can see, the measurement at time, $t$, is only dependent on the state, $z$, at time $t$ state irregardless of how many other time steps have been observed.
+So as you can see, the measurement at time, $t$, is only dependent on the state, $\boldsymbol{z}$, at time $t$ state irregardless of how many other time steps have been observed.
 
 
----
+***
 ### Joint Distribution
+
+Given the above properties, this represents how we decompose the time series.
+We use the properties mentioned above.
+
+$$
+p(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T};\boldsymbol{\theta}) = 
+p\left(\boldsymbol{z}_0;\boldsymbol{\theta} \right)
+\prod_{t=1}^T
+p\left(\boldsymbol{y}_t|\boldsymbol{z}_t;\boldsymbol{\theta}\right)
+p\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1};\boldsymbol{\theta}\right)
+$$
 
 While this may not be immediately useful, it is useful for certain other quantities of interest.
 
+***
+### Posterior
+
+We are interested in finding the latent states, $\boldsymbol{z}_{0:T}$, given our observations, $\boldsymbol{y}_{1:T}$.
+However, due to the Markovian nature of the state space model, this process is a combination of  
+This is known as *filtering*.
+
 $$
-p(z_{1:T}, x_{1:T}) = p(x_{1:T}|z_{1:T})p(z_{1:T})
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t}) = 
 $$
 
-Using the Markov local memory and conditioning principal, we can decompose these conditionals wrt to the time, $t$.
-
-$$
-p(z_{1:T}, x_{1:T}) = p(z_0)\prod_{t=2}^Tp(z_t|z_{t-1})\prod_{t=1}^T p(x_t|z_t)
-$$(markov_joint)
-
-where we have all of the elements of the distribution.
-
-- **Prior**: $p(z_0)$
-- **Transition Model**: $p(z_t|z_{t-1})$
-- **Observation Model**: $p(x_t|z_t)$
+***
 
 
----
+
+***
 ## Quantities of Interest
 
 Once we have the model structure, now we are interested in the specific quantities. All of them really boil down to quantities from inference.
 
 ### TLDR
 
-**Posterior** - $p(z_t|x_{1:t})$ 
-> the probability of the state, $z_t$ given the current and previous measurements, $x_{1:t}$.
+**Posterior**, $p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t})$ - this is the probability of the state, $\boldsymbol{z}_t$ given the current and previous measurements, $\boldsymbol{y}_{1:t}$.
 
-**Predict Step** - $p(z_t|x_{1:t-1})=\int p(z_t|z_{t-1})p(z)$
-> The current state, $z_t$, given the past measurements, $x_{1:t-1}$.
+**Predict Step**, $p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})=\int p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1})p(\boldsymbol{z})$ - the current state, $\boldsymbol{z}_t$, given the past measurements, $\boldsymbol{y}_{1:t-1}$.
 
-**Measurement Step** - $p(z_t|x_t, x_{1:t-1}) \propto p(x_t|z_t)p(z_t|x_{1:t-1})$
-> The current state, $z_t$, given the present measurement $x_t$ and past measurements, $x_{1:t-1}$
+**Measurement Step**, $p(\boldsymbol{z}_t|\boldsymbol{y}_t, \boldsymbol{y}_{1:t-1}) \propto p(\boldsymbol{y}_t|\boldsymbol{z}_t)p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})$ - the current state, $\boldsymbol{z}_t$, given the present measurement $\boldsymbol{y}_t$ and past measurements, $\boldsymbol{y}_{1:t-1}$
 
-**Marginal Likelihood** - $p(x_{1:T}) = \sum_{t}^T p(x_t|x_{1:t-1})$
-> The likelihood of measurements, $x_{1:T}$, given the state, $z_{1:T}$.
+**Marginal Likelihood** - $p(\boldsymbol{y}_{1:T}) = \sum_{t}^T p(\boldsymbol{y}_t|\boldsymbol{y}_{1:t-1})$ - the likelihood of measurements, $\boldsymbol{y}_{1:T}$, given the state, $\boldsymbol{z}_{1:T}$.
 
-**Posterior Predictive**: $p(x_t|x_{1:t-1}) = \int p(x_t|z_t)p(z_t|z_{t-1})dz_t$
-> The probability of the measurement, $x_t$, given the previous measurements, $x_{1:t-1}$.
+**Posterior Predictive**: $p(\boldsymbol{y}_t|\boldsymbol{y}_{1:t-1}) = \int p(\boldsymbol{y}_t|\boldsymbol{z}_t)p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1})d\boldsymbol{z}_t$ - The probability of the measurement, $\boldsymbol{y}_t$, given the previous measurements, $\boldsymbol{y}_{1:t-1}$.
 
-**Posterior Samples**: $z_{1:T} \sim p(z_t|x_{1:T})$
-> Trajectories for states, $z_{1:t}$, given the measurements, $x_{1:T}$.
+**Sampling (Posterior)**: $\boldsymbol{z}_{1:T} \sim p(\boldsymbol{z}_t|\boldsymbol{y}_{1:T})$ - Trajectories for states, $\boldsymbol{z}_{1:t}$, given the measurements, $\boldsymbol{y}_{1:T}$.
 
-**Sampling (Measurements)**: $x_t \sim p(x_t|x_{1:t-1})$
-> Trajectories for observations, $x_{1:T}$, given the state space model, $z_{1:T}$.
+**Sampling (Measurements)**: $\boldsymbol{y}_t \sim p(\boldsymbol{y}_t|\boldsymbol{y}_{1:t-1})$ - Trajectories for observations, $\boldsymbol{y}_{1:T}$, given the state space model, $\boldsymbol{z}_{1:T}$.
 
 
 ---
-### Filtering
+### Filtering/Posterior
 
-We are interested in computing the belief of our state, $z_t$. This is given by
+> The probability of the state, $\boldsymbol{z}_t$ given the current and previous measurements, $\boldsymbol{y}_{1:t}$.
+
+We are interested in computing the belief of our state, $\boldsymbol{z}_t$. This is given by
 
 $$
-p(z_t | x_{1:t})
-$$(markov_filter)
+p(\boldsymbol{z}_t | \boldsymbol{y}_{1:t}) =
+\frac{1}{\boldsymbol{E}(\boldsymbol{\theta})} 
+p(\boldsymbol{z}_t|\boldsymbol{y}_t)p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t})
+$$(posterior)
 
-This equation is the posterior probability of $z_t$ given the present measurement, $x_t$, and all of the past measurements, $x_{1:t-1}$. We can compute this using the Bayes method (eq {eq}`bayes`) in a sequential way.
+This equation is the posterior probability of $\boldsymbol{z}_t$ given the present measurement, $\boldsymbol{y}_t$, and all of the past measurements, $\boldsymbol{y}_{1:t-1}$. We can compute this using the Bayes method (eq {eq}`bayes`) in a sequential way.
 
 ```{prf:remark}
 :label: filter-name
 
-The term *filter* comes from the idea that we reduce the noise of current time step, $p(z_t|x_t)$, by taking into account the information within previous time steps, $x_{1:t-1}$.
+The term *filter* comes from the idea that we reduce the noise of current time step, $p(\boldsymbol{z}_t|\boldsymbol{y}_t)$, by taking into account the information within previous time steps, $\boldsymbol{y}_{1:t-1}$.
 
 ```
 
-This is given by the predict-update equations.
+This is given by the predict-update equations:
 
-#### Predict
+$$
+\begin{aligned}
+\text{Prediction}: && &&
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1};\boldsymbol{\theta}) &= 
+\int p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1};\boldsymbol{\theta})
+p(\boldsymbol{z}_{t-1}|\boldsymbol{y}_{1:t-1};\boldsymbol{\theta})d\boldsymbol{z}_{t-1} \\
+\text{Correction}: && &&
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1-t};\boldsymbol{\theta}) &= 
+\frac{1}{\boldsymbol{E}(\boldsymbol{\theta})}
+p(\boldsymbol{y}_t|\boldsymbol{z}_t;\boldsymbol{\theta})
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})
+\end{aligned}
+$$
+
+It is a recursive relationship where the predict step depends on the correction step and vice versa.
+
+***
+### Predict
+
+> The current state, $\boldsymbol{z}_t$, given the past measurements, $\boldsymbol{y}_{1:t-1}$.
 
 This quantity is given via the *Chapman-Kolmogrov* equation.
 
 $$
-p(z_t|x_{1:t-1}) = \int p(z_t|z_{t-1})p(z_{t-1}|x_{1:t-1})dx_{t-1}
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1}) = \int p(\boldsymbol{z}_t|\boldsymbol{z}_{t-1})p(\boldsymbol{z}_{t-1}|\boldsymbol{y}_{1:t-1})d\boldsymbol{y}_{t-1}
 $$(chapman_kolmogrov)
 
-**Term I**: This is the posterior of $z_t$ given all of the previous observations, $x_{1:t-1}$.
 
-**Term II**: the transition distribution between time steps.
+**Term I**: the transition distribution between time steps.
 
-**Term III**: the posterior distribution of the state, $z_{t-1}$, given all of the observations, $x_{1:t-1}$.
+**Term II**: the posterior distribution of the state, $\boldsymbol{z}_{t-1}$, given all of the observations, $\boldsymbol{y}_{1:t-1}$.
 
 Note: term III is the posterior distribution but at a previous time step.
 
+
 ---
-#### Filtering Algorithm
+
+### Correction
+
+>  The posterior distribution of state, $\boldsymbol{z}_t$, given the current **and** previous measurements, $\boldsymbol{y}_{1:t}$.
+
+$$
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t}) =  \frac{p(\boldsymbol{y}_t|\boldsymbol{z}_t)p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})}{p(\boldsymbol{y}_t)}
+$$(markov_update)
+
+
+**Term I**: The observation model for the current measurement, $\boldsymbol{y}_t$, given the current state, $\boldsymbol{z}_t$.
+
+**Term II**: The posterior distribution of the current state, $\boldsymbol{z}_t$, given all of the previous measurements, $\boldsymbol{y}_{1:t-1}$.
+
+**Term III**: The marginal distribution for the current measurement, $\boldsymbol{y}_t$.
+
+---
+### Filtering Algorithm
 
 The full form for filtering equation is given by an iterative process between the predict step and the update step.
 
 **1. Predict the next hidden state**
 
-* First you get the posterior of the previous state, $\mathbf{z}_{t-1}$, given all of the observations, $\mathbf{x}_{1:t-1}$.
-* Second, you get the posterior of the current state, $\mathbf{z}_t$, given all of the observations, $p(\mathbf{x}_{1:t-1})$
+* First you get the posterior of the previous state, $\boldsymbol{z}_{t-1}$, given all of the observations, $\boldsymbol{y}_{1:t-1}$.
+* Second, you get the posterior of the current state, $\boldsymbol{z}_t$, given all of the observations, $p(\boldsymbol{y}_{1:t-1})$
 
 
 $$
-p(\mathbf{z}_{t-1}|\mathbf{x}_{1:t-1}) \rightarrow p(\mathbf{z}_t|\mathbf{x}_{1:t-1})
+p(\boldsymbol{z}_{t-1}|\boldsymbol{y}_{1:t-1}) \rightarrow p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})
 $$
 
 **2. Predict the observation**
 
-* First, you take the state, $x_t$, given the previous measurements, $y_t$. 
-* Second you predict the current measurement, $y_t$, given all previous measurements, $y_{1:t-1}$.
+* First, you take the state, $\boldsymbol{y}_t$, given the previous measurements, $\boldsymbol{y}_t$. 
+* Second you predict the current measurement, $\boldsymbol{y}_t$, given all previous measurements, $\boldsymbol{y}_{1:t-1}$.
 
 $$
-p(x_t|y_{1:t-1}) \rightarrow p(y_t|y_{1:t-1})
+p(\boldsymbol{y}_t|\boldsymbol{y}_{1:t-1}) \rightarrow p(\boldsymbol{y}_t|\boldsymbol{y}_{1:t-1})
 $$
 
 **3. Update the hidden state given the observation**
 
-* First, you take the new observation, $y_t$
-* Then, you do an update step to get the current state, $x_t$, given all previous measurements, $y_{1:t}$.
+* First, you take the new observation, $\boldsymbol{y}_t$
+* Then, you do an update step to get the current state, $\boldsymbol{y}_t$, given all previous measurements, $\boldsymbol{y}_{1:t}$.
 
 
----
-
-#### Update
-
-$$
-p(z_t|x_{1:t}) =  \frac{p(x_t|z_t)p(z_t|x_{1:t-1})}{p(x_t)}
-$$(markov_update)
-
-**Term I**: The posterior distribution of state, $z_t$, given the current **and** previous measurements, $x_{1:t}$.
-
-**Term II**: The observation model for the current measurement, $x_t$, given the current state, $z_t$.
-
-**Term III**: The posterior distribution of the current state, $z_t$, given all of the previous measurements, $x_{1:t-1}$.
-
-**Term IV**: The marginal distribution for the current measurement, $x_t$.
 
 
----
+***
 
 ### Smoothing
 
-We compute the state, $z_t$, given all of the measurements, $x_{1:T}$ where $1 < t < T$. 
+We compute the state, $\boldsymbol{z}_t$, given all of the measurements, $\boldsymbol{y}_{1:T}$ where $1 < t < T$. 
 
 $$
-p(z_t|x_{1:T})
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:T})
 $$
 
 We condition on the past and the future to significantly reduce the uncertainty.
@@ -251,18 +325,18 @@ We can see parallels to our own lives. Take the quote "Hindsight is 22". This im
 This use case is very common when we want to *understand* and *learn* from data. In a practical sense, many reanalysis datasets take this into account.
 
 $$
-p(z_t|x_{1:T}) = p(z_t|x_{1:t}) \int p(z_{t+1}|z_t) \frac{p(z_{t+1}|x_{1:T})}{p(z_{t+1}|x_{1:t})}dz_{t+1}
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:T}) = p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t}) \int p(\boldsymbol{z}_{t+1}|\boldsymbol{z}_t) \frac{p(\boldsymbol{z}_{t+1}|\boldsymbol{y}_{1:T})}{p(\boldsymbol{z}_{t+1}|\boldsymbol{y}_{1:t})}d\boldsymbol{z}_{t+1}
 $$(markov_smooth)
 
-**Term I**: The current state, $z_t$, given all of the past, current and future measurements, $x_{1:T}$ (smoothing step)
+**Term I**: The current state, $\boldsymbol{z}_t$, given all of the past, current and future measurements, $\boldsymbol{y}_{1:T}$ (smoothing step)
 
-**Term II**: The current state, $z_t$, given all of the present and previous measurements, $x_{1:t}$ (the predict step)
+**Term II**: The current state, $\boldsymbol{z}_t$, given all of the present and previous measurements, $\boldsymbol{y}_{1:t}$ (the predict step)
 
-**Term III**: The "future" state, $z_{t+1}$, given the previous state, $z_t$ (transition prob)
+**Term III**: The "future" state, $\boldsymbol{z}_{t+1}$, given the previous state, $\boldsymbol{z}_t$ (transition prob)
 
-**Term IV**: The "future" state, $z_{t+1}$, given all of the measurements, $x_{1:T}$.
+**Term IV**: The "future" state, $\boldsymbol{z}_{t+1}$, given all of the measurements, $\boldsymbol{y}_{1:T}$.
 
-**Term V**: The "future" state, $z_{t+1}$, given all of the current and past measurements, $x_{1:T}$.
+**Term V**: The "future" state, $\boldsymbol{z}_{t+1}$, given all of the current and past measurements, $\boldsymbol{y}_{1:T}$.
 
 
 
@@ -271,22 +345,22 @@ $$(markov_smooth)
 
 ### Predictions
 
-We want to predict the future state, $z_{T+\tau}$, given the past measurements, $x_{}.
+We want to predict the future state, $\boldsymbol{z}_{T+\tau}$, given the past measurements, $\boldsymbol{y}_{1:T}$.
 
 $$
-p(z_{T+\tau}|x_{1:T})
+p(\boldsymbol{z}_{T+\tau}|\boldsymbol{y}_{1:T})
 $$
 
-where $\tau > 0$. $\tau$ is the *horizon* of our forecasting, i.e. it is how far ahead of $T$ we are trying to predict. So we can expand this to write that we are interested in the future hidden states, $z_{T+\tau}$, given all of the past measurements, $x_{1:T}$.
+where $\tau > 0$. $\tau$ is the *horizon* of our forecasting, i.e. it is how far ahead of $T$ we are trying to predict. So we can expand this to write that we are interested in the future hidden states, $\boldsymbol{z}_{T+\tau}$, given all of the past measurements, $\boldsymbol{y}_{1:T}$.
 
 $$
-p(z_{T+\tau}|x_{1:T}) = \sum_{z_{T+\tau}} \sum_{z_T} p(z_{T+\tau}|z_T) p(z_T|x_{1:T})
+p(\boldsymbol{z}_{T+\tau}|\boldsymbol{y}_{1:T}) = \sum_{\boldsymbol{z}_{T+\tau}} \sum_{\boldsymbol{z}_t} p(\boldsymbol{z}_{T+\tau}|\boldsymbol{z}_t) p(\boldsymbol{z}_t|\boldsymbol{y}_{1:T})
 $$
 
 We could also want to get predictions for what we observe
 
 $$
-p(x_{T+\tau}|x_{1:t}) = \sum p(x_{T+\tau}|z_{T+\tau})p(z_{T+\tau}|x_{1:T})
+p(\boldsymbol{y}_{T+\tau}|\boldsymbol{y}_{1:t}) = \sum p(\boldsymbol{y}_{T+\tau}|\boldsymbol{z}_{T+\tau})p(\boldsymbol{z}_{T+\tau}|\boldsymbol{y}_{1:T})
 $$
 
 This is known as the *posterior predictive density*.
@@ -296,10 +370,19 @@ This is often the most common use case in applications, e.g. weather predictions
 
 ### Likelihood Estimation
 
-For learning, we need to calculate the most probable state-space that matches the given observations. This assumes that we have access to all of the measurements, $x_{1:T}$.
 
 $$
-\mathcal{L}_{NLL} = \operatorname*{argmax}_{z_{1:T}} p(z_{1:T}|x_{1:T})
+\boldsymbol{E}(\boldsymbol{\theta}) = 
+p(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1};\boldsymbol{\theta}) = 
+\int p(\boldsymbol{y}_t|\boldsymbol{z}_t;\boldsymbol{\theta})
+p(\boldsymbol{z}_t|\boldsymbol{y}_{1:t-1})d\boldsymbol{z}_t
+$$
+
+
+For learning, we need to calculate the most probable state-space that matches the given observations. This assumes that we have access to all of the measurements, $\boldsymbol{y}_{1:T}$.
+
+$$
+\mathcal{L}_{NLL} = \operatorname*{argmax}_{\boldsymbol{z}_{1:T}} p(\boldsymbol{z}_{1:T}|\boldsymbol{y}_{1:T})
 $$
 
 **Note**: This is a non-probabilistic approach to maximizing the likelihood. However, this could be very useful for some applications. Smoothing would be better but we still need to find the best parameters.
@@ -307,10 +390,10 @@ $$
 
 ### Posterior Samples
 
-We are interested in generating possible states and state trajectories. In this case, we want the likelihood of a state trajectory, $z_{1:T}$, given some measurements, $x_{1:T}$. This is given by:
+We are interested in generating possible states and state trajectories. In this case, we want the likelihood of a state trajectory, $\boldsymbol{z}_{1:T}$, given some measurements, $\boldsymbol{y}_{1:T}$. This is given by:
 
 $$
-z_{1:T} \sim p(z_{1:T}|x_{1:T})
+\boldsymbol{z}_{1:T} \sim p(\boldsymbol{z}_{1:T}|\boldsymbol{y}_{1:T})
 $$
 
 This is very informative because it can show us plausible interpretations of possible state spaces that could fit the measurements.
@@ -331,13 +414,13 @@ $$
 This is the probability of the evidence, i.e., the marginal probability of the measurements. This may be useful as an evaluation of the density of given measurements. We could write this as the joint probabilty
 
 $$
-p(x_{1:T}) = \sum_{z_{1:T}} p(z_{1:T}, x_{1:T})
+p(\boldsymbol{y}_{1:T}) = \sum_{\boldsymbol{z}_{1:T}} p(\boldsymbol{z}_{1:T}, \boldsymbol{y}_{1:T})
 $$
 
 We can decompose this using the conditional probability. This gives us
 
 $$
-p(x_{1:T}) = \sum_{z_{1:T}} p(x_{1:T}|z_{1:T})p(z_{1:T})
+p(\boldsymbol{y}_{1:T}) = \sum_{\boldsymbol{z}_{1:T}} p(\boldsymbol{y}_{1:T}|\boldsymbol{z}_{1:T})p(\boldsymbol{z}_{1:T})
 $$
 
 As shown by the above function, this is done by summing all of the hidden paths. 
@@ -347,7 +430,7 @@ This can be useful if we want to use the learned model to classify sequences, pe
 Note: We can use the log version of this equation to deal with instabilities.
 
 $$
-\mathcal{L} = \log p(x_{1:T}) = \sum_{z_{1:T}} \log p(z_{1:T},x_{1:T})
+\mathcal{L} = \log p(\boldsymbol{y}_{1:T}) = \sum_{\boldsymbol{z}_{1:T}} \log p(\boldsymbol{z}_{1:T},\boldsymbol{y}_{1:T})
 $$
 
 ### Complexity
@@ -379,7 +462,7 @@ Overall: the bottleneck of this method is not the computational speed, it's the 
 ---
 ## Cons
 
-While we managed to reduce the dimensionality of our dataset, this might not be the optimal model to choose. We assume that $z_t$ only depends on the previous time step, $z_{t-t}$. But it could be the case that $z_t$ could depend on previous time steps, e.g. $p(z_t | z_{t-1}, z_{t-2}, z_{t-2}, \ldots)$. There is no reason to assume that 
+While we managed to reduce the dimensionality of our dataset, this might not be the optimal model to choose. We assume that $\boldsymbol{z}_t$ only depends on the previous time step, $\boldsymbol{z}_{t-t}$. But it could be the case that $\boldsymbol{z}_t$ could depend on previous time steps, e.g. $p(\boldsymbol{z}_t | \boldsymbol{z}_{t-1}, \boldsymbol{z}_{t-2}, \boldsymbol{z}_{t-2}, \ldots)$. There is no reason to assume that 
 
 
 #### Multiscale Time Dependencies

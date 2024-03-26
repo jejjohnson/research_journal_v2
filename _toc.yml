@@ -203,6 +203,7 @@ chapters:
         - file: notes/bayesian/inference
         - file: notes/bayesian/variational_inference
         - file: notes/bayesian/cond_variational_inference
+        - file: notes/bayesian/seq_variational_inference
         - file: notes/bayesian/confidence_intervals
       - title: Neural Fields
         sections:
@@ -218,6 +219,7 @@ chapters:
         sections:
           - file: notes/state_space/dyn_sys
           - file: notes/state_space/markov
+          - file: notes/state_space/lin_gauss_markov
           - file: notes/state_space/gauss_markov
           - file: notes/state_space/kalman_filter
           - file: notes/state_space/ens_kalman_filter
@@ -230,4 +232,5 @@ chapters:
         sections:
           - file: notes/sensitivity_analysis/demo
           - file: notes/sensitivity_analysis/sa_problem
+          - file: notes/sensitivity_analysis/sa_gauss_approx
           
