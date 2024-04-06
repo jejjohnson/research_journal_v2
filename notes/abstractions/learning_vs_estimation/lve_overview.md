@@ -22,6 +22,17 @@ In other words, if you have a model: you make an estimation.
 If you do not have a model: you need to learn one.
 
 
+**Parameter Estimation**
+
+> We want to find the best parameters, $\boldsymbol{\theta}$, given some criteria, $\boldsymbol{L}$.
+
+$$
+\boldsymbol{\theta}^* = \underset{\theta}{\text{argmin}}\hspace{2mm}
+\boldsymbol{L}(\boldsymbol{\theta})
+$$
+
+
+***
 ## Estimation
 
 > When you already have a model, $f$, for the data and you want to estimate a value of the state, z, or a quantity of interest, u, given observations, y. Objective-based is the inverse prob formulation and the amortized-based is the skipped.

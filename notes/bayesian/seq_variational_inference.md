@@ -90,14 +90,14 @@ We will start with the full posterior written like so
 
 $$
 p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t}) =
-\frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}{p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1})} 
+\frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}{p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1})} 
 $$
 
 but will rearrange this to have the marginal likelihood isolated
 
 $$
 p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1}) =
-\frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
+\frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
 {p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})} 
 $$
 
@@ -106,20 +106,20 @@ Now, we will do the standard log transformation on both sides
 
 $$
 \log p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1}) =
-\log \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
+\log \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
 {p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})} 
 $$
 
-Then we will do the identity trick to push in our variational distribution, $q(\boldsymbol{z}_{1:T})$.
+Then we will do the identity trick to push in our variational distribution, $q(\boldsymbol{z}_{1:t})$.
 
 
 $$
 \log p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1}) =
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}\left[
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}\left[
   \log
-  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
+  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
   {p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})} 
-  \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}
 \right]
 $$
 
@@ -127,12 +127,12 @@ Now, we can break apart the log terms
 
 $$
 \log p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1}) =
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}\left[
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}\left[
   \log
-  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
-  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})} +
+  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
+  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})} +
   \log
-  \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}
   {p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})} 
 \right]
 $$
@@ -141,13 +141,13 @@ and we can seperate the expectation terms as they are additive
 
 $$
 \log p_{\boldsymbol{\theta}}(\boldsymbol{y}_{t}|\boldsymbol{y}_{1:t-1}) =
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}\left[
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:t})}\left[
   \log
-  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
-  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
+  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:t})}
   \right] +
-  \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}\left[
-  \log \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:t})}\left[
+  \log \frac{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:t})}
   {p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})} 
 \right]
 $$
@@ -156,14 +156,14 @@ The 2nd term on the RHS is the KLD term which we can replace this with the more 
 
 $$
 \log p_\theta(x) =  
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}\left[
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}\left[
   \log
-  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
-  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
+  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}
   \right] + 
 \text{D}_{\text{KL}} 
 \left[
-  q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T}) ||
+  q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t}) ||
   p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t})
 \right]
 $$
@@ -179,10 +179,10 @@ We can decompose the joint distribution within the first term
 
 $$
 \boldsymbol{L}_\text{ELBO} :=
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}\left[
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}\left[
   \log
-  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T})}
-  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+  \frac{p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:t},\boldsymbol{y}_{1:t})}
+  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:t})}
   \right]
 \leq
 \log p_{\boldsymbol{\theta}}(\boldsymbol{z}_t | \boldsymbol{y}_{1:t}) 
@@ -192,10 +192,10 @@ To clean this term up, first we will split the term using the log rules
 
 $$
 \boldsymbol{L}_\text{ELBO} :=
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})}
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:T})}
 \left[
   \log p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T}) -
-  \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{1:T})
+  \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:T})
 \right]
 $$
 
@@ -203,7 +203,7 @@ Now, we will decompose the joint distribution based on our priors.
 
 $$
 \boldsymbol{L}_\text{ELBO} :=
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
 \left[
   \sum_{t=1}^T\log
 p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)
@@ -212,7 +212,7 @@ p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)
 p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
  -
     \sum_{t=1}^T
-    \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})
+    \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})
 \right]
 $$
 
@@ -223,7 +223,7 @@ We can push the summations outside of the logs and expectations
 :label: seq-vi-elbo-gen
 \boldsymbol{L}_\text{ELBO} :=
 \sum_{t=1}^T
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
 \left[
 \log
 p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)
@@ -231,7 +231,7 @@ p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)
 \log
 p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
  -
-    \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})
+    \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})
 \right]
 ```
 
@@ -257,8 +257,8 @@ p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
 \right]} - 
  {\color{green} 
  \sum_{t=1}^T
- \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}
- \left[ \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})\right]
+ \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
+ \left[ \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})\right]
  }.
 $$
 
@@ -286,11 +286,11 @@ p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)
 \right]
 +
 \sum_{t=1}^T
-\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}
+\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
 \left[
   \log 
   \frac{p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)}
-  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})}
+  {q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
 \right]
 $$
 
@@ -324,14 +324,14 @@ $$
  \left[ p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)\right]} - 
  {\color{green}
  \sum_{t=1}^T\text{D}_\text{KL}\left[
-  q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})||p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
+  q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})||p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
   \right]}.
 $$
 
 
 where:
 * ${\color{red}\mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}\left[ p_{\boldsymbol{\theta}}\left(\boldsymbol{y}_t|\boldsymbol{z}_t\right)\right]}$ - is the $\color{red}\text{reconstruction loss}$.
-* ${\color{green}\text{D}_\text{KL}\left[q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t})||p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)\right]}$ - is the complexity, i.e. the $\color{green}\text{KL divergence}$ (a distance metric) between the prior and the variational distribution.
+* ${\color{green}\text{D}_\text{KL}\left[q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})||p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)\right]}$ - is the complexity, i.e. the $\color{green}\text{KL divergence}$ (a distance metric) between the prior and the variational distribution.
 
 This is easily the most common ELBO term especially with Variational AutoEncoders (VAEs). The first term is the expectation of the likelihood term wrt the variational distribution. The second term is the KLD between the prior and the variational distribution.
 
@@ -351,7 +351,7 @@ $$
  \boldsymbol{L}_{\text{ELBO}}=
  {\color{red}
  \sum_{t=1}^T
- \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_t)}
+ \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})}
  \left[ \log p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right) \right]} + 
  {\color{green}
  \sum_{t=1}^T
@@ -373,19 +373,17 @@ where:
 
 
 ***
-## ELBO Loss
+## Loss Function
 
 We have the generic ELBO loss function calculates a loss between the joint variational distribution and the joint prior distribution.
 
 $$
-\boldsymbol{L}_{ELBO}(\boldsymbol{\theta},\boldsymbol{\phi}) = 
+\boldsymbol{L}_\text{ELBO}(\boldsymbol{\theta},\boldsymbol{\phi}) = 
 \mathbb{E}_{q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:T})}
 \left[ 
     \log p_{\boldsymbol{\theta}}(\boldsymbol{z}_{0:T},\boldsymbol{y}_{1:T}) -
     \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{0:T})
 \right]
-\leq
-p_{\boldsymbol{\theta}}(\boldsymbol{y}_{1:T})
 $$
 
 where the prior parameters, $\boldsymbol{\theta}$, and variational parameters, $\boldsymbol{\phi}$.
@@ -401,6 +399,21 @@ $$
 \right]
 $$
 
+The terms in this equation cannot be calculated in closed form. 
+So we must use some sort of Monte Carlo sampling routine
+
+$$
+\boldsymbol{\nabla}_{\boldsymbol{\phi},\boldsymbol{\theta}}\boldsymbol{L}_\text{ELBO}
+\approx
+\frac{1}{N}\sum_{n=1}^{N}
+\boldsymbol{\nabla}_{\boldsymbol{\phi},\boldsymbol{\theta}}
+\mathbb{E}_{q_{\boldsymbol{\phi}}\left(\boldsymbol{z}_{0:T}^{(n)}\right)}
+\left[ 
+    \log p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_{0:T}^{(n)},\boldsymbol{y}_{1:T}\right) -
+    \log q_{\boldsymbol{\phi}}\left(\boldsymbol{z}_{0:T}^{(n)}\right)
+\right]
+$$
+where $\boldsymbol{z}^{(n)}_{0:T}$ are samples from the latent state.
 There are some difficulties regarding calculating gradients over expectations.
 See the [pyro-ppl guide](https://pyro.ai/examples/svi_part_iii.html) for more information about this.
 

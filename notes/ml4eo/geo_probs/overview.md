@@ -23,3 +23,5 @@ keywords: observations
 ### Learning
 
 > When a model, $f$, is not available for the observations, $y$, you need learning. You need to learn the parameters for the model that you believe best fits the data.
+
+
