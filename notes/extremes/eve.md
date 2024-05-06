@@ -26,6 +26,37 @@ abbreviations:
 
 ***
 
+## Metrics
+
+### Negative Log-Likelihood
+
+
+$$
+\boldsymbol{L}(\boldsymbol{\theta}) = \sum_{n=1}^N\log p(y_n|\boldsymbol{\theta}_n)
+$$
+
+### AIC
+
+Akaike Information Criteria (AIC)
+
+$$
+AIC = 2K - 2\boldsymbol{L}(\boldsymbol{\theta})
+$$
+
+where $K$ is the number of parameters of the statistical model and $NLL$ is the maximized log-likelihood.
+
+***
+### BIC
+
+Bayesian Information Criteria (BIC)
+
+$$
+BIC = K \cdot \log N - 2 \boldsymbol{L}(\boldsymbol{\theta})
+$$
+
+where $N$ is the sample size.
+
+***
 ## Empirical Fit
 
 ### P-P Plot

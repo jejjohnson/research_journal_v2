@@ -477,9 +477,144 @@ In the literature, this is known as the Poisson-GPD which is a combination of an
 
 :::
 
+:::{tip} Example - Unconditional Reparameterized Extreme Events
+<!-- :class: dropdown -->
+
+
+Like the unconditional case, they assume a homogenous Poisson process for the temporal intensity function.
+In other words, it is a constant term with no dependence on time or the history.
+
+$$
+\lambda^*(t) \approx \lambda(\boldsymbol{\theta}) =  \lambda h 
+\hspace{10mm} [\text{Event}][\text{Time}]^{-1}
+$$
+where $\lambda$ is the constant rate and $h$ is some unit of time, e.g., Years.
+So we can use the same expressions as the example in the TPP section.
+
+However, they impose a parametric distribution for the marks.
+In this case, they assume that there is no temporal dependency for the marks nor any historical dependency.
+
+$$
+f^*(y|t) \approx f(y;\boldsymbol{\theta})
+$$
+
+In this case, the PDF is the GPD given some threshold, $y_0$, we can write the PDF as
+
+$$
+\begin{aligned}
+f(y;\boldsymbol{\theta}) &= \sigma^{-1}\left[ 1 + \kappa z\right]_+^{-\frac{1}{\kappa}-1} 
+&& &&
+1 + \kappa z > 0
+&& &&
+\kappa \neq 0 
+\end{aligned}
+$$
+
+where $z = (y - y_0) / \sigma$, $[1 + \kappa z_n]_+ = \text{max}(1 + \kappa z_n,0)$, and the parameters are $\boldsymbol{\theta} = \left\{ \mu,\kappa\right\}$.
+
+So, putting all of this together, we can write out the expression for the log-likelihood of the conditional intensity function as seen in equation [](eq:mtpp-nll) as
+
+$$
+\begin{aligned}
+\log p(\boldsymbol{\theta}|\mathcal{H}) &=
+\sum_{n=1}^N\log \lambda +
+\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta}) -
+\lambda T\\
+&= 
+N \log \lambda - \lambda T
++
+\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta})
+\\
+\end{aligned}
+$$
+
+We can plug in the log-likelihood for the GPD which we have done previously in equation [](eq:gpd_nll) to reduce the entire expression to
+
+$$
+\begin{aligned}
+\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
+N \log \lambda - \lambda T
+- N \log \sigma -
+(1+1/\kappa)\sum_{n=1}^N 
+\log \left[ 1 + \kappa z_n\right]_+
+\\
+\end{aligned}
+$$
+
+where the parameters, $\boldsymbol{\theta}$, are $\boldsymbol{\theta} = \left\{ \lambda, \mu,\kappa\right\}$.
+In this case, we are going to reparameterize this loss function with the GEVD distribution.
+We are given the translations as
+
+$$
+\begin{aligned}
+\text{Rate}: && &&
+\lambda &=  
+\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
+\text{Log Rate}: && &&
+\log\lambda &=  
+- \frac{1}{\kappa}\log
+\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
+\text{Scale}: && &&
+\sigma_{y_0} &=
+\sigma + \kappa(y_0 - \mu) \\
+\text{Shape}: && &&
+\kappa_{y_0} &= \kappa \\
+\end{aligned}
+$$
+
+These are the parameters of the reparameterized distribution.
+We can plug these components into the log-likelihood loss function to obtain
+
+$$
+\begin{aligned}
+\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
+\frac{N}{\kappa}\log
+\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
+&- T \left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
+&- N \log \left[ \sigma + \kappa(y_0 - \mu) \right] \\
+&-
+(1+1/\kappa)\sum_{n=1}^N 
+\log \left[ 1 + \kappa z_n\right]_+
+\\
+\end{aligned}
+$$
+
+where $z_n = (y_n - y_0)/(\sigma + \kappa(y_0 - \mu))$.
+
+
+We can make this a bit neater by introducing a masking variable, $\boldsymbol{m}$.
+This variable acts as an indicator variable
+
+$$
+m_n = 
+\begin{cases}
+1, && y > y_0 \\
+0, && y \leq 0
+\end{cases}
+$$
+
+Now, we can use this indicator variable to mask the likelihood function to zero if the observed value at the temporal resolution is above or below the threshold, $y_0$.
+
+$$
+\begin{aligned}
+\log p(y_n|\boldsymbol{\theta}) &= 
+\frac{m_n}{\kappa}\log
+\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
+&- T \left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
+&- m_n \log \left[ \sigma + \kappa(y_0 - \mu) \right] \\
+&-
+m_n(1+1/\kappa)\sum_{n=1}^N 
+\log \left[ 1 + \kappa z_n\right]_+
+\\
+\end{aligned}
+$$
+
+
+:::
+
 
 :::{tip} Example - Conditional Extreme Events
-<!-- :class: dropdown -->
+:class: dropdown
 
 
 Like the unconditional case, they assume a homogenous Poisson process for the temporal intensity function.
@@ -559,6 +694,8 @@ where $z_t=(y_n - y_0)/\sigma_t$ and the parameters, $\boldsymbol{\theta}_t$, ar
 In the literature, this is known as the Poisson-GPD which is a combination of an assumption that the events occur with a homogeneous Poisson process and the events magnitude are a GPD.
 
 :::
+
+
 
 
 
@@ -694,6 +831,18 @@ where $f$ is the PDF of some density function and $F$ is the CDF of some density
 $$
 \lambda^*(t,\mathbf{s}) = \boldsymbol{\mu}(t,\mathbf{s}) + \boldsymbol{g}(t,\mathbf{s})
 $$
+
+Typically, we can use some kernel function
+
+$$
+f(t|\boldsymbol{\theta}) = 
+\sum_{n=1}^{N_s}
+\mathbf{w}_n
+\boldsymbol{k}(t,\boldsymbol{\theta}_n)
+$$
+
+where $\boldsymbol{k}$ is a kernel function (density function) with parameters $\boldsymbol{\theta}_n$.
+The $\mathbf{w}_n$ are weights corresponding to the densities $\boldsymbol{k}(t,\boldsymbol{\theta}_n)$ and $\sum_{n=1}^{N_s}\mathbf{w}_n=1$.
 
 
 ***

@@ -114,6 +114,16 @@ $$
 $$
 
 ***
+### Background
+
+$$
+p(Y\leq y+y_0|Y>y_0) = 1 - \frac{1-F(y+y_0)}{1-F(y_0)}
+$$
+
+where $y>0$.
+If we let $y_0\rightarrow\infty$, then this leads to an approximate family of distributions given by the GPD
+
+***
 ### Marginal Survival Function
 
 We are interested in the marginal probability of occurrence above an arbitrary maximum value, $y$.

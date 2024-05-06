@@ -51,7 +51,7 @@ where the function $t(y;\boldsymbol{\theta})$ is defined as:
 $$
 \boldsymbol{t}(y;\boldsymbol{\theta}) = 
 \begin{cases}
-\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]^{-1/\kappa}, && \kappa\neq 0 \\
+\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]_+^{-1/\kappa}, && \kappa\neq 0 \\
 \exp\left(-\frac{y-\mu}{\sigma}\right), && \kappa=0
 \end{cases}
 $$
@@ -81,7 +81,7 @@ $$
 \boldsymbol{t}(y;\boldsymbol{\theta}) = 
 \begin{cases}
 \left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]^{-1/\kappa}_+, && \kappa\neq 0 \\
-1 - \kappa\left(\frac{y-\mu}{\sigma}\right)^{1/\kappa}, && \kappa=0
+\exp\left(-\frac{y-\mu}{\sigma}\right), && \kappa=0
 \end{cases}
 $$
 
@@ -113,7 +113,7 @@ where the function $t(y;\boldsymbol{\theta})$ is defined as:
 $$
 \boldsymbol{t}(y;\boldsymbol{\theta}) = 
 \begin{cases}
-\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]^{-1/\kappa}, && \kappa\neq 0 \\
+\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]_+^{-1/\kappa}, && \kappa\neq 0 \\
 1 - \kappa\left(\frac{y-\mu}{\sigma}\right)^{1/\kappa}, && \kappa=0
 \end{cases}
 $$
@@ -216,10 +216,10 @@ $$
 \log p(\boldsymbol{y}_{1:N}|\boldsymbol{\theta}) =
 - N \log \sigma -
 (1+1/\kappa)\sum_{n=1}^N 
-\log \left( 1 + \kappa z_n\right)
+\log \left[ 1 + \kappa z_n\right]_+
 - 
 \sum_{n=1}^N 
-\left( 1 + \kappa z_n\right)^{-1/\kappa}
+\left[ 1 + \kappa z_n\right]_+^{-1/\kappa}
 $$
 
 
@@ -235,6 +235,8 @@ def gev_logpdf(x, location, scale, shape):
     z = (x - mu) / sigma
     # calculate t(z) = 1+κz
     t = 1.0 + shape * z
+    # grab max value
+    t = np.max(t, 0)
     # term 1: −log σ
     t1 = - np.log(sigma)
     # term 2: − (1+κz) ** −1/κ
@@ -307,8 +309,8 @@ Let $z=\frac{y-\mu}{\sigma}$
 $$
 \log p(y_n|\boldsymbol{\theta}) = 
 -\log \sigma + 
-(\kappa+1) \log \left( 1 + \kappa z\right)^{-1/\kappa}
-- \left( 1 + \kappa z\right)^{-1/\kappa}
+(\kappa+1) \log \left[ 1 + \kappa z\right]_+^{-1/\kappa}
+- \left[ 1 + \kappa z\right]_+^{-1/\kappa}
 $$
 
 We can do some final simplification
@@ -316,8 +318,8 @@ We can do some final simplification
 $$
 \log p(y_n|\boldsymbol{\theta}) = 
 -\log \sigma - 
-(1+1/\kappa)\log \left( 1 + \kappa z_n\right)
-- \left( 1 + \kappa z_n\right)^{-1/\kappa}
+(1+1/\kappa)\log \left[ 1 + \kappa z_n\right]_+
+- \left[ 1 + \kappa z_n\right]_+^{-1/\kappa}
 $$
 
 Now, we can plug in the sum
@@ -327,8 +329,8 @@ $$
 \sum_{n=1}^N 
 \left(
 -\log \sigma - 
-(1+1/\kappa)\log \left( 1 + \kappa z_n\right)
-- \left( 1 + \kappa z_n\right)^{-1/\kappa}
+(1+1/\kappa)\log \left[ 1 + \kappa z_n\right]_+
+- \left[ 1 + \kappa z_n\right]_+^{-1/\kappa}
 \right)
 $$
 
@@ -338,10 +340,10 @@ $$
 \log p(\boldsymbol{y}_{1:N}|\boldsymbol{\theta}) =
 - N \log \sigma -
 (1+1/\kappa)\sum_{n=1}^N 
-\log \left( 1 + \kappa z_n\right)
+\log \left[ 1 + \kappa z_n\right]_+
 - 
 \sum_{n=1}^N 
-\left( 1 + \kappa z_n\right)^{-1/\kappa}
+\left[ 1 + \kappa z_n\right]_+^{-1/\kappa}
 $$
 
 
