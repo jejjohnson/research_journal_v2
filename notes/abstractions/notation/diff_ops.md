@@ -358,7 +358,7 @@ $$
 We can also write this as the functional transformation version
 
 $$
-\text{Laplacian}[\boldsymbol{f}](\vec{mathbf{x}}): \mathbf{R}^D \rightarrow \mathbf{R}
+\text{Laplacian}[\boldsymbol{f}](\vec{\mathbf{x}}): \mathbf{R}^D \rightarrow \mathbf{R}
 $$
 
 ````{admonition} Pseudo-Code
@@ -544,4 +544,103 @@ $$
 
 $$
 \vec{\boldsymbol{f}} = \underbrace{- \nabla\phi}_{\text{Div-Free}}+ \underbrace{\nabla\times \mathbf{A}}_{\text{Curl-Free}}
+$$
+
+
+***
+## Vector Jacobian Products
+
+* Tangent Space + Primal Space -> Jacobian-Vector Product
+* Primal Space + Cotangent Space -> Vector-Jacobian Product
+
+**Resources**:
+* [jax documentation](https://jax.readthedocs.io/en/latest/notebooks/autodiff_cookbook.html#how-it-s-made-two-foundational-autodiff-functions)
+* Linearization is All You Need for an AutoDiff Library - [Blog](https://antixk.netlify.app/blog/linearization_ad/)
+* The Adjoint Method in a Dozen Lines of JAX - [Blog](https://cundy.me/post/the_adjoint_method_in_a_dozen_lines_of_jax/)
+* Adjoint Sensitivities over nonlinear equations with JAX - [YouTube](https://cundy.me/post/the_adjoint_method_in_a_dozen_lines_of_jax/)
+* Using JAX Jacobians for Adjoint Sensitivities over Nonlinear Systems of Equations - [YouTube](https://www.youtube.com/watch?v=rzSVDzhpNqg)
+* A Tutorial on Automatic Differentiation for Scientific Design - [Slides](https://nickmcgreivy.scholar.princeton.edu/sites/g/files/toruqf5041/files/ast558_seminar_tutorial_on_automatic_differentiation-2.pdf)
+
+
+***
+### Linearization
+
+First, we linearize about the prior estimate, $\boldsymbol{\mu_z}$.
+
+$$
+\boldsymbol{f}(\boldsymbol{z}) \approx 
+\boldsymbol{f}(\boldsymbol{\mu_z}) + 
+\boldsymbol{\nabla_z}\boldsymbol{f}(\boldsymbol{z}-\boldsymbol{\mu_z}) + \mathcal{O}^2(\boldsymbol{f})
+$$
+
+Then, we approximate the gradient of the function with the gradient evaluated at the prior estimate
+
+$$
+\boldsymbol{f}(\boldsymbol{z}) \approx  \boldsymbol{J_f}^\top (\boldsymbol{z}) := 
+\boldsymbol{\nabla_z}\boldsymbol{f}(\boldsymbol{z})|_{\boldsymbol{z}=\boldsymbol{\mu_z}}
+$$
+
+Here, the operator, $\boldsymbol{J_f}(\boldsymbol{z})$, is the tangent-linear operator of the function $\boldsymbol{f}(\cdot)$ evaluated at $\boldsymbol{\mu_z}$, and the $\boldsymbol{J_f}^\top(\boldsymbol{z})$ is the adjoint.
+
+$$
+\begin{aligned}
+\text{Dynamical Tangent-Linear Operator}: && &&
+\boldsymbol{J_f}(\boldsymbol{z}) &=
+\boldsymbol{F_z} = 
+\boldsymbol{\nabla_z}\boldsymbol{f}(\boldsymbol{z})|_{\boldsymbol{z}=\boldsymbol{\mu_z}}, 
+&& &&
+\mathbb{R}^{D}\rightarrow\mathbb{R}^{D_x\times D_x}\\
+\text{Dynamical Adjoint Operator}: && &&
+\boldsymbol{J_z}^\top(\boldsymbol{z}) &=
+\boldsymbol{F_z}^\top = 
+\boldsymbol{\nabla_z}\boldsymbol{f}(\boldsymbol{z})|_{\boldsymbol{z}=\boldsymbol{\mu_z}}, 
+&& &&
+\mathbb{R}^{D}\rightarrow\mathbb{R}^{D_x\times D_x}\\
+\text{Observation Tangent-Linear Operator}: && &&
+\boldsymbol{J_h}(\boldsymbol{z}) &=
+\boldsymbol{H_z} = 
+\boldsymbol{\nabla_z}\boldsymbol{h}(\boldsymbol{z})|_{\boldsymbol{z}=\boldsymbol{\mu_z}}, 
+&& &&
+\mathbb{R}^{D}\rightarrow\mathbb{R}^{D_y\times D_x}\\
+\text{Observation Adjoint Operator}: && &&
+\boldsymbol{J_h}^\top(\boldsymbol{z}) &=
+\boldsymbol{H_z}^\top = 
+\boldsymbol{\nabla_z}\boldsymbol{h}(\boldsymbol{z})|_{\boldsymbol{z}=\boldsymbol{\mu_z}}, 
+&& &&
+\mathbb{R}^{D_y}\rightarrow\mathbb{R}^{D_x\times D_y}\\
+\end{aligned}
+$$
+
+***
+### Tangent-Linear Model
+
+$$
+\begin{aligned}
+\text{Tangent-Linear Model}: && &&
+(\boldsymbol{u,v}) &\rightarrow 
+\partial_{\boldsymbol{z}}\boldsymbol{f}(\boldsymbol{z})\boldsymbol{v} \\
+\text{Input Vector}: && &&
+\boldsymbol{u}: &\in \mathbb{R}^{D} \\
+\text{Tangent Vector}: && &&
+\boldsymbol{v}: &\in \mathbb{R}^{D} \\
+\text{Jacobian-Vector Product}: && &&
+\text{jvp} &: \mathbb{R}^{D}\times\mathbb{R}^{M}\rightarrow\mathbb{R}^{D}
+\end{aligned}
+$$
+
+***
+### Adjoint Model
+
+$$
+\begin{aligned}
+\text{Adjoint Model}: && &&
+(\boldsymbol{u,v}) &\rightarrow 
+\boldsymbol{v}\partial_{\boldsymbol{z}}\boldsymbol{f}(\boldsymbol{z})^\top \\
+\text{Input Vector}: && &&
+\boldsymbol{u}: &\in \mathbb{R}^{D} \\
+\text{Tangent Vector}: && &&
+\boldsymbol{v}: &\in \mathbb{R}^{M} \\
+\text{Jacobian-Vector Product}: && &&
+\text{jvp} &: \mathbb{R}^{D}\times\mathbb{R}^{M}\rightarrow\mathbb{R}^{M}
+\end{aligned}
 $$

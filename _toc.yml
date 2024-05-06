@@ -110,6 +110,11 @@ chapters:
             - file: notes/extremes/eva
             - file: notes/extremes/evp
             - file: notes/extremes/eve
+          - title: Distributions
+            sections:
+            - file: notes/extremes/evt_dists/gev
+            - file: notes/extremes/evt_dists/gpd
+            - file: notes/extremes/evt_dists/pp
           - title: Feature Extraction
             sections:
             - file: notes/extremes/algo
@@ -230,6 +235,7 @@ chapters:
       - title: Data Assimilation
         sections:
           - file: notes/da/oi
+          - file: notes/da/sc4dvar
           - file: notes/state_space/4dvarnet
       - title: Sensitivity Analysis
         sections:

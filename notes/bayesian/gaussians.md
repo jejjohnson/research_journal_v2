@@ -41,12 +41,25 @@ where:
 We often call this the quadratic term.
 
 $$
-\boldsymbol{\Delta}^2 = 
+\begin{aligned}
+\text{Mah Distance}: && &&
+\boldsymbol{\Delta}^2 &= 
 (\boldsymbol{u} - \boldsymbol{\mu})^\top
 \boldsymbol{\Sigma}^{-1}
-(\boldsymbol{u} - \boldsymbol{\mu})
+(\boldsymbol{u} - \boldsymbol{\mu}) \\
+&& &&
+\boldsymbol{\Delta} &= 
+\sqrt{(\boldsymbol{u} - \boldsymbol{\mu})^\top
+\boldsymbol{\Sigma}^{-1}
+(\boldsymbol{u} - \boldsymbol{\mu})} \\
+&& &&
+\boldsymbol{\Delta} &= 
+\sqrt{\boldsymbol{\Sigma}^{-1}(\boldsymbol{u} - \boldsymbol{\mu})^\top
+(\boldsymbol{u} - \boldsymbol{\mu})} \\
+\end{aligned}
 $$
 
+***
 #### Case I: Identity
 
 $$
@@ -56,9 +69,25 @@ $$
 $$
 
 
+***
 #### Case II: Scalar
 
+$$
+\text{Euclidean Distance}: \hspace{2mm}
+\sigma
+(\boldsymbol{u} - \boldsymbol{\mu})^\top
+(\boldsymbol{u} - \boldsymbol{\mu})
+$$
+
+
 #### Case III: Diagonal
+
+$$
+\text{Euclidean Distance}: \hspace{2mm}
+\boldsymbol{\sigma}^{-1}
+(\boldsymbol{u} - \boldsymbol{\mu})^\top
+(\boldsymbol{u} - \boldsymbol{\mu})
+$$
 
 #### Case IV: Decomposition
 
@@ -176,6 +205,197 @@ p(\boldsymbol{u}|\boldsymbol{z}) &=
 \boldsymbol{\Sigma_{zu}}
 \end{aligned}
 $$
+
+***
+## Scaling 
+
+> there
+
+### Matrix Inversions
+
+The primary thing we want to do when
+
+#### Cholesky Decomposition
+
+We can decompose the matrix into a Cholesky which is an upper (or lower) triangular matrix.
+
+$$
+\mathbf{C} = \mathbf{LL}^\top
+$$
+
+We can to the inversion
+
+$$
+\mathbf{L}^{-1} = \text{Inverse}(\mathbf{L})
+$$
+
+Something that is easier to deal with is the matrix solve:
+
+$$
+\mathbf{x} = \mathbf{L}^{-1}\mathbf{b}
+$$
+
+For this, we need a special solver
+
+```python
+A: Array["D D"] = ...
+b: Array["D M"] = ...
+I: Array["D D"] = eye_like(A)
+# cholesky decomposition
+L: Array["D D"] = cholesky(K, lower=True)
+L_inv: Array["D D"] = cho_solve(L, I, lower=True)
+x: Array["D M"] = cho_solve(L, b, lower=True)
+```
+
+***
+#### Conjugate Gradient
+
+$$
+\mathbf{x}^* = \underset{\mathbf{x}}{\text{argmin}} \hspace{2mm}
+\mathbf{x}^\top\mathbf{A}\mathbf{x} -
+$$
+
+***
+#### Woodbury Approximation
+
+We can find some lower dimensional subspace. 
+For example, we can use the SVD decomposition
+
+$$
+\mathbf{C} \approx \mathbf{U}\boldsymbol{\Lambda}\mathbf{V}^\top + \sigma\mathbf{I}
+$$
+
+Looking at equation [](eq:woodbury), we can take the inverse.
+
+$$
+\mathbf{C}^{-1} \approx
+\mathbf{I}^{-1} - \mathbf{I}^{-1}\mathbf{U}
+\left(\boldsymbol{\Lambda}^{-1} + \mathbf{V}^\top\mathbf{I}^{-1}\mathbf{U}\right)^{-1}\mathbf{V}^\top\mathbf{D}^{-1}
+$$
+
+***
+#### Inducing Points
+
+We can use a subset of the points and calculate th covariance.
+
+$$
+\mathbf{C_{yy}} \approx \mathbf{C_{yr}C_{rr}}^{-1}\mathbf{C_{yr}}^\top + \mathbf{I}
+$$
+
+Now, we can easily find the inverse 
+
+$$
+\mathbf{C_{yy}}^{-1} \approx
+\mathbf{C_{yr}C_{rr}}^{-1}\mathbf{C_{yr}}^\top
+$$
+
+
+
+
+***
+## Approximate Conditional Distributions
+
+$$
+p(\boldsymbol{z},\boldsymbol{u}) 
+\sim \mathcal{N}
+\left(
+    \begin{bmatrix}
+    \boldsymbol{z}\\
+    \boldsymbol{u}
+    \end{bmatrix} 
+    \mid
+    \begin{bmatrix}
+    \boldsymbol{\hat{m}_z} \\
+    \boldsymbol{\hat{m}_z}
+    \end{bmatrix},
+    \begin{bmatrix}
+    \boldsymbol{\hat{C}_{zz}} & \boldsymbol{\hat{C}_{zu}}\\
+    \boldsymbol{\hat{C}_{uz}} & \boldsymbol{\hat{C}_{uu}}
+    \end{bmatrix} 
+\right)
+$$ (eq:mvn-joint-approx)
+
+We have each of the terms as
+
+$$
+\begin{aligned}
+\text{Mean}: && &&
+\boldsymbol{\hat{m}_z} &=
+\mathbb{E}\left[\boldsymbol{z}|\mathbf{Y}\right] = 
+\int\boldsymbol{f}(\boldsymbol{z})p(\boldsymbol{z})d\boldsymbol{z}\\
+\text{Marginal Covariance}: && &&
+\boldsymbol{\hat{C}_{zz}} &=
+\text{Cov}\left[\boldsymbol{z}\right] = 
+\int\left(\boldsymbol{f}(\boldsymbol{z}) - \boldsymbol{\hat{m}_z}\right)
+\left(\boldsymbol{f}(\boldsymbol{z}) - \boldsymbol{\hat{m}_z}\right)^\top
+p(\boldsymbol{z})d\boldsymbol{z}
+\\
+\text{Mean}: && &&
+\boldsymbol{\hat{y}} &=
+\mathbb{E}\left[\boldsymbol{y}|\mathbf{Y}\right] = 
+\int\boldsymbol{h}(\boldsymbol{z})p(\boldsymbol{z})d\boldsymbol{z}\\
+\text{Marginal Covariance}: && &&
+\boldsymbol{\hat{C}_{yy}} &=
+\text{Cov}\left[\boldsymbol{z}\right] = 
+\int\left(\boldsymbol{h}(\boldsymbol{y}) - \boldsymbol{\hat{y}}\right)
+\left(\boldsymbol{h}(\boldsymbol{y}) - \boldsymbol{\hat{y}}\right)^\top
+p(\boldsymbol{z})d\boldsymbol{z}
+\\
+\text{Cross-Covariance}: && &&
+\boldsymbol{\hat{C}_{zy}} &=
+\text{Cov}\left[\boldsymbol{z}\right] = 
+\int\left(\boldsymbol{f}(\boldsymbol{z}) - \boldsymbol{\hat{m}_z}\right)
+\left(\boldsymbol{h}(\boldsymbol{z}) - \boldsymbol{\hat{y}}\right)^\top
+p(\boldsymbol{z})d\boldsymbol{z}
+\end{aligned}
+$$
+
+We have the conditional likelihood for the variable, $\boldsymbol{z}$
+
+$$
+\begin{aligned}
+p(\boldsymbol{z}|\boldsymbol{u}) &= 
+\mathcal{N}
+\left(
+    \boldsymbol{z} \mid
+    \boldsymbol{\mu_{z|u}},
+    \boldsymbol{\Sigma_{z|u}}
+\right) \\
+\boldsymbol{\mu_{z|u}} &= 
+\bar{\boldsymbol{z}}  + 
+\boldsymbol{\Sigma_{zu}}\boldsymbol{\Sigma_{uu}}^{-1}
+(\boldsymbol{u} - \bar{\boldsymbol{u}}) \\
+\boldsymbol{\Sigma_{z|u}} &=
+\boldsymbol{\Sigma_{zz}} - 
+\boldsymbol{\Sigma_{zu}}
+\boldsymbol{\Sigma_{zz}}^{-1}
+\boldsymbol{\Sigma_{uz}}
+\end{aligned}
+$$
+
+We have the conditional likelihood for the variable, $\boldsymbol{u}$
+
+$$
+\begin{aligned}
+p(\boldsymbol{u}|\boldsymbol{z}) &= 
+\mathcal{N}
+\left(
+    \boldsymbol{u} \mid
+    \boldsymbol{\mu_{u|z}},
+    \boldsymbol{\Sigma_{u|z}}
+\right) \\
+\boldsymbol{\mu_{u|z}} &= 
+\bar{\boldsymbol{u}}  + 
+\boldsymbol{\Sigma_{zu}}\boldsymbol{\Sigma_{zz}}^{-1}
+(\boldsymbol{z} - \bar{\boldsymbol{z}}) \\
+\boldsymbol{\Sigma_{u|z}} &=
+\boldsymbol{\Sigma_{uu}} - 
+\boldsymbol{\Sigma_{uz}}
+\boldsymbol{\Sigma_{uu}}^{-1}
+\boldsymbol{\Sigma_{zu}}
+\end{aligned}
+$$
+
 
 ***
 ## Linear Conditional Gaussian Model
@@ -306,6 +526,10 @@ $$
 - Ensemble of Trajectories, $x\in\mathbb{R}^{N\times D}$, $N=\text{Ensembles}$, $D=\text{Time x Space}$
 
 ***
+### Gaussian Approximation Algorithm
+
+
+***
 ### Moment Estimation
 
 #### Samples
@@ -390,7 +614,7 @@ $$
 $$ (eq:woodbury)
 
 ***
-#### Sherman-Morrison Formula
+#### Sherman-Morrison-Woodbury Formula
 
 This is basically the same as the Woodbury formula [](#eq:woodbury) except the matrix, $\mathbf{A}$, is the identity, $\mathbf{I}$ and the decomposition is between
 
@@ -399,7 +623,20 @@ $$
 \mathbf{I}_D - \mathbf{U}
 \left(\mathbf{I}_d + \mathbf{V}^\top\mathbf{U}\right)^{-1}
 \mathbf{V}^{\top}
-$$ (eq:sherman-morrison)
+$$ (eq:sherman-morrison-woodbury)
+
+There are some lemmas to this which have been shown to be very useful in practice.
+
+$$
+\begin{aligned}
+\begin{aligned}
+\mathbf{AB^\top(C+BAB^\top)^{-1}} &=
+\mathbf{A^{-1} - A^{-1}U(C^{-1}+VA^{-1}U)^{-1}VA^{-1}} \\
+\mathbf{(C^{-1}+B^\top A^{-1}B)^{-1}} &=
+\mathbf{C^{-1} - CB^\top(BCB^\top+A)^{-1}BC} \\
+\end{aligned}
+\end{aligned}
+$$
 
 
 ***
