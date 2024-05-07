@@ -129,6 +129,10 @@ chapters:
             - file: notes/extremes/modeling/spatial
             - file: notes/extremes/modeling/dynamical
             - file: notes/extremes/modeling/emulator
+          - title: Experiment I
+            sections:
+            - file: notes/extremes/experiments/unconditional_madrid/eda_madrid
+            - file: notes/extremes/experiments/unconditional_madrid/unc_madrid_det
       - title: Emulators
         sections:
           - file: notes/ai4nwp/emulators
@@ -239,6 +243,7 @@ chapters:
           - file: notes/state_space/4dvarnet
       - title: Sensitivity Analysis
         sections:
+          - file: notes/sensitivity_analysis/overview
           - file: notes/sensitivity_analysis/demo
           - file: notes/sensitivity_analysis/sa_problem
           - file: notes/sensitivity_analysis/sa_gauss_approx

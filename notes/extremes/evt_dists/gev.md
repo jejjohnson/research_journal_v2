@@ -44,7 +44,7 @@ We can define the probability density function
 $$
 \boldsymbol{f}(y;\boldsymbol{\theta}) = 
 \frac{1}{\sigma}t\left(y;\boldsymbol{\theta}\right)^{\kappa+1}e^{-t\left(y;\boldsymbol{\theta}\right)}
-$$
+$$ (eq:gevd_pdf)
 
 where the function $t(y;\boldsymbol{\theta})$ is defined as:
 
@@ -54,7 +54,17 @@ $$
 \left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]_+^{-1/\kappa}, && \kappa\neq 0 \\
 \exp\left(-\frac{y-\mu}{\sigma}\right), && \kappa=0
 \end{cases}
-$$
+$$ (eq:gevd_pdf_function)
+
+From 
+:::{figure}
+:label: fig:gevd-disttypes
+:align: left
+
+![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cCIER1t6-MCEi9Usyt3D2w.png)
+
+Some different distribution types for the GEVD - [Source - Medium Article](https://medium.com/@devineni/generalized-extreme-value-distribution-2ce165549897)
+:::
 
 ***
 ## Cumulative Distribution Function
@@ -75,15 +85,7 @@ $$
 \left[ -\boldsymbol{t}(y;\boldsymbol{\theta}) \right]
 $$
 
-where the function $t(y;\boldsymbol{\theta})$ is defined as:
-
-$$
-\boldsymbol{t}(y;\boldsymbol{\theta}) = 
-\begin{cases}
-\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]^{-1/\kappa}_+, && \kappa\neq 0 \\
-\exp\left(-\frac{y-\mu}{\sigma}\right), && \kappa=0
-\end{cases}
-$$
+where the function $t(y;\boldsymbol{\theta})$ is defined in equation [](eq:gevd_pdf_function).
 
 ***
 ## Survival Function
@@ -108,15 +110,7 @@ $$
 \left[ -\boldsymbol{t}(y;\boldsymbol{\theta}) \right]
 $$
 
-where the function $t(y;\boldsymbol{\theta})$ is defined as:
-
-$$
-\boldsymbol{t}(y;\boldsymbol{\theta}) = 
-\begin{cases}
-\left[ 1 + \kappa \left( \frac{y-\mu}{\sigma} \right)\right]_+^{-1/\kappa}, && \kappa\neq 0 \\
-1 - \kappa\left(\frac{y-\mu}{\sigma}\right)^{1/\kappa}, && \kappa=0
-\end{cases}
-$$
+where the function $t(y;\boldsymbol{\theta})$ is defined in equation [](eq:gevd_pdf_function).
 
 ***
 ## Quantile Function
@@ -143,9 +137,9 @@ $$
 \mu + \frac{\sigma}{\kappa}\left[ \left(-\ln y_p \right)^{-\kappa} - 1 \right] && \kappa\neq 0 \\
 \mu - \sigma \ln \left( -\ln y_p \right) && \kappa=0
 \end{cases}
-$$
+$$ (eq:gevd-quantile)
 
-:::{tip} Code Snippet
+:::{note} Code Snippet
 :class: dropdown
 
 We can create an likelihood function for the quantile function where $\kappa\neq 0$.
@@ -204,7 +198,7 @@ $$
 p(y_{1:N}|\boldsymbol{\theta}) = \prod_{n=1}^N\frac{1}{\sigma}t\left(y_n;\boldsymbol{\theta}\right)^{\kappa+1}e^{-t\left(y_n;\boldsymbol{\theta}\right)}
 $$
 
-We can add the log term to get
+where $t(y_n;\boldsymbol{\theta})$ is defined in equation [](eq:gevd_pdf_function). We can add the log term to get
 
 $$
 \log p(\boldsymbol{y}_{1:N}|\boldsymbol{\theta}) = \sum_{n=1}^N \log p(y_n|\boldsymbol{\theta})
@@ -366,10 +360,6 @@ $$
 \kappa=0 \\
 \end{aligned}
 $$
-
-#### Joint Distribution
-
-Now, we can write the joint distribution which is
 
 
 ***

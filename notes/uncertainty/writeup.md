@@ -228,3 +228,15 @@ x = \mu_x + \Sigma_x \epsilon_x \\
 \epsilon_x \sim \mathcal{N}(0, 1)
 \end{aligned}
 $$
+
+
+---
+## Sources of Uncertainty
+
+
+* Measurement Uncertainty - Sensors, Satellites, etc
+* Numerical Simulation Error - Discretization Error
+* Mathematical Model Error - Input Parameter Uncertainty
+
+* Sensitivity Analysis
+

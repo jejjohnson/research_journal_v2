@@ -478,7 +478,7 @@ In the literature, this is known as the Poisson-GPD which is a combination of an
 :::
 
 :::{tip} Example - Unconditional Reparameterized Extreme Events
-<!-- :class: dropdown -->
+:class: dropdown
 
 
 Like the unconditional case, they assume a homogenous Poisson process for the temporal intensity function.
