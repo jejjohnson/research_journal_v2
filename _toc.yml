@@ -95,9 +95,10 @@ chapters:
           - file: notes/projects/2023_igeo/ai_4_regional_param
           - title: Bayes4EVT
             sections:
+            - file: notes/projects/2023_igeo/bayes4evt/overview
             - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_models
             - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_inf
-            - file: notes/projects/2023_igeo/bayes4evt/overview
+            
             - file: notes/projects/2023_igeo/bayes4evt/eda_madrid
             - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
       - title: ML4EO
