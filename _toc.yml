@@ -93,7 +93,12 @@ chapters:
           - file: notes/projects/2023_igeo/igeo_overview
           - file: notes/projects/2023_igeo/ai_4_storylines
           - file: notes/projects/2023_igeo/ai_4_regional_param
-
+          - title: Bayes4EVT
+            sections:
+            - file: notes/projects/2023_igeo/bayes4evt/experiments/unconditional_madrid/overview
+            - file: notes/projects/2023_igeo/bayes4evt/experiments/unconditional_madrid/eda_madrid
+            - file: notes/projects/2023_igeo/bayes4evt/experiments/unconditional_madrid/bayes4evt_unc_models
+            - file: notes/projects/2023_igeo/bayes4evt/experiments/unconditional_madrid/exp1_unc_madrid_gevd
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview
@@ -129,10 +134,6 @@ chapters:
             - file: notes/extremes/modeling/spatial
             - file: notes/extremes/modeling/dynamical
             - file: notes/extremes/modeling/emulator
-          - title: Experiment I
-            sections:
-            - file: notes/extremes/experiments/unconditional_madrid/eda_madrid
-            - file: notes/extremes/experiments/unconditional_madrid/unc_madrid_det
       - title: Emulators
         sections:
           - file: notes/ai4nwp/emulators

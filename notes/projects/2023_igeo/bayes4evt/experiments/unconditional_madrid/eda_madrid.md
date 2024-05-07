@@ -1,7 +1,7 @@
 ---
 title: Preliminary Results
 subject: Misc. Notes
-short_title: Overview
+short_title: Experiment 1 - EDA
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
@@ -15,12 +15,15 @@ keywords: data
 ---
 
 
+
 ## Data 
 
 For this first experiment, we are looking at Madrid
 
-::::{grid} 2 2 2
+::::{tab-set}
 
+:::{tab-item} Time Series
+:sync: tab1
 :::{figure}
 :label: madrid-t2m-ts
 :align: center
@@ -29,7 +32,8 @@ For this first experiment, we are looking at Madrid
 A time series of daily maximum 2m temperature in Madrid.
 :::
 
-
+:::{tab-item} Histogram
+:sync: tab2
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
@@ -37,8 +41,8 @@ A time series of daily maximum 2m temperature in Madrid.
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1Pq_obSbuCc15mWxXbaI7I8BhbSwMxJ2U)
 A histogram of daily maximum 2m temperature in Madrid.
 :::
-
 ::::
+
 
 In this figure, we are showing different representations for the time series of Madrid.
 In [](madrid-t2m-ts), there is a daily time series for the 2m max temperature.
@@ -55,8 +59,10 @@ So, our block size is of one year which leaves us 62 years in total for our time
 While this is not a lot of data, we see in [](fig:madrid-t2m-bm-hist) that the distribution does match one of the classical GEVD distributions. 
 In particular, the Fréchet distribution where the shape parameter, $\kappa$, is less than 0 ([](fig:gevd-disttypes)).
 
-::::{grid} 2 2 2 3
+::::{tab-set}
 
+:::{tab-item} Time Series
+:sync: tab1
 :::{figure}
 :label: fig:madrid-t2m-bm-ts
 :align: center
@@ -64,7 +70,8 @@ In particular, the Fréchet distribution where the shape parameter, $\kappa$, is
 A scatter plot with boundaries for the maximum temperatures obtained using the yearly Block maxima method.
 :::
 
-
+:::{tab-item} Scatter Plot
+:sync: tab2
 :::{figure}
 :label: fig:madrid-t2m-bm-scatter
 :align: center
@@ -73,6 +80,8 @@ A scatter plot with boundaries for the maximum temperatures obtained using the y
 A scatter plot for the yearly maximum values obtained from the daily 2m max temperature for Madrid.
 :::
 
+:::{tab-item} Histogram
+:sync: tab3
 :::{figure}
 :label: fig:madrid-t2m-bm-hist
 :align: center
@@ -80,8 +89,6 @@ A scatter plot for the yearly maximum values obtained from the daily 2m max temp
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1GqRibR58Z1ESy3_BiakGTQCQ5ezLkcXE)
 A histogram of all values obtained using the block maxima method.
 :::
-
-
 ::::
 
 In this figure, we have different representations for the block maximum method.
