@@ -1,7 +1,7 @@
 ---
 title: Preliminary Results
 subject: Misc. Notes
-short_title: Experiment 1 - Models
+short_title: Inference
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
@@ -15,61 +15,8 @@ keywords: data
 ---
 
 
+> An overview of the methods used to find the best parameters.
 
-## Model
-
-We assume that our data
-
-$$
-\begin{aligned}
-\mathcal{D} &= \left\{ y_n \right\}_{n=1}^N && &&
-y_n \in \mathbb{R} && &&
-\mathbf{y} = [y_1, y_2, \ldots, y_N]
-\end{aligned}
-$$
-
-We also assume that there is a joint distribution of a set of parameters, $\boldsymbol{\theta}$, combined with the observation, $\mathbf{y}$.
-However, we decompose the joint distribution into a likelihood and prior.
-Basically, the observations can be explained some prior parameters.
-
-$$
-p(\mathbf{y},\boldsymbol{\theta}) = p(\mathbf{y}|\boldsymbol{\theta})p(\boldsymbol{\theta})
-$$
-
-The likelihood term is the GEVD distribution and the prior term are the prior parameters for the GEVD distribution.
-
-$$
-\begin{aligned}
-\text{Data Likelihood}: && &&
-y &\sim \text{GEVD}(\mu, \sigma, \kappa) \\
-\text{Prior Parameters}: && &&
-\boldsymbol{\theta} &\sim p(\boldsymbol{\theta}) \\
-\end{aligned}
-$$ (eq:gevd-joint-parts)
-
-where $\boldsymbol{\theta} = \left\{\mu,\sigma,\kappa\right\}$.
-
-***
-### Posterior
-The full term for posterior  is given by
-
-$$
-p(\boldsymbol{\theta}|\mathbf{y}) = 
-\frac{1}{Z}p(\mathbf{y}|\boldsymbol{\theta})
-p(\boldsymbol{\theta})
-$$
-
-where $Z$ is a normalizing constant. 
-The problem term is the normalizing constant because it is an integral wrt to all of the parameters
-
-$$
-Z=\int p(\mathbf{y}|\boldsymbol{\theta})p(\boldsymbol{\theta})p\boldsymbol{\theta}
-$$
-
-This is intractable because there is no closed form given the non-linearities in the GEVD PDF as seen in [](eq:gevd_pdf) and [](eq:gevd_pdf_function).
-
-
-***
 ## Inference
 
 In general, there are three different ways to get the parameters.
