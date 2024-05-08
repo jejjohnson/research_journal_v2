@@ -98,6 +98,7 @@ The annual mean is the binned observations per year.
 ## Point Process
 
 
+
 ::::{tab-set}
 
 :::{tab-item} Relationship
@@ -105,7 +106,7 @@ The annual mean is the binned observations per year.
 :label: madrid-t2m-ts
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1JBLiTy_dwZFIAlLfduQY57zPRgjWA2vq)
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1F52t9sFcXWMEaUmkLp4tNlWXMvapD_c8)
 A figure showing a linear regression and polynomial regression fitted to all of the counts of events above the threshold.
 
 :::
