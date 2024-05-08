@@ -92,19 +92,19 @@ We can write the conditional probability density function in terms of the hazard
 
 $$
 f^*(t) = \lambda^*(t) \exp\left( -\Lambda(T) \right) = \lambda^*(t)S^*(t)
-$$
+$$ (eq:tpp-density)
 
 We can also write it using the hazard function and the survival function
 
 $$
 f^*(t) =  \lambda^*(t)S^*(t)
-$$
+$$ (eq:tpp-density-survival)
 
 And lastly, we can write it in terms of the hazard function and the CDF function.
 
 $$
 f^*(t) =  \lambda^*(t)\left(1-F^*(t)\right)
-$$
+$$ (eq:tpp-density-cdf)
 
 
 ***
@@ -157,14 +157,15 @@ We can also shorten the notation by introducing the cumulative hazard function a
 
 $$
 \Lambda^*(\mathcal{T}) = \int_{0}^T\lambda^*(\tau)d\tau
-$$
+$$ (eq:tpp-cumulative-hazard)
 
 This will leave us with
+
 $$
 \log p(\mathcal{H}) = 
 \sum_{n=1}^N\log \lambda^*(t_n) -
 \Lambda^*(\mathcal{T})
-$$
+$$ (eq:tpp-loglikelihood)
 
 
 :::{tip} Example I - Homogeneous Poisson Process
@@ -184,25 +185,30 @@ $$
 $$
 
 This means that our cumulative Hazard function, $\Lambda^*(\mathcal{T})$, will also not depend on any of the historical events and it will be constant with time.
+Plugging our terms into the cumulative hazard function in equation [](eq:tpp-cumulative-hazard)  results in
 
 $$
 \begin{aligned}
-\Lambda(\mathcal{T}) &= \int_{0}^T\lambda^*(\tau)d\tau =
+\Lambda(\mathcal{T}) &=
  \int_0^T \lambda d\tau = (T-0) \lambda =
  \lambda T
 \end{aligned}
 $$
 
-So, we can plug these two quantities into our log likelihood function
+So, we can plug these two quantities into our log likelihood function in equation [](eq:tpp-loglikelihood) as
 
 $$
 \begin{aligned}
-\log p(\mathcal{H}) &= 
-\sum_{n=1}^N\log\lambda^*(t_n) - \Lambda^*(\mathcal{T})
-\\
-&= \sum_{n=1}^N\log \lambda - \lambda T \\
+\log p(\mathcal{H}) &= \sum_{n=1}^N\log \lambda - \lambda T \\
 &= N\log\lambda - \lambda T
 \end{aligned}
+$$
+
+We can also recover the density function from equation [](eq:tpp-density).
+This is given as
+
+$$
+f^*(t) = \lambda \exp(-\lambda T)
 $$
 
 :::
@@ -239,6 +245,7 @@ $$
 \log p(;\boldsymbol{\theta}|\mathcal{H}) &= 
 \sum_{n=1}^N\log\lambda(t_n) - \Lambda^*(\mathcal{T})
 \\
+&= \sum_{n=1}^N\log \lambda(t_n;\boldsymbol{\theta}) -  \Lambda^*(\mathcal{T};\boldsymbol{\theta}) \\
 &= \sum_{n=1}^N\log \lambda(t_n;\boldsymbol{\theta}) -  \int_0^T \lambda(\tau;\boldsymbol{\theta}) d\tau
 \end{aligned}
 $$
@@ -246,6 +253,13 @@ $$
 There are a number of parametric equations we could use for the $\lambda(t;\boldsymbol{\theta})$.
 We could use a log-linear model, a cox process or a Hawkes process to name a few.
 The game is to 1) use a simple parametric function that has a closed form integral form, or 2) use a more complex parametric function and approximate the integral using quadrature or discretization strategies.
+
+In addition, we can also recover the density function from equation [](eq:tpp-density).
+This is given as
+
+$$
+f^*(t) = \lambda(t;\boldsymbol{\theta}) \exp(-\Lambda^*(\mathcal{T};\boldsymbol{\theta}))
+$$
 
 :::
 

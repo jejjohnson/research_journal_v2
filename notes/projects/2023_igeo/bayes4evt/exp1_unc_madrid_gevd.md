@@ -1,7 +1,7 @@
 ---
 title: Preliminary Results
 subject: Misc. Notes
-short_title: Experiment 1a
+short_title: Experiment 1a - Madrid
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
@@ -107,8 +107,6 @@ where $\boldsymbol{q}_\text{GEVD}$ is the quantile distribution for the GEVD; se
 
 ::::{tab-set}
 :::{tab-item} Prior Parameters Joint Plot
-:sync: tab1
-
 :::{figure}
 :label: fig:madrid-t2m-bm-map-prior-joint
 :align: center
@@ -118,7 +116,6 @@ A joint plot for the distribution of prior parameters based on the equations [](
 :::
 
 :::{tab-item} Prior Predictive Posterior
-:sync: tab2
 :::{figure}
 :label: fig:madrid-t2m-bm-map-prior-pred
 :align: center
@@ -128,7 +125,6 @@ The prior predictive posterior distribution for our prior parameters given in eq
 :::
 
 :::{tab-item} Prior Return Level
-:sync: tab3
 :::{figure}
 :label: fig:madrid-t2m-bm-map-prior-pred
 :align: center
@@ -150,7 +146,6 @@ Essentially, how well did we do
 
 ::::{tab-set}
 :::{tab-item} NLL Loss Curve
-:sync: tab1
 :::{figure}
 :label: madrid-t2m-ts
 :align: center
@@ -160,7 +155,6 @@ The loss curve for the negative log-likelihood in equation [](eq:madrid-gevd-mle
 :::
 
 :::{tab-item} NLL Time Series
-:sync: tab2
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
@@ -170,7 +164,6 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 :::
 
 :::{tab-item} Q-Q Plot for MLE Estimator
-:sync: tab3
 :::{figure}
 :label: madrid-t2m-ts
 :align: center
@@ -180,7 +173,6 @@ A Q-Q plot for the MLE estimator.
 :::
 
 :::{tab-item} Return Period 4 MLE Estimator
-:sync: tab3
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
@@ -199,7 +191,6 @@ The return values for the MLE estimator
 ::::{tab-set}
 
 :::{tab-item} NLL Time Series
-:sync: tab1
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
@@ -209,7 +200,6 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 :::
 
 :::{tab-item} Q-Q Plot
-:sync: tab2
 :::{figure}
 :label: madrid-t2m-ts
 :align: center
@@ -219,7 +209,6 @@ A Q-Q plot for the MAP estimator.
 :::
 
 :::{tab-item} Return Period
-:sync: tab3
 :::{figure}
 :label: madrid-t2m-hist
 :align: center

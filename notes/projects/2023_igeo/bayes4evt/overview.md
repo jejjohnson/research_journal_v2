@@ -17,26 +17,41 @@ keywords: data
 
 ## Datasets
 
+We are primarily dealing with temperature measurements. 
+In particular, we are looking at 2 meter temperature (t2m) above the Earths surface.
+Our region of interest is Spain and the period of interest spans 1960 until 2021.
+We are dealing directly with measurements from stations that are scattered throughout Spain, like  Madrid, Bilbao, or Valencia.
+We want to take a step further and look for extreme temperatures.
+So this entails taking maximum daily values through our region and period of interest.
 
-**Single Station Data**. All of these experiments are performed on univariate time series which corresponds to a single station.
-We will take a single station, e.g., Madrid, Bilbao, or Valencia, and learn the parameters of the an extreme distribution.
-
-**Multivariate Data**. We will improve upon these by applying a model that can take into account all of the stations within Madrid.
+From a modeling standpoint, we hope to characterize the tails of distribution of these temperature measurements, i.e., the extreme values.
+This will be useful because we can make predictions about the occurrences of these extreme events.
+In addition, if we can correlate these extremes to external factors like Global Mean Surface Temperature (GMST), it makes a stronger statement about the trajectory of frequency of occurrence of these extreme values.
 
 
 ***
 ## Models
 
+We will take three approaches to modeling these extreme values: 1) block maximum (BM), 2) peak-over-thresholds (POT), and 3) temporal point process (TPP).
 
-**GEVD**. We will choose the extreme distribution to be the GEVD distribution.
+**GEVD**. For the BM method, we will use the generalized extreme value distribution (GEVD). 
+This will be an annual maximum for each station.
+The annual BM is arguably the most reliable and stable method for classifying extremes.
+However, the downside is that we don't take advantage of all of the values we would consider extreme.
 
-**Poisson-GPD**. We will choose the extreme distribution to be the Poisson-GPD distribution.
+**GPD**.
+For the POT method, we will use the generalized Pareto distribution (GPD).
+This will choose a threshold and model all values above the threshold.
+This method is more complex because one has to choose an appropriate threshold as well as *decluster* events.
+However, the upside is that we will have more occurrences of extremes which will be better for fitting models.
 
-**Point Process**. We will choose the extreme distribution to be the Point Process which will be a combination of the GEVD and the Poisson-GPD but under the Point process framework.
+**Point Process**. We will choose the extreme distribution to be the PP which will be a combination of the GEVD and the Poisson-GPD but under the PP framework.
 
 
 ***
-### Covariates
+## Covariates
+
+Each of the above models assumes each observation is IID.
 
 #### **No Covariates**
 We will apply all models assuming no covariates.
@@ -80,8 +95,8 @@ We will apply different models using different inference methods on each station
 We will assume there are no covariates within the model.
 
 * [**Experiment 1a**](./exp1_unc_madrid_gevd.md) - GEVD Model
-* **Experiment 1b** - Poisson-GPD Model
-* **Experiment 1c** - MCMC Model
+* **Experiment 1b** - GPD Model
+* **Experiment 1c** - TPP Model
 
 ***
 
@@ -90,8 +105,8 @@ We will assume there are no covariates within the model.
 We will apply different models using different methods on each of the station assuming we can exploit the shared spatial information.
 
 * **Experiment 2a** - GEVD Model
-* **Experiment 2b** - Poisson-GPD Model
-* **Experiment 2c** - MCMC Model
+* **Experiment 2b** - GPD Model
+* **Experiment 2c** - TPP Model
 
 
 ***
@@ -102,5 +117,5 @@ We will apply different models using different methods on each of the station as
 In addition, we will use the GMST as a proxy for the time component.
 
 * **Experiment 3a** - GEVD Model
-* **Experiment 3b** - Poisson-GPD Model
-* **Experiment 3c** - MCMC Model
+* **Experiment 3b** - GPD Model
+* **Experiment 3c** - TPP Model

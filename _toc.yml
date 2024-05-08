@@ -98,9 +98,9 @@ chapters:
             - file: notes/projects/2023_igeo/bayes4evt/overview
             - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_models
             - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_inf
-            
             - file: notes/projects/2023_igeo/bayes4evt/eda_madrid
             - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
+            - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
       - title: ML4EO
         sections:
           - file: notes/projects/2024_ml_4_eo/ml4eo_overview

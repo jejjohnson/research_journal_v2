@@ -12,3 +12,16 @@ project:
   keywords: []
   open_access: true
   license: CC-BY-4.0
+  abbreviations:
+      POT: Peak-Over-Threshold
+      BM: Block Maxima
+      STPP: Spatiotemporal Point Process
+      MTPP: Marked Temporal Point Process
+      TPP: Temporal Point Process
+      MPP: Marked Point Process
+      PP: Point Process
+      GEVD: Generalized Extreme Value Distribution
+      Poisson-GPD: Poisson Generalized Pareto Distribution
+      GPD: Generalized Pareto Distribution
+      GMST: Global Mean Surface Temperature
+      IID: Identically Independently Distributed
