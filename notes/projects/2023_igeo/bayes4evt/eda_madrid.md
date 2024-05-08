@@ -1,7 +1,7 @@
 ---
-title: Preliminary Results
+title: Exploratory Data Analysis - Madrid
 subject: Misc. Notes
-short_title: Experiment 1 - EDA
+short_title: EDA - Madrid
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
