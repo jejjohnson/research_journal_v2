@@ -25,3 +25,5 @@ project:
       GPD: Generalized Pareto Distribution
       GMST: Global Mean Surface Temperature
       IID: Identically Independently Distributed
+      ARI: Average Reccurrence Interval
+      RP: Return Period

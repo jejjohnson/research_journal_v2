@@ -120,6 +120,7 @@ chapters:
             - file: notes/extremes/eve
           - title: Distributions
             sections:
+            - file: notes/extremes/evt_dists/evt_dists_background
             - file: notes/extremes/evt_dists/gev
             - file: notes/extremes/evt_dists/gpd
             - file: notes/extremes/evt_dists/pp

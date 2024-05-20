@@ -83,7 +83,7 @@ $$
 \boldsymbol{F}(y;\boldsymbol{\theta}) = 
 \exp
 \left[ -\boldsymbol{t}(y;\boldsymbol{\theta}) \right]
-$$
+$$ (eq:gevd-survival)
 
 where the function $t(y;\boldsymbol{\theta})$ is defined in equation [](eq:gevd_pdf_function).
 
@@ -134,10 +134,69 @@ These can be computed in closed form
 $$
 \boldsymbol{Q}(y_p) =
 \begin{cases}
-\mu + \frac{\sigma}{\kappa}\left[ \left(-\ln y_p \right)^{-\kappa} - 1 \right] && \kappa\neq 0 \\
-\mu - \sigma \ln \left( -\ln y_p \right) && \kappa=0
+\mu + \frac{\sigma}{\kappa }\left[(- \log y_p)^{-\kappa} - 1 \right] && \kappa\neq 0 \\
+\mu - \sigma\log(- \log y_p ) && \kappa=0
 \end{cases}
 $$ (eq:gevd-quantile)
+
+:::{note} Derivation, $\kappa\neq 0$
+:class: dropdown
+
+$$
+\boldsymbol{F}(y;\boldsymbol{\theta}) := y_p = \exp\left[-t(y;\boldsymbol{\theta})\right]
+$$
+
+So let's rearrange the terms within the equation
+
+$$
+\begin{aligned}
+y_p &= \exp\left[-(1 + \kappa z)^{-1/\kappa}\right] \\
+\log y_p &= 
+-(1 + \kappa z)^{-1/\kappa}\\
+-\frac{1}{\kappa}\log[1 + \kappa z] &=
+\log \left( -\log y_p \right) \\
+\log [1 + \kappa z] &= 
+-\kappa \log \left( -\log y_p\right) \\
+1 + \kappa z &= (-\log y_p)^{-\kappa} \\
+\kappa z &= (- \log y_p)^{-\kappa} - 1\\
+z &= \frac{1}{\kappa}
+\left[(- \log y_p)^{-\kappa} - 1 \right]
+\end{aligned}
+$$
+
+Finally, we plug in our normalized variable
+
+$$
+y = \mu + \frac{\sigma}{\kappa }\left[(- \log y_p)^{-\kappa} - 1 \right]
+$$
+:::
+
+:::{note} Derivation, $\kappa = 0$
+:class: dropdown
+
+$$
+\boldsymbol{F}(y;\boldsymbol{\theta}) := y_p = \exp (-\boldsymbol{t}(y;\boldsymbol{\theta}))
+$$
+
+So let's rearrange the terms within the equation
+
+$$
+\begin{aligned}
+y_p &= \exp (-\exp(-z)) \\
+\log y_p &= -\exp(-z)\\
+\exp(-z) &= -\log y_p\\
+z &=
+-\log(- \log y_p )
+\end{aligned}
+$$
+
+Finally, we plug in our normalized variable
+
+$$
+y = \mu - \sigma\log(- \log y_p )
+$$
+
+:::
 
 :::{note} Code Snippet
 :class: dropdown
@@ -159,6 +218,168 @@ def quantile(p, loc, scale):
     level = loc - scale * log(- log())
     return level
 ```
+
+:::
+
+
+***
+## Return Period
+
+We can calculate the RP using equation [](eq:prob-return).
+Practically, we set this to the survival function of the GEVD (equation [](eq:gevd-survival)).
+
+$$
+1/T_R =
+1 - \boldsymbol{F}(y;\boldsymbol{\theta})
+$$ 
+
+To make things simpler, we can simply use the quantile function in equation [](eq:gevd-quantile) and set the probability to 
+
+$$
+y_p = 1 - 1 / T_R
+$$
+
+However, if we expand this out, we get
+
+$$
+y =
+\begin{cases}
+\mu + \frac{\sigma}{\kappa}\left\{\left[\log\left(1-1/T_R\right)\right]^{\kappa}-1\right\} && \kappa\neq 0 \\
+\mu - \sigma \log \left[ - \log \left(1 - 1/T_R \right) \right] && \kappa=0
+\end{cases}
+$$ (eq:gevd-return)
+
+
+
+:::{tip} Proof
+:class: dropdown
+
+In general, we can expand the RHS of the equation to include the CDF
+
+$$
+1 - 1/T_R = \exp \left( -t(y;\boldsymbol{\theta}) \right)
+$$
+
+and we can reduce this to be:
+
+$$
+-\log\left(1-1/T_R\right) = t(y;\boldsymbol{\theta})
+$$
+
+Finally, we can plug in the $\kappa \neq 0$ term to get
+
+$$
+\begin{aligned}
+-\log\left(1-1/T_R\right) &= [1 + \kappa z]_+^{-1/\kappa} \\
+\log\left[-\log\left(1-1/T_R\right)\right]&= -(1/\kappa)\log[1 + \kappa z] \\
+\log(1+\kappa z) &= -\kappa\log\left[-\log\left(1-1/T_R\right)\right] \\
+1+\kappa z &=\left[-\log\left(1-1/T_R\right)\right]^{-\kappa}  \\
+\kappa z &= \left[\log\left(1-1/T_R\right)\right]^{\kappa}-1\\
+z &= \frac{1}{\kappa}\left\{\left[\log\left(1-1/T_R\right)\right]^{\kappa}-1\right\} \\
+\end{aligned}
+$$
+
+Now, we can plug in the normalization factor
+
+$$
+y = \mu + \frac{\sigma}{\kappa}\left\{\left[\log\left(1-1/T_R\right)\right]^{\kappa}-1\right\}
+$$
+
+We can do the same thing for $\kappa = 0$ term to get
+
+
+$$
+\begin{aligned}
+-\log (1 - 1/T_R) &= \exp(-z) \\
+\log \left(-\log(1 - 1/T_R)\right) &= - z \\
+z &= - \log \left(-\log(1 - 1/T_R)\right) \\
+\end{aligned}
+$$
+
+Now, we can plug in the normalization factor
+
+$$
+y = \mu - \sigma \log \left[ - \log \left(1 - 1/T_R \right) \right]
+$$
+
+:::
+
+
+
+***
+## Average Recurrence Interval
+
+We can calculate the ARI using equation [](eq:prob-ari).
+Practically, we set this to the survival function of the GEVD (equation [](eq:gevd-survival)).
+
+$$
+1 - \exp\left(-1/\bar{T}\right) =
+1 - \boldsymbol{F}(y;\boldsymbol{\theta})
+$$ 
+
+To make things simpler, we can simply use the quantile function in equation [](eq:gevd-quantile) and set the probability to 
+
+$$
+y_p =  \exp\left(-1/\bar{T}\right)
+$$
+
+However, if we expand this out and simplify, we get
+
+$$
+y =
+\begin{cases}
+\mu + \frac{\sigma}{\kappa}\left( \bar{T}^{\kappa}-1\right) && \kappa\neq 0 \\
+\mu + \sigma\log \bar{T} && \kappa=0
+\end{cases}
+$$ (eq:gevd-ari)
+
+:::{tip} Proof
+:class: dropdown
+
+In general, we can expand the RHS of the equation to include the CDF
+
+$$
+\exp(-1/\bar{T}) = \exp \left( -t(y;\boldsymbol{\theta}) \right)
+$$
+
+and we can reduce this to be:
+
+$$
+1/\bar{T} = t(y;\boldsymbol{\theta})
+$$
+
+Finally, we can plug in the $\kappa \neq 0$ term to get
+
+$$
+\begin{aligned}
+\bar{T} &= [1 + \kappa z]_+^{1/\kappa} \\
+\kappa \log \bar{T} &= \log [ 1 + \kappa z] \\
+1 + \kappa z &= \bar{T}^{\kappa} \\
+z &= \frac{1}{\kappa}\left( \bar{T}^{\kappa}-1\right) \\
+\end{aligned}
+$$
+
+Now, we can plug in the normalization factor
+
+$$
+y = \mu + \frac{\sigma}{\kappa}\left( \bar{T}^{\kappa}-1\right)
+$$
+
+We can do the same thing for $\kappa = 0$ term to get
+
+
+$$
+\begin{aligned}
+1/\bar{T} &= \exp(-z) \\
+z &= \log \bar{T}
+\end{aligned}
+$$
+
+Now, we can plug in the normalization factor
+
+$$
+y = \mu + \sigma\log \bar{T}
+$$
 
 :::
 

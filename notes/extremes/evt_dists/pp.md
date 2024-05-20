@@ -15,103 +15,19 @@ keywords: simulations
 ---
 
 
-## Counting Process
-
-$$
-\begin{aligned}
-N(A) 
-&= \#\left\{n\in\mathbb{N}^+: T_n \in A \right\} \\
-&= \sum_{n=1}^\infty \boldsymbol{1}
-(T_n \in A)
-\end{aligned}
-$$
-
-***
-### Survival Function
-
-This is the probability that the time of death is later than some specified time, $t$.
-
-$$
-S(t) = Pr[T>t] = \int_t^\infty f(\tau)d\tau = 1 - F(t)
-$$
-
-***
-### Lifetime Distribution Function
-
-$$
-F(t) = Pr[T\leq t] = 1 - S(t)
-$$
-
-***
-### Event Density
-
-This is the rate of death/failure events per unit time
-
-$$
-f(t) = F'(t) = \frac{d}{dt}F(t)
-$$
-
-***
-### Survival Event Density
-
-$$
-\begin{aligned}
-s(t) &= S'(t) = \frac{d}{dt}S(t) \\
-&= \frac{d}{dt}\int_t^\infty f(\tau)d\tau \\
-&= \frac{d}{dt}\left[1 - F(t) \right] \\
-&= - f(t)
-\end{aligned}
-$$
-
-***
-### Conditional Intensity Function
-
-This is the instantaneous rate of a new arrival of new events at time, $t$, given a history of past events, $\mathcal{H}_t$. 
-This is also known as the hazard function.
-
-$$
-\lambda^*(t) = \frac{f^*(t)}{1-F^*(t)}
-$$
-
-We can rewrite this using th relationship of the survival function
-
-$$
-\lambda^*(t) = \frac{f^*(t)}{S^*(t)}
-$$
-
-We can also rewrite this using the relationship between the survival function and the cumulative hazard function
-
-$$
-\lambda^*(t) = \frac{f^*(t)}{\exp\left( -\Lambda(\mathcal{T}) \right)}
-$$
-
-***
-### Probability Density Function
-
-We can write the conditional probability density function in terms of the hazard and cumulative hazard function
-
-$$
-f^*(t) = \lambda^*(t) \exp\left( -\Lambda(T) \right) = \lambda^*(t)S^*(t)
-$$ (eq:tpp-density)
-
-We can also write it using the hazard function and the survival function
-
-$$
-f^*(t) =  \lambda^*(t)S^*(t)
-$$ (eq:tpp-density-survival)
-
-And lastly, we can write it in terms of the hazard function and the CDF function.
-
-$$
-f^*(t) =  \lambda^*(t)\left(1-F^*(t)\right)
-$$ (eq:tpp-density-cdf)
+> In this section, we look at point processes (PP).
+> In particular, we will use point processes to outline the framework for how we can jointly model extreme event occurrences and magnitudes.
+> We will start with temporal point processes which will address extreme event occurrences. 
+> Then we will go into marked temporal point processes which will incorporate magnitudes.
+> finally we will add the spatial component.
 
 
 ***
 ## Temporal Point Process
 
 These are processes that are concerned with modeling sequences of random events in continuous time.
-Let's say we have a sequence
+Let's say we have an ordered sequence of events at time $t$. 
+We denote this as
 
 $$
 \begin{aligned}
@@ -120,7 +36,9 @@ t_n\in\mathcal{T}\subseteq \mathbb{R}^+
 \end{aligned}
 $$
 
-We will also use the notation of the *historical events* predating time, $t$.
+Typically, $\mathcal{T}=[0,T]$, but it can be between any two arbitrary time endpoints, e.g., $\mathcal{T}=[t_0,t_1]$.
+We will also use the notation of the *historical events* predating our time event of interest, $t$.
+We denote this as
 
 $$
 \mathcal{H}_t = \left\{t_n|t_n < t,t_n\in \mathcal{H} \right\}
@@ -144,8 +62,19 @@ $$
 \lambda^*(t) = 
 \boldsymbol{\lambda}(t|\mathcal{H}_t)
 $$
+We can write out the conditional likelihood function as the probability that we observe an event of interest given all of the history as:
 
-Finally, we can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
+$$
+p^*(\mathcal{H}) = ...
+$$
+This can be decomposed as
+$$
+p^*(\mathcal{H}) = \left(\prod_{n=1}^N\lambda^*(t)\right)
+\exp\left(-\int_0^T\lambda^*(\tau)d\tau\right)
+$$
+
+It is ofetn easier to work with the log-likelihood function 
+We can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
 
 $$
 \log p(\mathcal{H}) = 
@@ -162,7 +91,7 @@ $$ (eq:tpp-cumulative-hazard)
 This will leave us with
 
 $$
-\log p(\mathcal{H}) = 
+\log p^*(\mathcal{H}) = 
 \sum_{n=1}^N\log \lambda^*(t_n) -
 \Lambda^*(\mathcal{T})
 $$ (eq:tpp-loglikelihood)
@@ -919,7 +848,70 @@ $$
 \mathcal{H} = \left\{\mathbf{s}_n \right\}_{n=1}^N
 $$
 
+***
+### Monte Carlo 
 
+$$
+\int f(t) \approx
+\sum_{n=1}^N \Delta t_n
+\left[ 
+  \frac{1}{K}\sum_{k=1}^K
+  f(t_n + \Delta_{t_n}z_k)
+\right]
+\hspace{10mm}
+z_k \sim U[0,1]
+$$
+
+
+***
+### ODE Time Steppers
+
+We can write our an equation of motion (EoM) describing the state transitions.
+
+$$
+\begin{aligned}
+\partial_t \lambda &= \boldsymbol{f_\theta}(\lambda, t)
+&& && &&
+\boldsymbol{f}: \mathbb{R}^{D_\lambda}\times\mathbb{R}^+
+\rightarrow
+\mathbb{R}^{D_\lambda}
+\end{aligned}
+$$
+
+Now, we can integrate this in time which is given by the fundamental theorem of calculus.
+
+$$
+\lambda(t) = \lambda_0 + \int_0^t\boldsymbol{f_\theta}(\lambda_0, \tau)d\tau
+$$
+
+In practice, we know that we have to do some numerical approximations, e.g., Euler (Taylor Expansion) or RK4 (Quadrature).
+This leaves us with a time stepper function
+
+$$
+\lambda_{t_1} := \boldsymbol{\phi}_t(\boldsymbol{\lambda}) = \lambda_{t_0} + \int_{t_0}^{t_1}\boldsymbol{f_\theta}(\lambda_{t_0}, \tau)d\tau
+$$
+which we can apply in an autoregressive fashion
+$$
+\boldsymbol{\lambda}_T = 
+\boldsymbol{\phi}_{t_T} \circ \boldsymbol{\phi}_{t_{T-1}} \circ
+\ldots 
+\circ
+\boldsymbol{\phi}_{t_1}
+\circ
+\boldsymbol{\phi}_{t_0}(\boldsymbol{\lambda}_0)
+$$
+This is more commonly represented where we add a vector of time points we wish to receive from the ODESOlver, $\mathbf{t}=[t_0, t_1, \ldots, T]$ and pass this through the ODESolver
+
+$$
+\boldsymbol{\lambda} = \text{ODESolver}
+\left(\boldsymbol{f},\lambda_0, \mathbf{t},\boldsymbol{\theta}\right)
+$$
+
+where $\boldsymbol{\lambda}=[\lambda_0, \lambda_1, \ldots, \lambda_T]$.
+This is a nice abstraction which allows the user to choose any arbitrary solver like the Euler, Heun or Runge-Kutta.
+
+
+***
 ### Quadrature
 
 $$
