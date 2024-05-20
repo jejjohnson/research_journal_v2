@@ -107,6 +107,11 @@ $$
 $$
 
 We have a vector which has the counts per unit time.
+According to the traditional PP, we can define out assumptions as:
+1. The number of events in any two disjoint intervals are independent
+2. The number of events in any interval $[a,b]$ for $0\leq t_0 < t_1 \leq T$ follows a Poisson distribution with rate $\lambda(t_1-t_0)$.
+3. The inter-event times are iid rv that follow the exponential distribution with a rate parameter, $\lambda$.
+
 Let's let our intensity function $\lambda^*(t)$ be a constant parameter with no dependence on time.
 
 $$
@@ -133,13 +138,8 @@ $$
 \end{aligned}
 $$
 
-We can also recover the density function from equation [](eq:tpp-density).
-This is given as
-
-$$
-f^*(t) = \lambda \exp(-\lambda T)
-$$
-
+As mentioned above, the inter-arrival time is an exponential distribution.
+Please see section ... for more details.
 :::
 
 :::{tip} Example II - Inhomogeneous Poisson Process
@@ -167,28 +167,37 @@ $$
 \end{aligned}
 $$
 
-So, we can plug these two quantities into our log likelihood function
+So, we can plug these two quantities into our log likelihood function into the equation [](eq:tpp-loglikelihood)
 
 $$
 \begin{aligned}
-\log p(;\boldsymbol{\theta}|\mathcal{H}) &= 
-\sum_{n=1}^N\log\lambda(t_n) - \Lambda^*(\mathcal{T})
-\\
-&= \sum_{n=1}^N\log \lambda(t_n;\boldsymbol{\theta}) -  \Lambda^*(\mathcal{T};\boldsymbol{\theta}) \\
-&= \sum_{n=1}^N\log \lambda(t_n;\boldsymbol{\theta}) -  \int_0^T \lambda(\tau;\boldsymbol{\theta}) d\tau
+\log p(;\boldsymbol{\theta}|\mathcal{H})
+&= \sum_{n=1}^N\log \lambda(t_n) -  \Lambda^*(\mathcal{T}) \\
+&= \sum_{n=1}^N\log \lambda(t_n) -  \int_0^T \lambda(\tau) d\tau
 \end{aligned}
 $$
 
-There are a number of parametric equations we could use for the $\lambda(t;\boldsymbol{\theta})$.
-We could use a log-linear model, a cox process or a Hawkes process to name a few.
-The game is to 1) use a simple parametric function that has a closed form integral form, or 2) use a more complex parametric function and approximate the integral using quadrature or discretization strategies.
+The difficult part for this equation is the 2nd term which is an integral.
 
-In addition, we can also recover the density function from equation [](eq:tpp-density).
+There are many ways to deal with this. 
+For example, we can use a parametric form for the intensity which would result in a closed-form integral
+
+$$
+\lambda(t) \approx \lambda_{\boldsymbol{\theta}}(t)
+$$
+
+For example, we could use a log-linear model, a cox process or a Hawkes process to name a few.
+The game is to 1) use a simple parametric function that has a closed form integral form, or 2) use a more complex parametric function and approximate the integral using quadrature or discretization strategies.
+See the section ... for more ideas of temporal parameterizations.
+
+<!-- In addition, we can also recover the density function from equation [](eq:tpp-density).
 This is given as
 
 $$
 f^*(t) = \lambda(t;\boldsymbol{\theta}) \exp(-\Lambda^*(\mathcal{T};\boldsymbol{\theta}))
-$$
+$$ -->
+
+
 
 :::
 
@@ -267,6 +276,106 @@ $$
 p_n^*(t,y) = p(t,y|(t_1, y_1), (t_2, y_2), \ldots, (t_{n-1}, y_{n-1}))
 $$
 
+
+ We can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
+
+$$
+\log p^*(\mathcal{H}) = 
+\sum_{n=1}^N\log \lambda^*(t_n,y_n) +
+\int_0^T \lambda^*(\tau)d\tau
+$$ (eq:mtpp-nll)
+
+:::{tip} 2D Point Process 4 Extremes
+:class: dropdown
+
+We have a marked point process where we represent it as a 2D point process.
+
+$$
+A = \left\{
+  [t_0, t_1]\times[y_0,\infty)
+ \right\}
+\hspace{10mm}
+t\in\mathcal{T}\subseteq\mathbb{R}^+
+\hspace{10mm}
+y_0\in\mathcal{Y}\subseteq\mathbb{R}
+$$
+
+We write the joint intensity function for the temporal plane and the mark plane.
+However, we simplify it to be a parametric form.
+
+$$
+\lambda^*(t,y) = \boldsymbol{f}(y;\boldsymbol{\theta})
+$$
+
+where $f(y;\boldsymbol{\theta})$ is some parametric function in terms of the marks.
+Now, it's easier to reason about the cumulative hazard function because it's an integral of some parametric PDF which has a closed-form integral.
+
+$$
+\Lambda(A) =\int_0^T\int_y^\infty\lambda(\tau,y)dyd\tau
+=\int_0^T\int_y^\infty \boldsymbol{f}(y;\boldsymbol{\theta})dyd\tau
+$$
+
+We recognize that the inner integral for the mark domain is simply the survival function, $\boldsymbol{S}$, of the parametric PDF, $\boldsymbol{f}$.
+This leaves us with
+
+$$
+\int_{y_0}^\infty\boldsymbol{f}(y;\boldsymbol{\theta})dy =
+1 - \int_0^y\boldsymbol{f}(y;\boldsymbol{\theta})dy =
+1 - \boldsymbol{F}(y_0;\boldsymbol{\theta}) :=
+\boldsymbol{S}(y_0;\boldsymbol{\theta})
+$$
+
+Note: we take the lower bound of the mark space which would be the threshold, $y_0$.
+So, the remaining outer integral on the temporal domain is a simple homogeneous Poisson process that was done previously in equation
+
+$$
+\Lambda(A) = \int_0^T\boldsymbol{S}(y_0;\boldsymbol{\theta})d\tau
+$$
+
+So, the final log-likelihood give by
+
+$$
+\log p^*(A) = 
+\sum_{n=1}^{N(A)} \log \boldsymbol{f}(y;\boldsymbol{\theta}) -
+\int_0^T \boldsymbol{S}(y_0;\boldsymbol{\theta})d\tau
+$$
+
+We can use whatever PDF we want for the marks, e.g., Normal, T-Student, GEVD, GPD, etc.
+We can also do return periods which is from the 
+
+$$
+\begin{aligned}
+y &= \boldsymbol{Q}(y_p;\boldsymbol{\theta})
+\end{aligned}
+$$
+
+where $\boldsymbol{Q}$ is the quantile function for the PDF/CDF and the probability in the $y$ domain, $y_p$. 
+
+$$
+\begin{aligned}
+\text{Return Period}: && &&
+y_p &= 1 - 1 / T_R && &&
+T_R\in[1,\infty)\\
+\text{Average Recurrence Interval}: && &&
+y_p &= \exp ( - 1 / \bar{T}), && &&
+\bar{T}\in[0,\infty)
+\end{aligned}
+$$
+
+
+:::
+
+Some special cases include:
+1. A compound Poisson process if $\lambda_g^*(t)=\lambda(t)$ and $f^*(y|t)=f(y|t)$ for deterministic functions $\lambda(t)$ and $f(y|t)$.
+2. A process with independent marks if $\lambda_g^*(t)$ and $\mathcal{H}_g$-intensity and $f^*(y|t)=f(y|t)$
+3. A process with unpredictable marks if $f^*(y|t)=f(y|t)$.
+
+
+
+***
+## Decoupled Marked Temporal Point Process
+
+
 We can decompose this joint intensity measure into its conditional dependencies, i.e., the mark depends on the time. 
 
 $$
@@ -277,22 +386,13 @@ The term, $p_n^*(y|t_n=t)$ is either a probability density function or a probabi
 Now, we can write the conditional intensity for the marked TPP as
 
 $$
-\boldsymbol{\lambda}^*(t,y) = f^*(y|t) \cdot \lambda^*(t)
+\boldsymbol{\lambda}^*(t,y) = \lambda_g^*(t) \cdot f^*(y|t)
 $$
 
-where $\lambda^*(t)$ is the *ground intensity* and $f^*(y|t)$ is the conditional mark density function.
-Notice how the arrival times $\lambda^*(t)$ are similar to the unmarked case except that now this intensity measure may depend on past marks.
+where $\lambda_g^*(t)$ is the *ground intensity* and $f^*(y|t)$ is the conditional mark density function.
+Notice how the arrival times $\lambda_g^*(t)$ are similar to the unmarked case except that now this intensity measure may depend on past marks.
 
-Finally, we can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
-
-$$
-\log p(\mathcal{H}) = 
-\sum_{n=1}^N\log \lambda^*(t_n) +
-\sum_{n=1}^N\log f^*(y_n|t_n) -
-\int_0^T \lambda^*(\tau)d\tau
-$$ (eq:mtpp-nll)
-
-:::{tip} Joint Intensity Function
+:::{tip} Proof: Joint Intensity Function
 :class: dropdown
 Notice that this decomposition is very similar to the joint distribution decomposition.
 Let's say we have $y_n$ and $t_n$ composed as a joint distribution which we factorize as follows.
@@ -304,7 +404,7 @@ $$
 As shown above, we can decompose the joint intensity function into it's conditional parts
 
 $$
-\lambda^*(t,y) = \lambda^*(t)f^*(y|t)
+\lambda^*(t,y) = \lambda_g^*(t)f^*(y|t)
 $$
 
 Using some rules from survival analysis, we can rewrite this using only PDFs and CDFs.
@@ -331,6 +431,21 @@ $$
 
 :::
 
+Finally, we can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
+
+$$
+\log p(\mathcal{H}) = 
+\sum_{n=1}^N\log \lambda_g^*(t_n) 
+-
+\int_0^T \lambda_g^*(\tau)d\tau
++
+\sum_{n=1}^N\log f^*(y_n|t_n) 
+$$ (eq:dmtpp-nll)
+
+The first two terms are the ground intensity likelihoods for the temporal rate and the third term is the marks likelihood.
+
+
+
 <!-- :::{tip} Example
 :class: dropdown
 
@@ -349,6 +464,95 @@ y \sim \mathcal{N}(f(t_n;\theta), \sigma^2)
 $$
 
 ::: -->
+
+:::{tip} Conditional Poisson Process 4 Extremes
+<!-- :class: dropdown -->
+
+In this example, we have a DMTPP for extremes.
+We decouple the intensity function as shown above.
+For the ground intensity, we have a HPP or IPP.
+For the marks, we have iid parametric distribution
+
+$$
+\begin{aligned}
+\text{Ground Intensity}: && &&
+\lambda^*_g(t) &= \lambda(t) \\
+\text{Marks}: && &&
+f^*(y|t) &= \boldsymbol{f}(y|t,\boldsymbol{\theta})
+\end{aligned}
+$$
+
+We can plug in these terms into the equation [](eq:dmtpp-nll) to obtain:
+
+$$
+\log p^*(A) = 
+\sum_{n=1}^{N(A)}\log \lambda_g(t) -
+\int_0^T\lambda_g(\tau)d\tau +
+\sum_{n=1}^P{N(A)}\log \boldsymbol{f}(y_n|t_n,\boldsymbol{\theta})
+$$
+
+In the homogeneous rate parameter cases, we get the Homogeneous Marked Poisson Process (MHPP). 
+We can write these out in terms
+
+$$
+\log p^*(A) = 
+N\log \lambda -
+\lambda T +
+\sum_{n=1}^P{N(A)}\log \boldsymbol{f}(y_n|t_n,\boldsymbol{\theta})
+$$
+
+We see that both likelihood terms we decoupled, aka there are dependencies between parameters so they can be solved independently.
+In the case of extremes, one option is to use the GPD as the marked distribution.
+We can write out the new log-likelihood as
+
+$$
+\log p^*(A)= N\log\lambda - \lambda T +
+\sum_{n=1}^{N(A)}
+\log \boldsymbol{f}_{\text{GPD}}(y;\boldsymbol{\theta})
+$$
+
+We can also parameterize the intensity with the parameterization in equation [](eq:poisson-reparam-gev) where we have some new free parameters $\boldsymbol{\theta} = \left\{ y_0, \mu, \sigma, \kappa\right\}$.
+
+Alternatively, we can use the GEVD as the marked distribution.
+
+$$
+\log p^*(A)= N\log\lambda - \lambda T +
+\sum_{n=1}^{N(A)}
+\log \boldsymbol{f}_{\text{GEVD}}(y;\boldsymbol{\theta})
+$$
+
+We can parameterize GEVD parameters in terms of the GPD parameters which are needed for the intensity parameter given in equations [](eq:gevd-reparam-gpd) where we introduce free parameters $\boldsymbol{\theta} = \left\{ \mu_{y_0}, \sigma_{y_0}, \kappa_{y_0}\right\}$.
+
+Lastly, we can also do return periods.
+Recall that this is given as
+
+$$
+\exp(-1/\bar{T}) = \exp(-\lambda\boldsymbol{S}(y;\boldsymbol{\theta}))
+$$
+
+After rearranging, we can recognize that this is simply the quantile function of the CDF.
+
+$$
+\begin{aligned}
+y &= \boldsymbol{Q}(y_p;\boldsymbol{\theta})
+\end{aligned}
+$$
+
+where $\boldsymbol{Q}$ is the quantile function for the PDF/CDF and the probability in the $y$ domain, $y_p$. 
+
+$$
+\begin{aligned}
+\text{Return Period}: && &&
+y_p &= 1 - 1 / (\lambda T_R) && &&
+T_R\in[1,\infty)\\
+\text{Average Recurrence Interval}: && &&
+y_p &= \exp \left( - 1 / (\lambda \bar{T})\right), && &&
+\bar{T}\in[0,\infty)
+\end{aligned}
+$$
+
+
+:::
 
 
 

@@ -573,14 +573,14 @@ We can write the reparameterization of this distribution as
 
 $$
 \begin{aligned}
-\mu &= y_0 + \frac{\sigma_{y_0}}{\kappa}\left(1 - \lambda^{-\kappa} \right) && &&
-\sigma =\sigma_{y_0}\lambda^{-\kappa} && &&
+\mu &= \mu_{y_0} + \frac{\sigma_{y_0}}{\kappa}\left(1 - \lambda_{y_0}^{-\kappa} \right) && &&
+\sigma =\sigma_{y_0}\lambda_{y_0}^{-\kappa} && &&
 \kappa\neq0 \\
-\mu &= y_0 + \sigma_{y_0}\ln\lambda && &&
-\sigma =\sigma_{y_0} && &&
+\mu &= \mu_{y_0} + \sigma_{y_0}\ln\lambda_{y_0} && &&
+\sigma =\sigma_{y_0}\lambda_{y_0}^{-\kappa} && &&
 \kappa=0 \\
 \end{aligned}
-$$
+$$ (eq:gevd-reparam-gpd)
 
 
 ***

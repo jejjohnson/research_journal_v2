@@ -735,7 +735,34 @@ $$
 ## Reparameterization
 
 In this instance, we are assuming that there is a threshold parameter, $y_0$.
-We can write the reparameterization of this distribution as
+We can write the reparameterization of the GPD in terms of the GEV distribution
+
+$$
+\begin{aligned}
+\mu_{y_0} &= \mu + \frac{\sigma}{\kappa}\left(1 - \lambda_{y_0}^{\kappa} \right) && &&
+\sigma_{y_0} =\sigma\lambda_{y_0}^{\kappa} && &&
+\kappa\neq0 \\
+\mu_{y_0} &= \mu - \sigma\ln\lambda_{y_0} && &&
+\sigma_{y_0} =\sigma\lambda_{y_0}^{\kappa} && &&
+\kappa=0 \\
+\end{aligned}
+$$
+
+We can also re-parameterize the $\lambda_{y_0}$ in terms of the GPD and GEV parameters.
+
+$$
+\begin{aligned}
+\lambda_{y_0} &=  \log
+\left[ 1 + \kappa z \right]^{- \frac{1}{\kappa}}, && &&
+z = (y - \mu_{y_0})/\sigma \\
+\sigma_{y_0} &=\sigma + \kappa(y - \mu_{y_0}) \\
+\kappa_{y_0} &= \kappa
+\end{aligned}
+$$ (eq:poisson-reparam-gev)
+
+
+***
+Lastly, we can do something similar like so
 
 $$
 \begin{aligned}
