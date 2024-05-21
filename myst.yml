@@ -16,7 +16,12 @@ project:
       POT: Peak-Over-Threshold
       BM: Block Maxima
       STPP: Spatiotemporal Point Process
+      DMTPP: Decoupled Marked Temporal Point Process
       MTPP: Marked Temporal Point Process
+      MHPP: Marked Homogeneous Poisson Process
+      HPP: Homogeneous Poisson process
+      MIPP: Marked Inhomogeneous Poisson Process
+      IPP: Inhomogeneous Poisson Process
       TPP: Temporal Point Process
       MPP: Marked Point Process
       PP: Point Process
@@ -27,3 +32,5 @@ project:
       IID: Identically Independently Distributed
       ARI: Average Reccurrence Interval
       RP: Return Period
+      EVT: Extreme Values Theory
+      AEP: Annual Exceedence Probability

@@ -851,3 +851,33 @@ $$
 
 where $t$ is some conversion factor from whatever time unit to years.
 
+
+
+***
+## Literature Review
+
+There are many cases where the GPD is used within the literature.
+We split this section into theory and applications.
+However, most of the theoretic work that presents this method is based in applied settings, in particular hydrology.
+
+***
+**Theory**.
+From a more theoretic perspective, 
+{cite:p}`https://doi.org/10.1111/j.2517-6161.1990.tb01796.x;https://doi.org/10.1029/2001WR000367;https://doi.org/10.1080/14697680500039613` introduce the Poisson-GPD method where they also relate the AEP and ARI.
+In {cite:p}`https://doi.org/10.1007/978-1-4471-3675-0` (Chapter 4.3.3 - Appendix A.1), there is a staple chapter where they introduce the Poisson-GPD method.
+In {cite:p}`https://doi.org/10.1007/s11069-020-03968-z`, the authors discuss some of the key differences between the annual exceedence probability (AEP) and the average recurrence interval (ARI).
+{cite:t}`10.1007/978-3-7643-7399-3` is a another good book that has a few chapters dedicated to BM, POTs and PPs.
+
+***
+**Applications**.
+In {cite:p}`https://doi.org/10.1007/s10666-020-09718-6`, they apply this to study maximum daily temperature in South Africa where they apply a non-stationary Poisson-GPD. 
+{cite:t}`10.1007/s00704-016-1789-7` study how the Arctic Oscillation and Pacific North American covariates are related to the extreme daily precipitation months in Southeastern Canada where they apply a Poisson-GPD method with spline functions to map the covariates to the GPD parameters.
+{cite:t}`10.1007/s00477-015-1072-y` study how El Niño-Southern Oscillation can effect the flood regime in the Itajaí river basin in Southern Brasil where they apply a non-stationary Poisson-GPD. {cite:p}`10.1007/s00382-015-2659-1` look at how the North Atlantic Oscillation effect storm surges in the Atlantic and North Atlantic regions where they apply a non-stationary Poisson-GPD.
+{cite:t}`https://doi.org/10.1890/04-0606` investigate ecological disturbances in extremes for paleoecology where they apply a non-stationary Poisson-GPD.
+
+
+
+***
+**Algorithms**.
+{cite:t}`10.1007/s00477-015-1072-y` showcase how we can use the delta-method (aka Laplace approximation) to calculate uncertainty intervals on the parameters.
+{cite:t}`https://doi.org/10.1016/j.csda.2011.01.005` consider a Kernel Density estimator for the event occurrences parameterization.

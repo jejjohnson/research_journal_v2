@@ -34,9 +34,9 @@ $$
 \mathcal{H} &= \left\{ t_n \right\}_{n=1}^{N} && &&
 t_n\in\mathcal{T}\subseteq \mathbb{R}^+
 \end{aligned}
-$$
+$$ (eq:data-sequence)
 
-Typically, $\mathcal{T}=[0,T]$, but it can be between any two arbitrary time endpoints, e.g., $\mathcal{T}=[t_0,t_1]$.
+Typically, $\mathcal{T}=(0,T]$, but it can be between any two arbitrary time endpoints, e.g., $\mathcal{T}=[t_0,t_1]$.
 We will also use the notation of the *historical events* predating our time event of interest, $t$.
 We denote this as
 
@@ -73,8 +73,20 @@ p^*(\mathcal{H}) = \left(\prod_{n=1}^N\lambda^*(t)\right)
 \exp\left(-\int_0^T\lambda^*(\tau)d\tau\right)
 $$
 
-It is ofetn easier to work with the log-likelihood function 
-We can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = [0,T]$ which is given by 
+***
+### Learning
+
+In general, we are interested in finding the best parameters of our model given access to potentially many sequences of events.
+So naturally, we can simply maximize the log-likelihood.
+
+$$
+\boldsymbol{L}(\boldsymbol{\theta}) =
+\underset{\boldsymbol{\theta}}{\argmax}
+\hspace{2mm}
+\sum_{n\in\mathcal{D}}\log p(\mathcal{H};\boldsymbol{\theta})
+$$
+
+We can write out the joint log-likelihood of observing $\mathcal{H}$ within a time interval $\mathcal{T} = (0,T]$ which is given by 
 
 $$
 \log p(\mathcal{H}) = 
@@ -96,27 +108,58 @@ $$
 \Lambda^*(\mathcal{T})
 $$ (eq:tpp-loglikelihood)
 
-
-:::{tip} Example I - Homogeneous Poisson Process
-:class: dropdown
-
-In this case, we have a dataset of number of exceedances along a timeline.
+There are other alternatives to maximizing the log-likelihood.
+In general, the loss function can look like
 
 $$
-\mathcal{H} = \left\{ t_n\right\}_{n=1}^{N_T}
+\boldsymbol{L}(\boldsymbol{\theta}) =
+\underset{\boldsymbol{\theta}}{\argmax}
+\hspace{2mm}
+\mathbb{E}_{x\sim p(x_n|{\boldsymbol{\theta}})}
+\left[ \boldsymbol{f}(x)\right]
 $$
 
-We have a vector which has the counts per unit time.
-According to the traditional PP, we can define out assumptions as:
+where $x$ is described by some parametric distribution, $p(x_n|{\boldsymbol{\theta}})$, and $f$ is some criteria.
+In the above example, our criteria is simply the log-likelihood function.
+We can use some other generative modeling methods like:
+1. GANs use a parametric model and the loss is some sample quality metric
+2. reinforcement learning uses some policy and the loss is some reward function
+3. variational inference uses some approximate posterior and the loss is the evidence lower bound.
+
+***
+### Usages
+
+**Prediction**.
+The first obvious use case is prediction.
+In this case, we have some observed data over a period, $\mathcal{T}\in(0,T]$, and we would like to know what will happen in a forecast period, $\mathcal{T}_\tau \in (T,T+\tau]$.
+1. How much time, $\tau_n$, until the next event?
+2. What type of mark, $y_n$, of the next event?
+3. How many events of the type, $y_n$, will happen?
+
+We can even sample some potential trajectories of events of the future which helps to answer how many events could possibly happen.
+
+**100-Year Events**.
+If the marks distribution is parametric, we can do some post-analysis about the occurrence of events.
+This can be done through the use of return periods (RPs) or average recurrence intervals (ARI).
+See sections [](sec:aep) and [](sec:ari) for more details.
+
+
+***
+### Example I: Homogeneous Poisson Process (HPP)
+
+
+In this case, we have a dataset of number of exceedances along a timeline as seen in equation [](eq:data-sequence).
+Essentially, we have a vector, $\mathbf{t}$, which has the counts per unit time.
+According to the traditional PP, we can define our assumptions as:
 1. The number of events in any two disjoint intervals are independent
 2. The number of events in any interval $[a,b]$ for $0\leq t_0 < t_1 \leq T$ follows a Poisson distribution with rate $\lambda(t_1-t_0)$.
 3. The inter-event times are iid rv that follow the exponential distribution with a rate parameter, $\lambda$.
 
-Let's let our intensity function $\lambda^*(t)$ be a constant parameter with no dependence on time.
+Following these assumptions, we say that our intensity function $\lambda^*(t)$ be a constant parameter with no dependence on time.
 
 $$
 \lambda^*(t) = \lambda
-$$
+$$ (eq:hazard-constant)
 
 This means that our cumulative Hazard function, $\Lambda^*(\mathcal{T})$, will also not depend on any of the historical events and it will be constant with time.
 Plugging our terms into the cumulative hazard function in equation [](eq:tpp-cumulative-hazard)  results in
@@ -127,8 +170,9 @@ $$
  \int_0^T \lambda d\tau = (T-0) \lambda =
  \lambda T
 \end{aligned}
-$$
+$$ (eq:cumulative-hazard-constant)
 
+where $T$ is the interval of interest, e.g., number of years, $T_\text{years}$.
 So, we can plug these two quantities into our log likelihood function in equation [](eq:tpp-loglikelihood) as
 
 $$
@@ -136,23 +180,17 @@ $$
 \log p(\mathcal{H}) &= \sum_{n=1}^N\log \lambda - \lambda T \\
 &= N\log\lambda - \lambda T
 \end{aligned}
-$$
+$$ (eq:hpp-loglikelihood)
 
 As mentioned above, the inter-arrival time is an exponential distribution.
 Please see section ... for more details.
-:::
 
-:::{tip} Example II - Inhomogeneous Poisson Process
-:class: dropdown
+***
+### Example II: Inhomogeneous Poisson Process
 
-In this case, we have a dataset of number of exceedances along a timeline.
 
-$$
-\mathcal{H} = \left\{ t_n\right\}_{n=1}^{N_T}
-$$
-
-We have a vector which has the counts per unit time.
-Let's let our intensity function $\lambda^*(t)$ be a function parameter with dependence on time but no dependence on any historical events.
+Also in this case, in this case, we have a dataset of number of exceedances along a timeline as seen in equation [](eq:data-sequence).
+However, we let our intensity function $\lambda^*(t)$ be a function parameter with dependence on time but no dependence on any historical events.
 
 $$
 \lambda^*(t) = \lambda(t)
@@ -165,7 +203,7 @@ $$
 \Lambda(\mathcal{T}) &= \int_{0}^T\lambda^*(\tau)d\tau =
  \int_0^T \lambda(\tau) d\tau
 \end{aligned}
-$$
+$$ (eq:tpp-cumulative-hazard)
 
 So, we can plug these two quantities into our log likelihood function into the equation [](eq:tpp-loglikelihood)
 
@@ -175,20 +213,24 @@ $$
 &= \sum_{n=1}^N\log \lambda(t_n) -  \Lambda^*(\mathcal{T}) \\
 &= \sum_{n=1}^N\log \lambda(t_n) -  \int_0^T \lambda(\tau) d\tau
 \end{aligned}
-$$
+$$ (eq:ipp-loglikelihood)
 
-The difficult part for this equation is the 2nd term which is an integral.
-
-There are many ways to deal with this. 
-For example, we can use a parametric form for the intensity which would result in a closed-form integral
+The first term is the log-likelihood of the specific events at the specific location, $t_n$, that we observe them.
+The second term is the probability that we do not observe them anywhere else within the time interval of interest.
+The difficult part for this equation is the 2nd term which is an integral; however, there are many ways to deal with this. 
+For example, we can use a parametric form for the intensity
 
 $$
 \lambda(t) \approx \lambda_{\boldsymbol{\theta}}(t)
 $$
 
+which would result in a closed-form integral.
 For example, we could use a log-linear model, a cox process or a Hawkes process to name a few.
-The game is to 1) use a simple parametric function that has a closed form integral form, or 2) use a more complex parametric function and approximate the integral using quadrature or discretization strategies.
-See the section ... for more ideas of temporal parameterizations.
+The game is to:
+1. use a simple parametric function that has a closed form integral form 
+2. use a more complex parametric function and approximate the integral using quadrature or discretization strategies.
+
+See the section [](sec:evt-param-temporal) for more ideas of temporal parameterizations.
 
 <!-- In addition, we can also recover the density function from equation [](eq:tpp-density).
 This is given as
@@ -197,9 +239,6 @@ $$
 f^*(t) = \lambda(t;\boldsymbol{\theta}) \exp(-\Lambda^*(\mathcal{T};\boldsymbol{\theta}))
 $$ -->
 
-
-
-:::
 
 
 
@@ -240,6 +279,7 @@ t_n\in\mathcal{T}\subseteq \mathbb{R}^+
 $$
 
 Let's say we have a sequence of time stamps, $t_n$, and their associated marks, $y$.
+
 This is given as a sequence of events
 
 $$
@@ -253,6 +293,18 @@ We will also use the notation of the *historical events* predating time, $t$.
 $$
 \mathcal{H}_t = \left\{(t_n,y_n)|t_n < t,t_n\in \mathcal{H} \right\}
 $$
+
+From a PP perspective, we can model this as a 2D PP which results in
+
+$$
+A = \left\{
+  [t_0, t_1]\times[y,\infty)
+ \right\}
+\hspace{10mm}
+t\in\mathcal{T}\subseteq\mathbb{R}^+
+\hspace{10mm}
+y_0\in\mathcal{Y}\subseteq\mathbb{R}
+$$ (eq:mpp-space)
 
 Lastly, we will define the *conditional intensity function*
 
@@ -285,22 +337,39 @@ $$
 \int_0^T \lambda^*(\tau)d\tau
 $$ (eq:mtpp-nll)
 
-:::{tip} 2D Point Process 4 Extremes
-:class: dropdown
+***
+### Marks Parameterizations
 
-We have a marked point process where we represent it as a 2D point process.
+Now, let's dive a bit into the marks distribution.
+In general, we can model the marks in three ways: 1) conditionally independent, 2) conditioned on time, and 3) time conditioned on the marks.
+These can be seen in these equations
 
 $$
-A = \left\{
-  [t_0, t_1]\times[y_0,\infty)
- \right\}
-\hspace{10mm}
-t\in\mathcal{T}\subseteq\mathbb{R}^+
-\hspace{10mm}
-y_0\in\mathcal{Y}\subseteq\mathbb{R}
+\begin{aligned}
+\text{Conditionally Independent}: && &&
+\lambda^*(t_n,y_n) &= \lambda_g^*(t_n)p^*(y_n) \\
+\text{Temporal Conditioned Marks}: && &&
+\lambda^*(t_n,y_n) &= \lambda_g^*(t_n)p^*(y_n|t_n) \\
+\text{Marks Conditioned Time}: && &&
+\lambda^*(t_n,y_n) &= \lambda^*(t_n|y_n) \\
+\end{aligned}
 $$
 
-We write the joint intensity function for the temporal plane and the mark plane.
+The first case, we say there is no dependence between the marks.
+The second case gives us a more flexible parameterization of the marks which influences how the marks behave wrt time.
+The third cases is the most flexible parameterization and frankly the most correct because we state that the occurrence of events is also conditioned on the marks.
+
+There are some known special cases of these marks.
+These include:
+1. A compound Poisson process if $\lambda_g^*(t)=\lambda(t)$ and $f^*(y|t)=f(y|t)$ for deterministic functions $\lambda(t)$ and $f(y|t)$.
+2. A process with independent marks if $\lambda_g^*(t)$ and $\mathcal{H}_g$-intensity and $f^*(y|t)=f(y|t)$
+3. A process with unpredictable marks if $f^*(y|t)=f(y|t)$.
+
+***
+### Example III: MPP 4 Extremes
+
+
+We have a marked point process where we represent it as a 2D point process as shown in equation [](eq:mpp-space) where we write the joint intensity function for the temporal plane and the mark plane.
 However, we simplify it to be a parametric form.
 
 $$
@@ -308,7 +377,7 @@ $$
 $$
 
 where $f(y;\boldsymbol{\theta})$ is some parametric function in terms of the marks.
-Now, it's easier to reason about the cumulative hazard function because it's an integral of some parametric PDF which has a closed-form integral.
+Now, it's easier to reason about the cumulative hazard function because it's an integral of some parametric PDF which has a closed-form double integral.
 
 $$
 \Lambda(A) =\int_0^T\int_y^\infty\lambda(\tau,y)dyd\tau
@@ -316,7 +385,6 @@ $$
 $$
 
 We recognize that the inner integral for the mark domain is simply the survival function, $\boldsymbol{S}$, of the parametric PDF, $\boldsymbol{f}$.
-This leaves us with
 
 $$
 \int_{y_0}^\infty\boldsymbol{f}(y;\boldsymbol{\theta})dy =
@@ -325,14 +393,15 @@ $$
 \boldsymbol{S}(y_0;\boldsymbol{\theta})
 $$
 
-Note: we take the lower bound of the mark space which would be the threshold, $y_0$.
-So, the remaining outer integral on the temporal domain is a simple homogeneous Poisson process that was done previously in equation
+We take the threshold of interest, $y_0$, to be the lower bound of the mark space.
+So, the remaining outer integral on the temporal domain is a simple homogeneous Poisson process that was done previously in equation [](eq:tpp-cumulative-hazard).
+Plugging our expression into this equation leaves us with
 
 $$
 \Lambda(A) = \int_0^T\boldsymbol{S}(y_0;\boldsymbol{\theta})d\tau
 $$
 
-So, the final log-likelihood give by
+Our final log-likelihood expression will be
 
 $$
 \log p^*(A) = 
@@ -340,8 +409,13 @@ $$
 \int_0^T \boldsymbol{S}(y_0;\boldsymbol{\theta})d\tau
 $$
 
-We can use whatever PDF we want for the marks, e.g., Normal, T-Student, GEVD, GPD, etc.
-We can also do return periods which is from the 
+We can use whatever PDF we want for the marks, e.g., Normal, LogNormal, or T-Student.
+However, in the literature for extreme values, we typically use the GPD or even the GEVD in some cases.
+
+**Annual Exceedence Probabilities**. 
+We can also do return periods where try to find the annual exceedence probability or the average recurrence interval. See sections [](sec:aep) and [](sec:ari) for more details. 
+For our case, as shown in equations [](eq:prob-return) and [](eq:prob-ari) we equate these to our cumulative distribution function.
+After solving for the respective $T_p$ and $T_a$, we arrive at
 
 $$
 \begin{aligned}
@@ -353,22 +427,15 @@ where $\boldsymbol{Q}$ is the quantile function for the PDF/CDF and the probabil
 
 $$
 \begin{aligned}
-\text{Return Period}: && &&
-y_p &= 1 - 1 / T_R && &&
-T_R\in[1,\infty)\\
+\text{Annual Exceedence Probability}: && &&
+y_p &= 1 - 1 / T_a && &&
+T_a\in[1,\infty)\\
 \text{Average Recurrence Interval}: && &&
-y_p &= \exp ( - 1 / \bar{T}), && &&
-\bar{T}\in[0,\infty)
+y_p &= \exp ( - 1 / T_p), && &&
+T_p\in[0,\infty)
 \end{aligned}
 $$
 
-
-:::
-
-Some special cases include:
-1. A compound Poisson process if $\lambda_g^*(t)=\lambda(t)$ and $f^*(y|t)=f(y|t)$ for deterministic functions $\lambda(t)$ and $f(y|t)$.
-2. A process with independent marks if $\lambda_g^*(t)$ and $\mathcal{H}_g$-intensity and $f^*(y|t)=f(y|t)$
-3. A process with unpredictable marks if $f^*(y|t)=f(y|t)$.
 
 
 
@@ -465,20 +532,22 @@ $$
 
 ::: -->
 
-:::{tip} Conditional Poisson Process 4 Extremes
-<!-- :class: dropdown -->
+***
+### Example IV: MHPP 4 Extremes
+
 
 In this example, we have a DMTPP for extremes.
-We decouple the intensity function as shown above.
-For the ground intensity, we have a HPP or IPP.
+We have a marked point process where we represent it as a 2D point process as shown in equation [](eq:mpp-space).
+In this case, we decouple the intensity function as shown above section.
+For the ground intensity, we have a HPP.
 For the marks, we have iid parametric distribution
 
 $$
 \begin{aligned}
 \text{Ground Intensity}: && &&
-\lambda^*_g(t) &= \lambda(t) \\
+\lambda^*_g(t) &= \lambda \\
 \text{Marks}: && &&
-f^*(y|t) &= \boldsymbol{f}(y|t,\boldsymbol{\theta})
+f^*(y|t) &= \boldsymbol{f}(y,\boldsymbol{\theta})
 \end{aligned}
 $$
 
@@ -486,22 +555,23 @@ We can plug in these terms into the equation [](eq:dmtpp-nll) to obtain:
 
 $$
 \log p^*(A) = 
-\sum_{n=1}^{N(A)}\log \lambda_g(t) -
-\int_0^T\lambda_g(\tau)d\tau +
-\sum_{n=1}^P{N(A)}\log \boldsymbol{f}(y_n|t_n,\boldsymbol{\theta})
-$$
+\sum_{n=1}^{N(A)}\log \lambda -
+\int_0^T\lambda d\tau +
+\sum_{n=1}^{N(A)}\log \boldsymbol{f}(y_n,\boldsymbol{\theta})
+$$ (eq:dmhpp-loglikelihood)
 
-In the homogeneous rate parameter cases, we get the Homogeneous Marked Poisson Process (MHPP). 
-We can write these out in terms
+Because we have the homogeneous rate parameter cases, we get the Marked Homogeneous Poisson Process (MHPP). 
+Using the portion of the HPP, we can plug in the terms found in equation [](eq:hpp-loglikelihood) into our equation above.
+This gives us
 
 $$
 \log p^*(A) = 
 N\log \lambda -
 \lambda T +
-\sum_{n=1}^P{N(A)}\log \boldsymbol{f}(y_n|t_n,\boldsymbol{\theta})
+\sum_{n=1}^{N(A)}\log \boldsymbol{f}(y_n|t_n,\boldsymbol{\theta})
 $$
 
-We see that both likelihood terms we decoupled, aka there are dependencies between parameters so they can be solved independently.
+We see that both likelihood terms we decoupled as there are no dependencies between parameters of the temporal likelihood (the first two terms) and the marks likelihood (the third term) so they can be solved independently.
 In the case of extremes, one option is to use the GPD as the marked distribution.
 We can write out the new log-likelihood as
 
@@ -511,6 +581,7 @@ $$
 \log \boldsymbol{f}_{\text{GPD}}(y;\boldsymbol{\theta})
 $$
 
+This is known as the **Poisson-GPD** algorithm within the EVT literature {cite:p}`https://doi.org/10.1080/14697680500039613;https://doi.org/10.1007/s10666-020-09718-6`.
 We can also parameterize the intensity with the parameterization in equation [](eq:poisson-reparam-gev) where we have some new free parameters $\boldsymbol{\theta} = \left\{ y_0, \mu, \sigma, \kappa\right\}$.
 
 Alternatively, we can use the GEVD as the marked distribution.
@@ -521,16 +592,21 @@ $$
 \log \boldsymbol{f}_{\text{GEVD}}(y;\boldsymbol{\theta})
 $$
 
+This has no specific name in the EVT literature, however there are a few papers which use this distribution to motivate the GPD via the PP.
+In this work, we name this the **Poisson-GEVD**.
 We can parameterize GEVD parameters in terms of the GPD parameters which are needed for the intensity parameter given in equations [](eq:gevd-reparam-gpd) where we introduce free parameters $\boldsymbol{\theta} = \left\{ \mu_{y_0}, \sigma_{y_0}, \kappa_{y_0}\right\}$.
 
-Lastly, we can also do return periods.
+**Annual Exceedence Probability**.
+Lastly, something of great interest within the EVT community is to characterize the return periods. 
+Recall section [](sec:ari) whereby we showed that the ARI can be related to the conditional CDF.
 Recall that this is given as
 
 $$
 \exp(-1/\bar{T}) = \exp(-\lambda\boldsymbol{S}(y;\boldsymbol{\theta}))
 $$
 
-After rearranging, we can recognize that this is simply the quantile function of the CDF.
+where $\boldsymbol{S}$ is the survival function for the marks distribution and $\lambda$ is the average rate of occurrences over the threshold, $y_0$.
+After rearranging this equation and simplifying, we can recognize that this is simply the quantile function of the marks distribution.
 
 $$
 \begin{aligned}
@@ -542,7 +618,7 @@ where $\boldsymbol{Q}$ is the quantile function for the PDF/CDF and the probabil
 
 $$
 \begin{aligned}
-\text{Return Period}: && &&
+\text{Annual Exceedence Probability}: && &&
 y_p &= 1 - 1 / (\lambda T_R) && &&
 T_R\in[1,\infty)\\
 \text{Average Recurrence Interval}: && &&
@@ -552,298 +628,74 @@ y_p &= \exp \left( - 1 / (\lambda \bar{T})\right), && &&
 $$
 
 
-:::
+***
+### Example VII: MIPP 4 Extremes
 
-
-
-:::{tip} Example - Unconditional Extreme Events
-:class: dropdown
-
-{cite:t}`https://doi.org/10.1080/14697680500039613` showcased how one can utilize the GPD as a parametric distribution for the marks.
-In this case, they assume a homogenous Poisson process for the temporal intensity function.
-In other words, it is a constant term with no dependence on time or the history.
-
-$$
-\lambda^*(t) \approx \lambda(\boldsymbol{\theta}) =  \lambda
-$$
-
-So we can use the same expressions as the example in the TPP section.
-
-However, they impose a parametric distribution for the marks.
-In this case, they assume that there is no temporal dependency for the marks nor any historical dependency.
-
-$$
-f^*(y|t) \approx f(y;\boldsymbol{\theta})
-$$
-
-In this case, the PDF is the GPD given some threshold, $y_0$, we can write the PDF as
+In this example, we have a DMTPP for extremes.
+We have a marked point process where we represent it as a 2D point process as shown in equation [](eq:mpp-space).
+In this case, we decouple the intensity function as shown above section.
+For the ground intensity, we have a HPP or IPP.
+For the marks, we have iid parametric distribution
 
 $$
 \begin{aligned}
-f(y;\boldsymbol{\theta}) &= \sigma^{-1}\left[ 1 + \kappa z\right]_+^{-\frac{1}{\kappa}-1} 
-&& &&
-1 + \kappa z > 0
-&& &&
-\kappa \neq 0 
+\text{Ground Intensity}: && &&
+\lambda^*_g(t) &= \lambda(t) := \lambda_t \\
+\text{Marks}: && &&
+f^*(y|t) &= \boldsymbol{f}(y|t_n, \boldsymbol{\theta}) := \boldsymbol{f}(y|\boldsymbol{\theta}(t_n))
 \end{aligned}
 $$
 
-where $z = (y - y_0) / \sigma$, $[1 + \kappa z_n]_+ = \text{max}(1 + \kappa z_n,0)$, and the parameters are $\boldsymbol{\theta} = \left\{ \mu,\kappa\right\}$.
-
-So, putting all of this together, we can write out the expression for the log-likelihood of the conditional intensity function as seen in equation [](eq:mtpp-nll) as
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &=
-\sum_{n=1}^N\log \lambda +
-\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta}) -
-\lambda T\\
-&= 
-N \log \lambda - \lambda T
-+
-\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta})
-\\
-\end{aligned}
-$$
-
-We can plug in the log-likelihood for the GPD which we have done previously in equation [](eq:gpd_nll) to reduce the entire expression to
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
-N \log \lambda - \lambda T
-- N \log \sigma -
-(1+1/\kappa)\sum_{n=1}^N 
-\log \left[ 1 + \kappa z_n\right]_+
-\\
-\end{aligned}
-$$
-
-where the parameters, $\boldsymbol{\theta}$, are $\boldsymbol{\theta} = \left\{ \lambda, \mu,\kappa\right\}$.
-In the literature, this is known as the Poisson-GPD which is a combination of an assumption that the events occur with a homogeneous Poisson process and the events magnitude are a GPD.
-
-:::
-
-:::{tip} Example - Unconditional Reparameterized Extreme Events
-:class: dropdown
-
-
-Like the unconditional case, they assume a homogenous Poisson process for the temporal intensity function.
-In other words, it is a constant term with no dependence on time or the history.
-
-$$
-\lambda^*(t) \approx \lambda(\boldsymbol{\theta}) =  \lambda h 
-\hspace{10mm} [\text{Event}][\text{Time}]^{-1}
-$$
-where $\lambda$ is the constant rate and $h$ is some unit of time, e.g., Years.
-So we can use the same expressions as the example in the TPP section.
-
-However, they impose a parametric distribution for the marks.
-In this case, they assume that there is no temporal dependency for the marks nor any historical dependency.
-
-$$
-f^*(y|t) \approx f(y;\boldsymbol{\theta})
-$$
-
-In this case, the PDF is the GPD given some threshold, $y_0$, we can write the PDF as
-
-$$
-\begin{aligned}
-f(y;\boldsymbol{\theta}) &= \sigma^{-1}\left[ 1 + \kappa z\right]_+^{-\frac{1}{\kappa}-1} 
-&& &&
-1 + \kappa z > 0
-&& &&
-\kappa \neq 0 
-\end{aligned}
-$$
-
-where $z = (y - y_0) / \sigma$, $[1 + \kappa z_n]_+ = \text{max}(1 + \kappa z_n,0)$, and the parameters are $\boldsymbol{\theta} = \left\{ \mu,\kappa\right\}$.
-
-So, putting all of this together, we can write out the expression for the log-likelihood of the conditional intensity function as seen in equation [](eq:mtpp-nll) as
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &=
-\sum_{n=1}^N\log \lambda +
-\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta}) -
-\lambda T\\
-&= 
-N \log \lambda - \lambda T
-+
-\sum_{n=1}^N\log f(y_n;\boldsymbol{\theta})
-\\
-\end{aligned}
-$$
-
-We can plug in the log-likelihood for the GPD which we have done previously in equation [](eq:gpd_nll) to reduce the entire expression to
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
-N \log \lambda - \lambda T
-- N \log \sigma -
-(1+1/\kappa)\sum_{n=1}^N 
-\log \left[ 1 + \kappa z_n\right]_+
-\\
-\end{aligned}
-$$
-
-where the parameters, $\boldsymbol{\theta}$, are $\boldsymbol{\theta} = \left\{ \lambda, \mu,\kappa\right\}$.
-In this case, we are going to reparameterize this loss function with the GEVD distribution.
-We are given the translations as
-
-$$
-\begin{aligned}
-\text{Rate}: && &&
-\lambda &=  
-\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
-\text{Log Rate}: && &&
-\log\lambda &=  
-- \frac{1}{\kappa}\log
-\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
-\text{Scale}: && &&
-\sigma_{y_0} &=
-\sigma + \kappa(y_0 - \mu) \\
-\text{Shape}: && &&
-\kappa_{y_0} &= \kappa \\
-\end{aligned}
-$$
-
-These are the parameters of the reparameterized distribution.
-We can plug these components into the log-likelihood loss function to obtain
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
-\frac{N}{\kappa}\log
-\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
-&- T \left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
-&- N \log \left[ \sigma + \kappa(y_0 - \mu) \right] \\
-&-
-(1+1/\kappa)\sum_{n=1}^N 
-\log \left[ 1 + \kappa z_n\right]_+
-\\
-\end{aligned}
-$$
-
-where $z_n = (y_n - y_0)/(\sigma + \kappa(y_0 - \mu))$.
-
-
-We can make this a bit neater by introducing a masking variable, $\boldsymbol{m}$.
-This variable acts as an indicator variable
-
-$$
-m_n = 
-\begin{cases}
-1, && y > y_0 \\
-0, && y \leq 0
-\end{cases}
-$$
-
-Now, we can use this indicator variable to mask the likelihood function to zero if the observed value at the temporal resolution is above or below the threshold, $y_0$.
-
-$$
-\begin{aligned}
-\log p(y_n|\boldsymbol{\theta}) &= 
-\frac{m_n}{\kappa}\log
-\left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right] \\
-&- T \left[ 1 + \kappa \frac{y_0 - \mu}{\sigma} \right]^{- \frac{1}{\kappa}} \\
-&- m_n \log \left[ \sigma + \kappa(y_0 - \mu) \right] \\
-&-
-m_n(1+1/\kappa)\sum_{n=1}^N 
-\log \left[ 1 + \kappa z_n\right]_+
-\\
-\end{aligned}
-$$
-
-
-:::
-
-
-:::{tip} Example - Conditional Extreme Events
-:class: dropdown
-
-
-Like the unconditional case, they assume a homogenous Poisson process for the temporal intensity function.
-In other words, it is a constant term with no dependence on time or the history.
-
-$$
-\lambda^*(t) \approx \lambda(\boldsymbol{\theta}) =  \lambda
-$$
-
-So we can use the same expressions as the example in the TPP section.
-
-However, they impose a conditional parametric distribution for the marks.
-In this case, they assume that there is no temporal dependency for the marks nor any historical dependency.
-
-$$
-f^*(y|t) \approx f(y;\boldsymbol{\theta}_t)
-$$
-
-where the parameters are time dependent
+where the parameters of the marks distribution are time dependent
 
 $$
 \boldsymbol{\theta}_t = \boldsymbol{\theta}(t)
 $$
 
-In this case, the PDF is the GPD given some threshold, $y_0$, we can write the PDF as
+
+We can plug in these terms into the equation [](eq:dmtpp-nll) to obtain:
+
+$$
+\log p^*(A) = 
+\sum_{n=1}^{N(A)}\log \lambda(t) -
+\int_0^T\lambda(\tau)d\tau +
+\sum_{n=1}^{N(A)}\log \boldsymbol{f}\left(y_n|\boldsymbol{\theta}(t_n)\right)
+$$ (eq:dmpp-loglikelihood)
+
+Here, our free parameters of our model are $\left\{ \lambda_t, \theta_t\right\}$.
+Similar to the HPP case, we can use the GEVD or the GPD.
+
+
+**Return Periods**.
+Lastly, something of great interest within the EVT community is to characterize the return periods. 
+Recall section [](sec:ari) whereby we showed that the ARI can be related to the conditional CDF.
+Recall that this is given as
+
+$$
+\exp(-1/\bar{T}) = \exp(-\lambda_t\boldsymbol{S}(y;\boldsymbol{\theta}_t))
+$$
+
+where $\boldsymbol{S}$ is the survival function for the marks distribution and $\lambda$ is the average rate of occurrences over the threshold, $y_0$.
+After rearranging this equation and simplifying, we can recognize that this is simply the quantile function of the marks distribution.
 
 $$
 \begin{aligned}
-f(y_t|\boldsymbol{\theta}_t) &= \sigma_t^{-1}\left[ 1 + \kappa z_t\right]_+^{-\frac{1}{\kappa}-1} 
-&& &&
-1 + \kappa z > 0
-&& &&
-\kappa \neq 0 
+y &= \boldsymbol{Q}(y_p;\boldsymbol{\theta}_t)
 \end{aligned}
 $$
 
-where $z_t = (y - y_0) / \sigma_t$, $[1 + \kappa z_t]_+ = \text{max}(1 + \kappa z_t,0)$, and the parameters are $\boldsymbol{\theta}_t = \left\{ \sigma_t,\kappa\right\}$.
-For this distribution, the scale parameter is time dependenent
+where $\boldsymbol{Q}$ is the quantile function for the PDF/CDF and the probability in the $y$ domain, $y_p$. 
 
 $$
 \begin{aligned}
-\sigma_t := \sigma(t) &= \sigma_0 + \sigma_1 \psi(t)
+\text{Return Period}: && &&
+y_p &= 1 - 1 / (\lambda_t T_R) && &&
+T_R\in[1,\infty)\\
+\text{Average Recurrence Interval}: && &&
+y_p &= \exp \left( - 1 / (\lambda_t \bar{T})\right), && &&
+\bar{T}\in[0,\infty)
 \end{aligned}
 $$
-
-where $\psi(t)$ is some function which encodes time, e.g., linear, log-linear, Fourier, etc.
-So, putting all of this together, we can write out the expression for the log-likelihood of the conditional intensity function as seen in equation [](eq:mtpp-nll) as
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &=
-\sum_{n=1}^{N_T}\log \lambda +
-\sum_{t=1}^{N_T}\log f(y_t;\boldsymbol{\theta}_t) -
-\lambda T\\
-&= 
-N \log \lambda - \lambda T
-+
-\sum_{t=1}^{N_T}\log f(y_t|\boldsymbol{\theta}_t)
-\\
-\end{aligned}
-$$
-
-We can plug in the log-likelihood for the GPD which we have done previously in equation [](eq:gpd_nll) to reduce the entire expression to
-
-$$
-\begin{aligned}
-\log p(\boldsymbol{\theta}|\mathcal{H}) &= 
-N \log \lambda - \lambda T
-- N \log \sigma -
-(1+1/\kappa)\sum_{t=1}^{N_t} 
-\log \left[ 1 + \kappa z_t\right]_+
-\\
-\end{aligned}
-$$
-
-where $z_t=(y_n - y_0)/\sigma_t$ and the parameters, $\boldsymbol{\theta}_t$, are $\boldsymbol{\theta}_t = \left\{ \lambda, \sigma_t,\kappa\right\}$.
-In the literature, this is known as the Poisson-GPD which is a combination of an assumption that the events occur with a homogeneous Poisson process and the events magnitude are a GPD.
-
-:::
-
-
-
 
 
 ***
@@ -949,249 +801,11 @@ $$
 
 
 
-***
-## Temporal Dependence
-
-### Constant
-
-We can use maximum likelihood to estimate the unknown parameters of the parametric distributions.
-
-$$
-L(\boldsymbol{\theta}) = 
-\prod_{n=1}^{N_T} f(y_n) \prod_{n=1}^{N_T}S(y_n)
-$$
-
-We can rewrite this as a
-
-$$
-\log L(\boldsymbol{\theta}) = 
-\sum_{n=1}^{N_T} \log f(y_n) -
-\sum_{n=1}^{N_T}F(y_n)
-$$
-
-where $f$ is the PDF of some density function and $F$ is the CDF of some density function.
 
 ***
-### Parametric
+## Literature Review
 
 
-$$
-\lambda^*(t,\mathbf{s}) = \boldsymbol{\mu}(t,\mathbf{s}) + \boldsymbol{g}(t,\mathbf{s})
-$$
-
-Typically, we can use some kernel function
-
-$$
-f(t|\boldsymbol{\theta}) = 
-\sum_{n=1}^{N_s}
-\mathbf{w}_n
-\boldsymbol{k}(t,\boldsymbol{\theta}_n)
-$$
-
-where $\boldsymbol{k}$ is a kernel function (density function) with parameters $\boldsymbol{\theta}_n$.
-The $\mathbf{w}_n$ are weights corresponding to the densities $\boldsymbol{k}(t,\boldsymbol{\theta}_n)$ and $\sum_{n=1}^{N_s}\mathbf{w}_n=1$.
-
-
-***
-### Kernel
-
-A Hawkes Process is a process that has a background rate and a self-exciting term.
-This term encourages more events to happen given past events.
-
-$$
-\boldsymbol{g}(t,\mathbf{s}) = g_t(t)\boldsymbol{g}_s(\mathbf{s})
-$$
-
-For this paper, they used a separable, parametric kernel function, i.e., a Hawkes kernel 
-In particular, they used a Gaussian kernel in space and exponential in time.
-
-$$
-\boldsymbol{g}(t,\mathbf{s}) = 
-\alpha\beta\exp(-\beta t)
-\frac{1}{\sqrt{2\pi|\mathbf{\Sigma}|}}
-\exp(-\mathbf{s}^\top\mathbf{\Sigma}^{-1}\mathbf{s})
-$$
-
-where $\alpha,\beta>0$ and $\mathbf{\Sigma}$ as a PSD matrix.
-
-### Gaussian Process
-
-
-This is also known as a Log-Gaussian Cox process.
-
-$$
-\log \boldsymbol{\mu}(t,\mathbf{s}) = 
-\boldsymbol{f}_t(t) + 
-\boldsymbol{f}_s(\mathbf{s})
-$$
-
-where $f$ is a realization from a Gaussian process
-
-$$
-\boldsymbol{f} \sim \mathcal{GP}(\boldsymbol{m_\theta},\boldsymbol{k_\theta})
-$$
-
-If we assume that our hazard function is a constant function
-
-$$
-h(t) = \lambda
-$$
-
-This implies that our survival function is
-
-$$
-S(t) = \exp(-\lambda t)
-$$
-
-
-## Approximating Integrals
-
-Let's say we are given some pixel locations
-
-$$
-\mathcal{H} = \left\{\mathbf{s}_n \right\}_{n=1}^N
-$$
-
-***
-### Monte Carlo 
-
-$$
-\int f(t) \approx
-\sum_{n=1}^N \Delta t_n
-\left[ 
-  \frac{1}{K}\sum_{k=1}^K
-  f(t_n + \Delta_{t_n}z_k)
-\right]
-\hspace{10mm}
-z_k \sim U[0,1]
-$$
-
-
-***
-### ODE Time Steppers
-
-We can write our an equation of motion (EoM) describing the state transitions.
-
-$$
-\begin{aligned}
-\partial_t \lambda &= \boldsymbol{f_\theta}(\lambda, t)
-&& && &&
-\boldsymbol{f}: \mathbb{R}^{D_\lambda}\times\mathbb{R}^+
-\rightarrow
-\mathbb{R}^{D_\lambda}
-\end{aligned}
-$$
-
-Now, we can integrate this in time which is given by the fundamental theorem of calculus.
-
-$$
-\lambda(t) = \lambda_0 + \int_0^t\boldsymbol{f_\theta}(\lambda_0, \tau)d\tau
-$$
-
-In practice, we know that we have to do some numerical approximations, e.g., Euler (Taylor Expansion) or RK4 (Quadrature).
-This leaves us with a time stepper function
-
-$$
-\lambda_{t_1} := \boldsymbol{\phi}_t(\boldsymbol{\lambda}) = \lambda_{t_0} + \int_{t_0}^{t_1}\boldsymbol{f_\theta}(\lambda_{t_0}, \tau)d\tau
-$$
-which we can apply in an autoregressive fashion
-$$
-\boldsymbol{\lambda}_T = 
-\boldsymbol{\phi}_{t_T} \circ \boldsymbol{\phi}_{t_{T-1}} \circ
-\ldots 
-\circ
-\boldsymbol{\phi}_{t_1}
-\circ
-\boldsymbol{\phi}_{t_0}(\boldsymbol{\lambda}_0)
-$$
-This is more commonly represented where we add a vector of time points we wish to receive from the ODESOlver, $\mathbf{t}=[t_0, t_1, \ldots, T]$ and pass this through the ODESolver
-
-$$
-\boldsymbol{\lambda} = \text{ODESolver}
-\left(\boldsymbol{f},\lambda_0, \mathbf{t},\boldsymbol{\theta}\right)
-$$
-
-where $\boldsymbol{\lambda}=[\lambda_0, \lambda_1, \ldots, \lambda_T]$.
-This is a nice abstraction which allows the user to choose any arbitrary solver like the Euler, Heun or Runge-Kutta.
-
-
-***
-### Quadrature
-
-$$
-\int_{\Omega}\boldsymbol{\lambda}(\mathbf{s})d\mathbf{s} \approx 
-\sum_{n=1}^{N_s}\mathbf{w}_n\boldsymbol{\lambda}(\mathbf{s}_n)
-$$
-
-where $w_n>0$ and $\sum_{n=1}^Nw=|\Omega|$ and $\mathbf{s}_n=1,2,\ldots,N_s$ are all of the points in the domain, $\mathcal{\Omega}$.
-This yields an approximation to the log likelihood as
-
-$$
-\log p(\mathcal{\Omega}) \approx
-\sum_{n=1}^N\log \boldsymbol{\lambda}(\mathbf{s}_n)
--\sum_{n=1}^{N_s}\mathbf{w}_n\boldsymbol{\lambda}(\mathbf{s}_n)
-$$
-
-We have 3 sets of points:
-* $N_s$ - the points within the discretized domain
-* $N(\mathbf{s}_n)$ - the points within the discretized domain where we have events.
-* $\bar{N}_s = N(\mathbf{s}_n)-N_s$ - the points in the discretized domain where there are no events.
-
-{cite:t}`https://doi.org/10.2307/2347614` used the names design points, data points, and dummy points, respectively.
-
-Let's create a mask vector which represents the case whether or not we observe an event within an element.
-
-$$
-\mathbf{m}_n =
-\begin{cases}
-1, && && N(\mathbf{s}_n) \geq 0 \\
-0, && && N(\mathbf{s}_n) = 0
-\end{cases}
-$$
-
-Now, we can rewrite the log-likelihood term to be
-
-$$
-\log p(\mathcal{\Omega}) \approx
-\sum_{n=1}^{N_s}
-\mathbf{w}_n
-\left(
-    \frac{\mathbf{m}_n}{\mathbf{w}_n}
-    \log\boldsymbol{\lambda}(\mathbf{s}_n) -
-    \boldsymbol{\lambda}(\mathbf{s}_n)
-\right)
-$$
-
-
-***
-### Pixel Counts
-
-We can divide the domain, $\mathcal{\Omega}$, into small pixels of each area, $\omega$.
-Then the integral over the domain, $\mathcal{\Omega}$, is approximated by summing over all of the pixels.
-
-$$
-\int_{\Omega}\lambda(\mathbf{s})d\mathbf{s} \approx 
-\sum_{n=1}^{N_s}\omega_n\lambda(\mathbf{s}_n)
-$$
-
-where $s_n$ is the center of the $n$th pixel.
-In this case, we discard the exact locations of the data points and we mark each data point with the center pixel.
-To approximate the sum over data points, we can take the sum over pixels.
-
-$$
-\sum_n^N\log\lambda(\mathbf{s}_n) \approx 
-\sum_{n=1}N(\mathbf{s}_n)\log \lambda(\mathbf{s}_n)
-$$
-
-where $N(s_n)$ is the number of data points falling into the $n$th pixel.
-So we can take these two quantities and put them together to get
-
-$$
-\log p(\mathcal{\Omega}) \approx
-\sum_{n=1}^N
-\left(
-    N(\mathbf{s}_n)\log \lambda(\mathbf{s}_n) 
-    -
-    \omega_n\lambda(\mathbf{s}_n)
-\right)
-$$
+**Applications**.
+{cite:p}`10.1214/09-AOAS287` investigate the differences in precipitation extremes during the 21st century as a trend stemming from global warming.
+In {cite:p}`10.1007/S13253-010-0023-9`, they compare the extreme precipitation simulated in a regional climate model over its spatial domain where they apply a Bayesian Hierarchical model for MHPP model.

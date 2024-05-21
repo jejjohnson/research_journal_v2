@@ -601,3 +601,17 @@ $$
 \end{aligned}
 $$
 
+***
+## Literature Review
+
+**Theory**.
+{cite:t}`https://doi.org/10.1007/978-1-4612-5449-2` is another very popular book.
+
+
+**Applications**.
+{cite:t}`https://doi.org/10.1007/s00382-022-06638-x` investigated annual temperature extremes in Extremadura, Spain where they applied a Gaussian process to account for spatial dependencies for the GEVD.
+{cite:t}`https://doi.org/10.5194/nhess-2021-410` looked at sea level extremes in the Finnish coastal region where they applied a Bayesian hierarchical model to account for spatial dependencies for the GEVD.
+
+**Algorithms**.
+{cite:t}`https://doi.org/10.1016/j.csda.2023.107807` look at a reparameterization framework to improve the convergence of the MCMC inference algorithms.
+{cite:t}`https://doi.org/10.48550/arXiv.2105.08004` investigate spatiotemporal extremes of daily large wildfires in the French Mediterranean where they employ a Bayesian Hierarchical model for a PP for the events and a GPD for the marks.
