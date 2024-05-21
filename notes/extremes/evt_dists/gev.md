@@ -425,6 +425,16 @@ $$
 \log p(\boldsymbol{y}_{1:N}|\boldsymbol{\theta}) = \sum_{n=1}^N \log p(y_n|\boldsymbol{\theta})
 $$
 
+which we can expand as
+
+$$
+\sum_{n=1}^N\log p(y_n;\boldsymbol{\theta}) =
+-N \log \sigma -
+(1+1/\kappa)\sum_{n=1}^N 
+\log t\left(y_n;\boldsymbol{\theta}\right) -
+ \sum_{n=1}^N t\left(y_n;\boldsymbol{\theta}\right) 
+$$
+
 which reduces to
 
 $$
