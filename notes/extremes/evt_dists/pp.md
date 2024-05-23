@@ -94,6 +94,8 @@ $$
 \int_0^T \lambda^*(\tau)d\tau
 $$
 
+The first term is the log-likelihood of the specific events at the specific location, $t_n$, that we observe them.
+The second term is the probability that we do not observe them anywhere else within the time interval of interest.
 We can also shorten the notation by introducing the cumulative hazard function as
 
 $$
@@ -215,8 +217,7 @@ $$
 \end{aligned}
 $$ (eq:ipp-loglikelihood)
 
-The first term is the log-likelihood of the specific events at the specific location, $t_n$, that we observe them.
-The second term is the probability that we do not observe them anywhere else within the time interval of interest.
+
 The difficult part for this equation is the 2nd term which is an integral; however, there are many ways to deal with this. 
 For example, we can use a parametric form for the intensity
 

@@ -24,6 +24,7 @@ project:
       IPP: Inhomogeneous Poisson Process
       TPP: Temporal Point Process
       MPP: Marked Point Process
+      SPP: Standard Poisson Process
       PP: Point Process
       GEVD: Generalized Extreme Value Distribution
       Poisson-GPD: Poisson Generalized Pareto Distribution
@@ -34,3 +35,9 @@ project:
       RP: Return Period
       EVT: Extreme Values Theory
       AEP: Annual Exceedence Probability
+      PDF: Probability Density Function
+      CDF: Cumulative Density Function
+      SF: Survival Function
+      CHF: Cumulative Hazard Function
+      HF: Hazard Function
+      

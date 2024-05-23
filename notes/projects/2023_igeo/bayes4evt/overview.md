@@ -91,12 +91,103 @@ Each of the above models will have various parameter estimators.
 
 ### Experiment I
 
-We will apply different models using different inference methods on each station in Madrid individually.
-We will assume there are no covariates within the model.
+We will apply different models using different inference methods on each station in Spain individually.
+We make the following assumptions:
+* I.I.D.
+* Stationary Process
+* No Spatial Dependencies
+* No Covariates
 
-* [**Experiment 1a**](./exp1_unc_madrid_gevd.md) - GEVD Model
-* **Experiment 1b** - GPD Model
-* **Experiment 1c** - TPP Model
+$$
+\begin{aligned}
+\mathcal{D} = \left\{ t_n, y_n \right\}_{n=1}^N
+&& &&
+t_n \in\mathcal{T}\subseteq\mathbb{R}^+
+&& &&
+y_n\in\mathcal{Y}\subseteq\mathbb{R}
+\end{aligned}
+$$
+
+
+***
+#### Experiment Ia
+
+> For this process, we will exclusively use the GEVD for the data likelihood.
+
+**Results**: 
+* [Madrid](./exp1_unc_madrid_gevd.md)
+* [Spain](./exp1_unc_spain_gevd.md)
+
+
+
+:::{tip} Model 1 - Point Process GEVD
+:class: dropdown
+
+
+:::
+
+***
+#### Experiment Ib
+
+:::{tip} Model 0 - Baseline GPD
+:class: dropdown
+
+
+
+**Summary Formulation**
+
+The null model, $M_0$, will demonstration a do a baseline where we maximize the log-likelihood of the joint distribution.
+
+$$
+\log p(y_{1:N},\theta) = 
+\sum_{n=1}^N\log \boldsymbol{f}_{\text{GPD}}(y_n|\boldsymbol{\theta}) 
++ \log p(\boldsymbol{\theta})
+$$
+
+***
+**Analysis**
+
+Firstly, we will do the standard assessment of the fit by comparing this with the
+We can also estimate the parameters of the GEVD using some relationships between the GEVD and the GPD.
+We will also calculate the average recurrence interval (ARI) and the return period (RP) to calculate the 100-year event.
+
+
+:::
+
+:::{tip} Model 1 - Point Process GPD
+:class: dropdown
+
+**Summary Formulation**
+
+$M_1$, will demonstration how we can apply the PP formulation to calculate the parameters of the GEVD.
+
+$$
+\begin{aligned}
+\text{Hazard Function}: && &&
+\lambda(y,t) &= \boldsymbol{f}_{\text{GPD}}(y;\boldsymbol{\theta}) \\
+\text{Cumulative Hazard Function}: && &&
+\Lambda(A) &= \int_0^T\boldsymbol{S}_{\text{GPD}}(y;\boldsymbol{\theta})d\tau
+\end{aligned}
+$$
+
+The log-likelihood will result in 
+
+$$
+\log p(y_{1:N},\theta) = 
+\sum_{n=1}^N\log \boldsymbol{f}_{\text{GPD}}(y_n|\boldsymbol{\theta})
++ \log p(\boldsymbol{\theta})
+- \int_0^T\boldsymbol{S}_{\text{GPD}}(y;\boldsymbol{\theta})d\tau
+$$
+
+***
+**Analysis**
+
+Firstly, we will do the standard assessment of the fit by comparing this with the
+We can also estimate the parameters of the GEVD using some relationships between the GEVD and the GPD.
+We will also calculate the average recurrence interval (ARI) and the return period (RP) to calculate the 100-year event.
+
+
+:::
 
 ***
 
