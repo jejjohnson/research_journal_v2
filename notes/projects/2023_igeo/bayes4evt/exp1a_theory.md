@@ -214,12 +214,12 @@ $$
 \begin{aligned}
 \mu^* = \mu + \frac{\sigma}{\kappa}(1 - \lambda^\kappa) 
 && &&
-\sigma^* = \sigma\kappa^{\kappa}
+\sigma^* = \sigma\lambda^{\kappa}
 && &&
 \kappa^* = \kappa
 \end{aligned}
 $$
-Note, in this experiment for the GEVD, we have 1 event per year, i.e., $\lambda=1$. 
+Note, in the experiment for the GEVD, we have 1 event per year, i.e., $\lambda=1$. 
 So we can simplify this formulation to be:
 $$
 \begin{aligned}
@@ -365,11 +365,37 @@ where $z_0 = (y_0 - \mu)/\sigma$ and $\boldsymbol{L}_\text{GPD}$ is the LL for t
 ***
 ### Model 2c - PP-GPD-GEVD
 
-$M_{2_c}$ will be the same as the above one except we will investigate how we can use
-
+$M_{2_c}$ will be the same as the above one except we will investigate how we can use the relationships between the GEVD and the GPD.
+The parameters of the GPD can be calculated by
 $$
 \begin{aligned}
-\sigma^* = \sigma + \kappa (y_0 - \mu)
+\lambda = [1 + \kappa z_0]_+^{-1/\kappa}
+&& &&
+\sigma^* &= \sigma + \kappa(y_0 - \mu)
+&& &&
+\kappa^* = \kappa
+\end{aligned}
+$$
+where $z_0 = (y_0 - \mu)/\sigma$.
+There are other formulations which exist like:
+$$
+\begin{aligned}
+\mu^* = \mu + \frac{\sigma}{\kappa}(1 - \lambda^\kappa) 
+&& &&
+\sigma^* = \sigma\lambda^{\kappa}
+&& &&
+\kappa^* = \kappa
+\end{aligned}
+$$
+Note, in the experiment for the GEVD, we have 1 event per year, i.e., $\lambda=1$. 
+So we can simplify this formulation to be:
+$$
+\begin{aligned}
+\mu^* = \mu 
+&& &&
+\sigma^* = \sigma
+&& &&
+\kappa^* = \kappa
 \end{aligned}
 $$
 
