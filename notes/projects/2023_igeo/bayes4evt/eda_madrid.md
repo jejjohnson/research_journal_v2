@@ -23,7 +23,6 @@ For this first experiment, we are looking at Madrid
 ::::{tab-set}
 
 :::{tab-item} Time Series
-:sync: tab1
 :::{figure}
 :label: madrid-t2m-ts
 :align: center
@@ -33,7 +32,6 @@ A time series of daily maximum 2m temperature in Madrid.
 :::
 
 :::{tab-item} Histogram
-:sync: tab2
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
@@ -62,7 +60,6 @@ In particular, the Fréchet distribution where the shape parameter, $\kappa$, is
 ::::{tab-set}
 
 :::{tab-item} Time Series
-:sync: tab1
 :::{figure}
 :label: fig:madrid-t2m-bm-ts
 :align: center
@@ -71,7 +68,6 @@ A scatter plot with boundaries for the maximum temperatures obtained using the y
 :::
 
 :::{tab-item} Scatter Plot
-:sync: tab2
 :::{figure}
 :label: fig:madrid-t2m-bm-scatter
 :align: center
@@ -81,7 +77,6 @@ A scatter plot for the yearly maximum values obtained from the daily 2m max temp
 :::
 
 :::{tab-item} Histogram
-:sync: tab3
 :::{figure}
 :label: fig:madrid-t2m-bm-hist
 :align: center
