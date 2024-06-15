@@ -14,187 +14,247 @@ license: CC-BY-4.0
 keywords: data
 ---
 
-### MLE
+
+
+* Duration?
+* Mean of Globe -> Correlated with Mean Location of Extremes
+
+
+### Metrics
+
+#### Log-Likelihood
+
+* -17089.15032017 +/- 4.06643326
+* -15571.70729426 +/- 4.73258625
+* -15198.35183499 +/- 59.1095967
 
 ::::{tab-set}
 
-:::{tab-item} Location
+:::{tab-item} IID
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1aPH8df2CBJzMiAW1QJ_lzt9P5Pvytjxd)
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1ZYdGRfbmqLYnZl0lLtW-ZK75_DZ8shuN)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Scale Parameter
+:::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1RltCESCRji5lkMp2HBqRYcFqMKwptLmm)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1-hemd578kUpwqLVeoguWH_ymrNoXbIpD)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Shape Parameter
+:::{tab-item} Space-Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1zI_jrU0PUZkp0XuJX0iGZuB2s-MpwBTq)
-The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
-:::
 
-:::{tab-item} Return Period
-:::{figure}
-:label: madrid-t2m-hist
-:align: center
-
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1fSoBjabr7IpI0GrWAa5MOveulQ79i4gW)
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1aY09hV62qzl4eBrGvrw0I9criNYGSE_2)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
 ::::
 
 
-### MCMC
+### Static Parameters
 
 
-#### Maps
+#### Location-Bias
 
 ::::{tab-set}
 
-:::{tab-item} Location Parameter Map
+:::{tab-item} IID
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1e58cmio0W5UBRhgnudmj06gUfZzxJe5D)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1p4agHYmgP6-yocqc2Zs_Ro9ZGADrnvX_)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Scale Parameter Map
+:::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1pbNSJLhzf0fnH31J4xWYGHKIAFPvT3UP)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1mdhiYMycQzL-UTBtRj21mMdqNSxhdkTA)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Return Level Map
+:::{tab-item} Space-Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1NUCZ-e9SjiDiVqlF5xZgdH3L7zAFkc9H)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1hhDqDRREyt1SgpYzppL0c6R-Zovx8eMd)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
 ::::
 
 
-#### Madrid
+***
+#### Scale
 
-Below, we have an example with station Madrid, retiro.
+Recall, the parameterization for the scale parameter is given by
 
+$$
+\sigma(t;\boldsymbol{\theta})
+=
+\sigma_0
+$$
 
+where $\sigma_0$ is the scale parameter per station.
+This means that each model will have the same scale parameterization.
 
 ::::{tab-set}
 
-:::{tab-item} Posterior Parameter Joint Plot
+:::{tab-item} IID
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1QwKgMay3zM7LnvYEIzd-5nu8XLu_7U81)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1ayUQO0IE4lwOToYD2c89XEnyB6DhcyLu)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Predictive Posterior
+:::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1lb30nFn8SCqGu7mvrq12PNKAph060g_J)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1xi6rCXMkm5dOtyPjVyyxFFFEFsnHl5wP)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Return Period
+:::{tab-item} Space-Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=11nBHhqBXQDpZ46wExsAqxlb93xKgE308)
-The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
-:::
 
-:::{tab-item} 100 Year Return Period
-:::{figure}
-:label: madrid-t2m-hist
-:align: center
-
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1p_WJzczatGNdrcsSKOGd1gN3GBGwawGF)
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1IbiXGHEXVwT2IfQ7fDoqRbdydQ63zhTi)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
 ::::
 
-## Anomalies
+***
+#### Concentration
 
+Recall, the parameterization for the shape parameter is given by
 
+$$
+\kappa(t;\boldsymbol{\theta})
+=
+\kappa_0
+$$
 
-### Example Stations
-
-
-
-#### enguera - navalon
+where $\kappa_0$ is the shape parameter per station.
+This means that each model will have the same shape parameterization.
 
 
 ::::{tab-set}
-:::{tab-item} Scatter Plot
+
+:::{tab-item} IID
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1rvctjTcz0Ct3pt_kDW2KLSuIQbHblo5R)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1G0vptzngPTjNKhJRFye_ecYK39264IYS)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Histogram
+:::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1UD90ciYNOhvuR6xQI-TXO4bP0ekQlyDk)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1hSBbwS7tTOkQRWzYNCU9abZsunUvVzPB)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
-:::{tab-item} Return Period (enguera - navalon)
+:::{tab-item} Space-Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1Y1zoR0oKB3MxNhIjTnMursSi3vamghW4)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1vWyon_eAgICETmMw5XwRbbH65r77kAKh)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
 ::::
 
-#### Madrid
+
+### Returns
+
+#### Differences
+
+
+##### Case I - 0.0 -> 1.0
+
 
 ::::{tab-set}
-:::{tab-item} Return Period (Madrid)
+
+:::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
 :align: center
 
-![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1SRGNVyo3_YQvxGIGeo-riS5s63Ftz2xf)
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1JqG7712s3by0kuBjH2wnBpUT7ef3I2j5)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
+:::{tab-item} Space-Time
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
 
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=10_Vi6-f4RHycPlo0SxGBdZOZHuC399Ei)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
 
 ::::
 
+
+##### Case I - 1.0 -> 2.0
+::::{tab-set}
+
+:::{tab-item} Time
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1JQjjxuXY2zC1geWfAkaC0qFOXaS12tC0)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
+
+:::{tab-item} Space-Time
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1txc229DF80RiRzrmp5i9hJQlP35C3NgH)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
+
+::::
