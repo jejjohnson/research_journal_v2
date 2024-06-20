@@ -47,6 +47,12 @@ If you don't work with arrays and you prefer to use shapefiles, then I suggest u
 * [Rasterio](https://rasterio.readthedocs.io/en/stable/)
     > Very powerful python package that is really good at transforming the coordinates of your datasets. See [Gonzalo's tutorial](https://www.uv.es/gonmagar/blog/2018/11/11/RasterioExample) for a more specific usecase.
 
+
+---
+## Operations
+
+* [**Uncertainties**](https://github.com/lmfit/uncertainties) - Error propagation
+
 ---
 
 ## Visualization 
@@ -96,3 +102,4 @@ This has been recommended for large scale datasets with [millions of points](htt
 [**kepler.gl**]()
 
 [**pyviz**]()
+

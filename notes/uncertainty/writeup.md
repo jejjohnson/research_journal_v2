@@ -240,3 +240,14 @@ $$
 
 * Sensitivity Analysis
 
+
+---
+### Bayesian Linear Regression Examples
+
+* [Numpyro + Linear Regression](https://www.nelsontang.com/blog/intro-to-bayesian-regression-with-numpyro)
+
+
+---
+### Laplace Approximation
+
+**Sources**: [CompStats](https://www.cs.helsinki.fi/u/ahonkela/teaching/compstats1/book/bayesian-model-comparison-and-laplace-approximation.html)

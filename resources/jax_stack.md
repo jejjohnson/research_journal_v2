@@ -181,6 +181,7 @@ keywords: data
 
 * [jaxns](https://github.com/Joshuaalbert/jaxns)
 * [SGMCMCJax](https://github.com/jeremiecoullon/SGMCMCJax) - stochastic Gradient samplers in jax
+* [jax-sgmc](https://github.com/tummfm/jax-sgmc) - stochastic gradient samplers in jax
 
 ### **Normalizing Flows**
 

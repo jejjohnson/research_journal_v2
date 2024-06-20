@@ -82,6 +82,9 @@ I am a strong believer that your objective should as be a factor in which resour
 > This is a summer school that happens every year. It goes over a wide range of topics related to machine learning from leading experts in the research field. I was priviledged enough to attend during the final years of my PhD. An unforgettable experience that really gave me some perspective on machine learning.
 
 
+**Misc Bayesian Tutorials** - [BLNNBook](https://phuijse.github.io/BLNNbook/README.html) | [Persuasive Python](https://www.persuasivepython.com/)
+
+
 ---
 ### Geoscience Related
 
