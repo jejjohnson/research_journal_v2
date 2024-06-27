@@ -34,6 +34,9 @@ keywords: data
 * - IID Model
   - -17089.15032017
   - 4.06643326
+* - Spatial Model
+  - -16663.58281494
+  - 62.91590443
 * - Temporal Model
   - -15571.70729426
   - 4.73258625
@@ -54,6 +57,16 @@ keywords: data
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1HPknM6ouvWJLlFmhvN1NQqWPGdDIvVnv)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
+
 :::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
@@ -63,6 +76,8 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1-hemd578kUpwqLVeoguWH_ymrNoXbIpD)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
+
+
 
 :::{tab-item} Space-Time
 :::{figure}
@@ -785,6 +800,9 @@ The return period under a GMST scenario 2 for the spatio-temporal model.
 
 # Returns
 
+
+
+
 ## Histogram
 
 ::::{tab-set}
@@ -796,6 +814,16 @@ The return period under a GMST scenario 2 for the spatio-temporal model.
 
 
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1qTIOLXTGqVGWAyb06Opg439Wiv_rPQfx)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
+
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1Z-_eb9E67utNjyblXyIiKRFUxuV8q5CN)
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
@@ -835,6 +863,16 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
 :::
 
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1sA7IqxZWSJH1EMMjzVGOgiE5mJ0ckLBR)
+The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each time step within the time series.
+:::
+
 :::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
@@ -865,6 +903,7 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 ### GMST - Scenario 0
 
 
+
 ::::{tab-set}
 
 :::{tab-item} IID
@@ -875,6 +914,16 @@ The negative log-likelihood loss (equation [](eq:madrid-gevd-mle-loss)) for each
 
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1_E4BavUauLsGKtUz9aS7O7ZcNNGd3nG-)
 The return period for the iid model.
+:::
+
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1OgRoNPFMNesrp9pUb5wjMdvKZlz5r6BO)
+The return period under a GMST scenario 0 for the temporal model.
 :::
 
 :::{tab-item} Time
@@ -913,6 +962,16 @@ The return period under a GMST scenario 0 for the spatio-temporal model.
 The return period for the iid model.
 :::
 
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1OgRoNPFMNesrp9pUb5wjMdvKZlz5r6BO)
+The return period under a GMST scenario 0 for the temporal model.
+:::
+
 :::{tab-item} Time
 :::{figure}
 :label: madrid-t2m-hist
@@ -948,6 +1007,16 @@ The return period under a GMST scenario 1 for the spatio-temporal model.
 
 ![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1fDiCsIbmCwvRkAzSj59V3U8SqXaHQO5g)
 The return period for the iid model.
+:::
+
+:::{tab-item} Space
+:::{figure}
+:label: madrid-t2m-hist
+:align: center
+
+
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1OgRoNPFMNesrp9pUb5wjMdvKZlz5r6BO)
+The return period under a GMST scenario 0 for the temporal model.
 :::
 
 :::{tab-item} Time

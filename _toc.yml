@@ -102,6 +102,7 @@ chapters:
             - file: notes/projects/2023_igeo/bayes4evt/eda_spain
             - file: notes/projects/2023_igeo/bayes4evt/eda_gmst
             - file: notes/projects/2023_igeo/bayes4evt/exp1a_theory
+            - file: notes/projects/2023_igeo/bayes4evt/formulation_dynamical
             # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
             - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_madrid_gevd
