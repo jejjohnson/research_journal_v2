@@ -105,6 +105,7 @@ chapters:
             - file: notes/projects/2023_igeo/bayes4evt/formulation_dynamical
             # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
             - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
+            - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd_vs_gpd
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_madrid_gevd
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_spain_gevd
       - title: ML4EO

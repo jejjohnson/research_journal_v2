@@ -1,7 +1,7 @@
 ---
 title: Preliminary Results
 subject: Misc. Notes
-short_title: Experiment 1a - Spain
+short_title: Experiment 1b - Spain
 authors:
   - name: J. Emmanuel Johnson
     affiliations:
