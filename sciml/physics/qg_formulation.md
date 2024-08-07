@@ -1238,5 +1238,84 @@ They place a Gaussian hill centered at point `(10,15)` with a dimensional height
 :::
 
 
+### Important Quantities
+
+#### Quasi-Geostrophic Equations
+
+$$
+\begin{aligned}
+\text{Geostrophic Wind}: && &&
+\vec{\boldsymbol{u}}_g &= 
+\frac{1}{f_0}\hat{\boldsymbol{k}}
+\times
+\nabla\Psi \\
+\text{Momentum Equation}: && &&
+\frac{D_g \vec{\boldsymbol{u}}_g}{D_t} 
+&= 
+- f_0\hat{\boldsymbol{k}}\times
+\vec{\boldsymbol{u}}_g 
+- \beta y \vec{\boldsymbol{k}} \times
+\vec{\boldsymbol{u}}_g \\
+\text{Continuity Equation}: && &&
+\partial_x u_a &+ \partial_y v_a + \partial_p \omega = 0 \\
+\text{Thermodynamic Equation}: && &&
+\left(\partial_t + \vec{\boldsymbol{u}}_g \cdot \nabla\right)
+&\left( - \partial_p \Psi\right) - \sigma \omega 
+= 
+\frac{\kappa J}{p} \\
+\text{Auxillary Eqn. I}: && &&
+\kappa &= \frac{R_d}{c_p} \\
+\text{Auxillary Eqn II}: && &&
+\sigma &= - \frac{R_d T_0}{p}\frac{\ln \theta_0}{p}
+\end{aligned}
+$$
+
+[Source](https://climate.ucdavis.edu/ATM121/AtmosphericDynamics-Chapter05-Part05-QGPotentialVorticity.pdf)
+
+***
+
+#### Potential Vorticity
+
+$$
+\begin{aligned}
+\text{Barotropic PV}: && &&
+\text{PV} &= \frac{\zeta_g + f}{h}, 
+&& &&
+\text{m}^{-1}\text{s}^{-1}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\text{Quasi-Geostrophic PV}: && &&
+\text{q} &= 
+\frac{1}{f_0}\nabla^2\psi +
+f +
+\partial_p
+\left(\frac{f_0}{\sigma}\partial_p \Psi\right)
+&& &&
+\text{m}^{-1}
+\end{aligned}
+$$
+
+The first 2 terms in the equation is the absolute vorticity and the second term is the vertical stretching, i.e., the change in thickness with height.
+
+
+### Definitions
+
+**Barotropic**: A barotropic fluid is a where a fluids density only depends on pressure.
+
+$$
+\rho = \rho(s, t, p)
+$$
+
+**Baroclinic**: A baroclinic fluid is where a fluids density depends on pressure and temperature.
+
+$$
+\rho = \rho(s, t, p, T)
+$$
+
+
+
 
 

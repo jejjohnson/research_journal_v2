@@ -525,13 +525,13 @@ The first form assumes that we have a constant change in DMT wrt the GMST
 
 $$
 \begin{aligned}
-\text{Constant EOM}: && &&
+\text{Constant}: && &&
 \boldsymbol{f}(y,x,\theta)
 &= 
 a_0 \\
 \text{Linear Solution}: && &&
 y(x) &=
-y_0 + a_0 t
+y_0 + a_0 x
 \end{aligned}
 $$
 
@@ -540,13 +540,13 @@ The first form assumes that we have a constant change in DMT wrt the GMST
 
 $$
 \begin{aligned}
-\text{Linear EOM}: && &&
+\text{Linear}: && &&
 \boldsymbol{f}(y,x,\theta)
 &= 
-a_0 + a_1 t\\
+a_0 + a_1 x\\
 \text{Quadratic Solution}: && &&
 y(x) &=
-y_0 + a_0 t + \frac{1}{2}a_1t^2
+y_0 + a_0 x + \frac{1}{2}a_1x^2
 \end{aligned}
 $$
 
@@ -555,13 +555,13 @@ The first form assumes that we have a constant change in DMT wrt the GMST
 
 $$
 \begin{aligned}
-\text{Linear EOM}: && &&
+\text{Multiplicative}: && &&
 \boldsymbol{f}(y,x,\theta)
 &= 
 a_2 y\\
 \text{Exponential Solution}: && &&
 y(x) &=
-y_0 \exp \left( a_2t \right)
+y_0 \exp \left( a_2x \right)
 \end{aligned}
 $$
 

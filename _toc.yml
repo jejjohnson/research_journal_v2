@@ -152,6 +152,16 @@ chapters:
       - title: ML4EO
         sections:
           - file: notes/ml4eo/overview
+          - title: Table of Contents
+            sections:
+            - file: notes/ml4eo/geo_toc/geo_toc_app
+            - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
+            - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
+            - file: notes/ml4eo/geo_toc/geo_toc_god
+            - file: notes/ml4eo/geo_toc/geo_toc_data_rep
+            - file: notes/ml4eo/geo_toc/geo_toc_param
+            - file: notes/ml4eo/geo_toc/geo_toc_func_approx
+            - file: notes/ml4eo/geo_toc/geo_toc_appendix
           - title: Geo Problems
             sections:
             - file: notes/ml4eo/geo_probs/ext_toc
