@@ -370,6 +370,7 @@ There are various things we need to go over which will help us deal with extreme
 ### **Part III**: All Spain Weather Stations
 
 * EDA - Exploring Spatial Dependencies (Altitude, Longitude, Latitude)
+* Spatial Autocorrelation with (Semi-)Variograms
 * Discretization - Histogram
 * Dynamical Model
 * Spatial Operator - Finite Difference, Convolutions

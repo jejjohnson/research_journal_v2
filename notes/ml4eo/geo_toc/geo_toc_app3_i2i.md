@@ -94,3 +94,34 @@ Remote sensing data is some of the heaviest data
 **Data Harmonization**.
 We will attack the data harmonization front from all angles. 
 This includes operator learning across different data modalities.
+
+
+***
+## Blog
+
+### Part I: Geo 2 Geo
+
+> In this first part, we will look at the
+
+
+* Alignment
+
+
+### Part II: Polar 2 Geo
+
+
+### Part III: Polar 2 Geo 2 CloudSAT
+
+* 
+
+
+***
+## Appendices
+
+* Hydra
+* Databases: EarthAccess, GOES2GO, EUMDAC
+* GeoProcessing: Clean, Label, Reprojection, Resample, Clip, Mask, Harmonize, Save (TIFF, npy, zarr)
+* Feature Representation, Compression
+* Variable Transformation
+* Metrics: Pixels, Spectral, Multiscale
+* Encoding: Time, Coordinates, Wavelength

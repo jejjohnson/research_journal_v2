@@ -119,7 +119,6 @@ chapters:
             - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
             - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
             - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
-            - file: notes/ml4eo/geo_toc/geo_toc_param
             - file: notes/ml4eo/geo_toc/geo_toc_func_approx
             - file: notes/ml4eo/geo_toc/geo_toc_appendix
           - title: Concepts
@@ -242,11 +241,12 @@ chapters:
       - title: Learning vs Estimation
         sections:
         - file: notes/abstractions/learning_vs_estimation/lve_overview
-        - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
-        # - title: Examples
-          # sections:
-          # - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
-          # - file: notes/abstractions/learning_vs_estimation/examples/lve_2_prediction
+        - title: Examples
+          sections:
+          - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
+          - file: notes/abstractions/learning_vs_estimation/examples/lve_2_param_estimation
+          - file: notes/abstractions/learning_vs_estimation/examples/lve_3_state_estimation
+          - file: notes/abstractions/learning_vs_estimation/examples/lve_2_prediction
       - title: Notation
         sections:
           - file: notes/abstractions/notation/notation_basic

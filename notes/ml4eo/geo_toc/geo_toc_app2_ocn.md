@@ -144,7 +144,7 @@ We will be reusing components as we repeat the same process over and over again.
 
 ### Part I
 
-In this part, we will investigate **non-parametric interpolation**.
+In this part, we will investigate **Discretization Strategies**.
 
 ***
 **Data Download + EDA**
@@ -164,6 +164,13 @@ In this part, we will investigate **non-parametric interpolation**.
 **Discretization II - Neighbours**
 * KNNs 
 * [RAPIDS](https://docs.rapids.ai/api/cuml/stable/api/#id33)
+
+
+***
+### Part II
+
+> Here, we investigate non-parametric interpolation strategies.
+> In other words, we are looking at coordinate-based interpolation strategies.
 
 ***
 **Non-Parametric Interpolation I - Nearest Neighbours**
@@ -199,12 +206,22 @@ In this part, we will investigate **non-parametric interpolation**.
 **Scaling II - Inducing Points**
 
 
-**Scaling III - **
+**Scaling III -**
+
 
 ***
-### Part II
+### Part III
 
-In this part, we will look at coordinate-based parametric interpolators.
+> We are looking at parametric coordinate-based interpolation strategies.
+> This will involve neural fields.
+
+***
+**Non-Parametric Interpolation V - Neural Fields**
+
+* Baseline -> RBFSampler/Nystrom + Linear SGD
+* Fourier Features vs GPs
+* Deep Approximate Gaussian Processes vs Deep Neural Networks.
+
 
 **Linear**
 * Process Convolutions with Gaps
@@ -213,3 +230,14 @@ In this part, we will look at coordinate-based parametric interpolators.
 **Neural Fields**
 * Background - Deep Dive
 * Algorithms - MLP, Fourier Features, SIREN
+
+
+***
+### Part IV
+
+> We look at field-base interpolation strategies.
+
+***
+### Part V
+
+> We look at dynamical model-based interpolation strategies.

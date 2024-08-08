@@ -125,6 +125,12 @@ I call this cascade of objectives because the solution to one objective might be
 
 ### [Density Estimation](./lve_density_estimation.md)
 
+The first example, we look at how we can do some density estimation for temperature values.
+
+### [Parameter Estimation]()
+
+### [State Estimation]()
+
 ### [Predictions](./lve_predictions.md)
 
 ### [Time Series](./lve_predictions.md)

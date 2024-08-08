@@ -59,3 +59,133 @@ e.g., Convolutions, Gaussian Processes, Masked-Likelihoods
 
 **Ensemble Kalman Filter** [`EnsKF`]
 
+
+
+***
+#### Other
+
+
+* Differentiation
+  * Symbolic - [Blog](https://python.plainenglish.io/how-is-symbolic-differentiation-done-in-python-using-sympy-6484554f25b0)
+  * AutoDifferentiation - [Blog](https://theoryandpractice.org/stats-ds-book/autodiff-tutorial.html )
+  * Finite Difference --> Convolutions
+* Fourier --> Convolutional FFT
+* Poisson Solver --> CG, FFT, DST, DCT
+* Gaussian Kernel Matrix --> Process Convolutions
+* Kernel Matrix --> NN Tapering
+* Nearest Neighbours --> Gaussian Distance
+
+---
+
+* Woodbury, Nystrom, Inducing Points
+* PCA --> SVD --> rSVD
+* GPs: Moment, Spectral, Markovian
+* Plug-N-Play Priors: GP, PCA
+* Minimization
+* Missing Values: Masks, Fill, Iterative, Numpyro Masks Dist, Zeros RS
+* DMD, Convolution, Spectral Convolution
+* Finite Elements --> Graphs, Adjacency Matrix, Spatial Weights, Gaussian Distance
+
+---
+**Algorithms**
+
+* Gaussian Processes
+  * Scratch: Numpyro + JAX
+  * Custom Library: TinyGP + Lineax + Numpyro
+
+---
+**Architectures**
+
+* Convolutions 
+  * Convolutions & Finite Differences
+  * More on Convolutions - 1x1, FOV, Separable, DepthWise
+  * FFT Convolutions via PseudoSpectral Methods
+  * Missing Values
+    * Masks
+    * Partial Convolutions
+* Transformers
+  * Attention is All You Need
+  * Transformers and Kernels
+  * Missing Data + Masked Transformers
+* Graphical Models
+  * Graphs and Finite Element Methods
+  * Missing Data
+
+---
+**ROM**
+
+* Dimensionality Reduction - What is it and why do we need it, e.g., (SWM, Linear SWM, ROM)
+* AutoEncoders
+  * Linear - PCA/EOF/POD/SVD
+  * Convolutions
+  * Spectral Convolutions
+  * Transformers (Masked AutoEncoder)
+  * Graphs
+
+---
+**Multiscale**
+
+* Introduction to Multiscale - Power Spectrum Approach
+* U-Net I - CNN
+* U-Net II - Spectral Convolution
+* U-Net III - Transformers
+* U-Net IV - Graphs
+
+
+---
+**Objective-Based Approaches**
+
+* Implicit Models
+  * Fixed Point & Root-Finding
+  * Argmin Differentiation
+  * Deep Equilibrium Models
+* Implementation
+  * From Scratch - [Blog](https://teddykoker.com/2022/04/learning-to-learn-jax/)
+  * `JaxOpt`, `Optimistix`
+* Adjoints
+  * Scratch - [Blog](https://cundy.me/post/the_adjoint_method_in_a_dozen_lines_of_jax/)
+  * Optimistix - [Docs](https://docs.kidger.site/optimistix/api/adjoints/)
+  * Diffrax - [Docs](https://docs.kidger.site/diffrax/api/adjoints/)
+
+
+---
+**Conditional Generative Models**
+
+* Latent Variable Models
+* Bijective
+* Surjective
+* Stochastic
+* Gradient Flows, Stochastic Interpolants
+
+
+---
+**Engineering Tricks**
+
+* Scaling - MinMax, StandardScaler
+* TemporalFeatures - Coords, Cyclic, Splines, Fourier Features, Sinusoidals
+* SpatialFeatures
+  * Coordinate Transforms (Cartesian, Spherical, Cylindrical)
+  * Cycle, Splines, Fourier Features
+  * Spherical Harmonics
+
+
+---
+**Numpyro Tutorials**
+
+* Simple IID Model
+* Equinox Integration
+* Bayesian Hierarchical Model
+* Inference
+  * Custom Variational Posterior
+* Gaussian Processes
+* Sparse Gaussian Processes
+* Neural ODE
+* Linear State Space Model
+* Kalman Filter
+* Structured State Space Model
+* Deep Markov Model
+
+
+---
+**Keras Tutorial**
+
