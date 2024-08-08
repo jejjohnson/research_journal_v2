@@ -1,7 +1,7 @@
 ---
-title: ML4EO - Application II - Ocean
+title: App 2 - Modeling Ocean Surface Variables
 subject: ML4EO
-short_title: App II - Ocean
+short_title: TOC - App II - Ocean
 authors:
   - name: J. Emmanuel Johnson
     affiliations:

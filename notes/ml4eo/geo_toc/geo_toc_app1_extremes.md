@@ -1,7 +1,7 @@
 ---
-title: ML4EO - Application I - Extremes
+title: App 1 - Modeling Extreme Values
 subject: ML4EO
-short_title: App I - Extremes
+short_title: TOC - App I - Extremes
 authors:
   - name: J. Emmanuel Johnson
     affiliations:

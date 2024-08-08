@@ -110,7 +110,34 @@ chapters:
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_spain_gevd
       - title: ML4EO
         sections:
-          - file: notes/projects/2024_ml_4_eo/ml4eo_overview
+          - file: notes/ml4eo/overview
+          # - file: notes/projects/2024_ml_4_eo/ml4eo_overview
+          - title: Table of Contents
+            sections:
+            
+            - file: notes/ml4eo/geo_toc/geo_toc_app
+            - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
+            - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
+            - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
+            - file: notes/ml4eo/geo_toc/geo_toc_god
+            - file: notes/ml4eo/geo_toc/geo_toc_data_rep
+            - file: notes/ml4eo/geo_toc/geo_toc_param
+            - file: notes/ml4eo/geo_toc/geo_toc_func_approx
+            - file: notes/ml4eo/geo_toc/geo_toc_appendix
+          - title: Concepts
+            sections:
+            - file: notes/ml4eo/geo_concepts/geo_concepts_problems
+            - file: notes/ml4eo/geo_concepts/geo_concepts_task
+            - file: notes/ml4eo/geo_concepts/geo_concepts_model
+            - file: notes/ml4eo/geo_concepts/geo_concepts_hsd
+            - file: notes/ml4eo/geo_concepts/geo_concepts_pgm
+          - title: Parameterizations
+            sections:
+            - file: notes/ml4eo/geo_param/geo_param_toc
+            - file: notes/ml4eo/geo_param/geo_param_pde
+          - title: Inference
+            sections:
+            - file: notes/ml4eo/geo_inference/geo_inf_toc
       - title: ITI 2023
         sections:
           - file: notes/projects/2024_iti/writeup

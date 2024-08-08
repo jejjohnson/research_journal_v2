@@ -65,3 +65,6 @@ We need to mask our data
 
 **Missing Data**.
 e.g., Convolutions, Gaussian Processes
+
+
+**CRS, Transform, Bounds, Resolution**.
