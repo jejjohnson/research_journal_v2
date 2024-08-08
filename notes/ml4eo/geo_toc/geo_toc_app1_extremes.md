@@ -90,7 +90,9 @@ This gives us the advantage that we will be able to train our models, use them f
 We will have some immediate applicability because extreme events are things that we have to deal with on a daily basis.
 
 ***
-## **Datasets**
+## **Topics**
+
+### Datasets
 
 We will use some standard datasets that are found within the AEMET database.
 
@@ -112,70 +114,6 @@ $$
   * Daily Mean Temperature (TMax)
   * Daily Maximum Temperature (TMean)
 
-
-***
-### **Extreme Events**
-
-$$
-\mathcal{D} = \left\{y_n\right\}_{n=1}^N
-$$
-We will use some standard techniques to extract the extreme events from the time series.
-* Block Maximum (BM)
-* Peak-Over-Threshold (POT)
-* Temporal Point Process (TPP)
-
-
-***
-### **Data Likelihood**
-
-$$
-y \sim p(y|z)
-$$
-We need to decide which likelihood we want to use.
-For the mean data, we can assume that it follows a Gaussian distribution or a long-tailed T-Student distribution.
-However, for the maximum values, we need to assume an EVD like the GEVD, GPD or TPP.
-* Mean -> Gaussian, T-Student
-* Maximum -> GEVD, GPD, TPP
-
-***
-### **Parameterizations**
-
-$$
-p(\mathbf{y},\mathbf{z},\boldsymbol{\theta}) = p(y|z)p(z|\theta)p(\theta)
-$$
-We have to decide the parameterization we wish to use.
-* IID
-* Hierarchical
-* Strong-Constrained Dynamical, i.e., Neural ODE/PDE
-* Weak-Constrained Dynamical, i.e., SSM, EnsKF
-
-***
-### **State Estimation**
-
-$$
-z^*(\theta) = \argmin \hspace{2mm}\boldsymbol{J}(z;\theta)
-$$
-
-* Weak-Constrained
-  * Gradient-Based - 4DVar
-  * Derivative-Free - Ensemble Kalman Filter
-  * Minimization-Based - DEQ
-
-***
-### **Predictions**
-
-$$
-u \sim p(u|z^*)p(z^*|\mathcal{D})
-$$
-
-Our final task is to use a our new model to make predictions.
-* Feature Representation
-* Interpolation
-* HindCasting
-* Forecasting
-
-***
-## Datasets
 
 #### Global Mean Surface Temperature
 
@@ -263,6 +201,67 @@ D_y =
 \end{bmatrix}
 $$
 
+***
+### Extreme Events
+
+$$
+\mathcal{D} = \left\{y_n\right\}_{n=1}^N
+$$
+We will use some standard techniques to extract the extreme events from the time series.
+* Block Maximum (BM)
+* Peak-Over-Threshold (POT)
+* Temporal Point Process (TPP)
+
+
+***
+### Data Likelihood
+
+$$
+y \sim p(y|z)
+$$
+We need to decide which likelihood we want to use.
+For the mean data, we can assume that it follows a Gaussian distribution or a long-tailed T-Student distribution.
+However, for the maximum values, we need to assume an EVD like the GEVD, GPD or TPP.
+* Mean -> Gaussian, T-Student
+* Maximum -> GEVD, GPD, TPP
+
+***
+### Parameterizations
+
+$$
+p(\mathbf{y},\mathbf{z},\boldsymbol{\theta}) = p(y|z)p(z|\theta)p(\theta)
+$$
+We have to decide the parameterization we wish to use.
+* IID
+* Hierarchical
+* Strong-Constrained Dynamical, i.e., Neural ODE/PDE
+* Weak-Constrained Dynamical, i.e., SSM, EnsKF
+
+***
+### State Estimation
+
+$$
+z^*(\theta) = \argmin \hspace{2mm}\boldsymbol{J}(z;\theta)
+$$
+
+* Weak-Constrained
+  * Gradient-Based - 4DVar
+  * Derivative-Free - Ensemble Kalman Filter
+  * Minimization-Based - DEQ
+
+***
+### Predictions
+
+$$
+u \sim p(u|z^*)p(z^*|\mathcal{D})
+$$
+
+Our final task is to use a our new model to make predictions.
+* Feature Representation
+* Interpolation
+* HindCasting
+* Forecasting
+
 
 ***
 ## Questions
@@ -297,7 +296,7 @@ There are various things we need to go over which will help us deal with extreme
 ***
 ## Blog Schedule
 
-**Part I**: Global Mean Surface Temperature
+**Part I**: Global Mean Surface Temperature Anomaly
 
 **Part II**: Weather Station Means
 
@@ -306,60 +305,80 @@ There are various things we need to go over which will help us deal with extreme
 **Part IV**: Multiple Weather Stations
 
 ***
-### **Part I**: GMST
+### **Part I**: GMSTA
 
-* [ ] Data Download + EDA
-    * `matplotlib`
-    * Statistics, Histogram, Stationarity, Noise
-* [ ] Recreating the Anomalies
-    * `xarray`
-    * Filtering, Averaging, Periods + Averaging
-* [ ] Manual Feature Representation
-    * `statsmodels`
+
+***
+**Data Download + EDA**
+> In this tutorial, we want to showcase some of the immediate data properties that we can see just from plotting the data and calculate some statistics.
+* EDA - Statistics, Histogram, Stationarity, Noise
+* Library - `matplotlib`, `numpy`
+
+***
+**Recreating the Anomalies** (*Bonus*)
+* Manual Feature Extraction - Filtering, Averaging, Periods + Averaging
+* Library - `xarray`
+
+***
+* **Manual Feature Representation**
     * Additive vs Multiplicative
     * Trend, Cycle, Residuals
-* [ ] Unconditional Density Estimation
-    * `Numpyro`
-    * Bayesian IID Model
-* [ ] Metrics
+    * Library - `statsmodels`
+* **Unconditional Density Estimation**
+    * Simple Bayesian - Prior, Likelihood, Posterior, Inference (MCMC)
+    * Model - Simple IID Model
+    * Library - `Numpyro`
+* Metrics
     * PP-Plot, QQ-Plot, Posterior, Joint Plot, Return Period
     * NLL, AIC, BIC
-* [ ] Bayesian Hierarchical Model
-    * `Numpyro`
+    * `pyviz, xarray`
+* Bayesian Hierarchical Model
     * Fully Pooled, Non-Pooled, Partial Pooled
-* [ ] Temporally Conditioned Density Estimation
     * `Numpyro`
+* Temporally Conditioned Density Estimation
     * Function Approximation
     * Time-Split, Training Split Tricks
-* [ ] Function Approximation Whirlwind Tour
+    * `keras`
+* Function Approximation Whirlwind Tour
     * Linear
     * Basis Function
     * Neural Network
     * Gaussian Processes
-* [ ] Ensembles
+* Ensembles
     * Multiple GMSTA Perspectives
-* [ ] X-Casting
-* [ ] Strong-Constrained Dynamic Model, aka, NeuralODE
-* [ ] Weak-Constrained Dynamical Model, aka, SSM
+* X-Casting
+* Strong-Constrained Dynamic Model, aka, NeuralODE
+* Weak-Constrained Dynamical Model, aka, SSM
 
 ***
 ### **Part II**: Spain Weather Stations (Mean)
 
 > In this module, we start to look at single weather stations for Spain.
 
-* [ ] Data Download + EDA - Histograms, Stationarity, Noise
-* [ ] Gaussian vs T-Student vs GEVD
-* [ ] IID
-* [ ] Discretization
-    * [ ] Regular + Finite Diff + Convolutions
-    * [ ] Irregular + Symbolic + AD
-* [ ] Dynamical
-* [ ]  Custom Likelihood in `Numpyro` - GEVD, GPD
+* Data Download + EDA - Histograms, Stationarity, Noise
+* Data Likelihoods
+    * Standard - Gaussian, Generalized Gaussian
+    * Long-Tailed - T-Student, LogNormal
+* IID
+* Discretization
+    * Regular + Finite Diff + Convolutions
+    * Irregular + Symbolic + AD
+* Dynamical
 
 
 ***
-### **Part III**: Spain Weather Stations (Extremes)
+### **Part III**: All Spain Weather Stations
 
-* [ ] Extreme Values - Block Maximum v.s. Peak-Over-Threshold
-* [ ] Parameterization - Temporal Point Process
-* [ ] Relationship with common dists, GEVD & GPD
+* EDA - Exploring Spatial Dependencies (Altitude, Longitude, Latitude)
+* Discretization - Histogram
+* Dynamical Model
+* Spatial Operator - Finite Difference, Convolutions
+
+
+***
+### **Part IV**: Spain Weather Stations (Extremes)
+
+* Extreme Values - Block Maximum v.s. Peak-Over-Threshold
+* Parameterization - Temporal Point Process
+* Relationship with common dists, GEVD & GPD
+* Custom Likelihood in `Numpyro` - GEVD, GPD

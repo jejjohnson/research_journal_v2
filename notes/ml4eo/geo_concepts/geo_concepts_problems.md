@@ -91,12 +91,6 @@ $$
 * Simple -> Flow Model
 * MultiScale -> U-Net
 
-***
-## What can go wrong
-
-* Domain
-* learning
-
 
 ***
 ## Operator Learning
@@ -141,11 +135,15 @@ T_d &: \left\{\mathcal{Z}:\Omega_Z,\mathcal{T}_Z \right\}
 $$
 
 
-1. Learn a good representation network.
-2. Learn a good decoder for a specific Task.
+1. Learn a good representation network which encodes our data from an infinite domain into a finite latent domain.
+2. Do the computations in finite dimensional space.
+3. Learn a reconstruction function from the finite dimensional latent domain to another infinite dimensional domain.
 
 
 **Examples**:
 * Unstructured <--> Irregular, e.g. CloudSAT + MODIS
 * Irregular <--> Regular, e.g., AlongTrack + Grid
 * Regular <--> Regular, e.g., GeoStationary I + GeoStationary II
+
+
+

@@ -51,12 +51,45 @@ $$
 \left\{z_t, x_t, y_t \right\} \geq 0
 $$
 
+On a more practical level, we could call this **process identification**.
+
 ***
 ### System Discretization
 
 aka system architecture, discretization
 
 > What is a sufficiently complex, finite dimensional, spatially organized representation of the sub-system architecture?
+
+First, we need to decide which discretization we need.
+We could have a continuous system if we can express our equations through some sort of symbolic representation.
+Subsequently, we could use some sort of auto-differentiation framework to try and test it out using PDEs and such.
+This sort of approach lends itself well to function approximations.
+
+$$
+\begin{aligned}
+\mathbf{u} &= \boldsymbol{u}(\mathbf{s}) 
+&& &&
+\mathbf{s}\in\boldsymbol{\Omega}\subseteq\mathbb{R}^{D_s}
+&& &&
+\mathbf{u}\in\mathbb{R}^{D_u}
+\end{aligned}
+$$
+
+We could also use a discrete representation, which is more likely in many modeling situations.
+
+$$
+\begin{aligned}
+\mathbf{u} &= \boldsymbol{u}(\boldsymbol{\Omega}) 
+&& &&
+\boldsymbol{\Omega}\subseteq\mathbb{R}^{D_s}
+&& &&
+\mathbf{u}\in\mathbb{R}^{D_u\times D_\Omega}
+\end{aligned}
+$$
+
+In this case, we need to decide how we will handle the shape of the domain.
+We could use an irregular domain.
+This approach lends itself well with more traditional state-space and dynamical systems representations.
 
 **Examples:**
 * Scale
@@ -116,7 +149,10 @@ $$
 
 > What uncertainties are important, and how to represent them mathmatically?
 
-These are what 
+We can use some uncertainty representations which are uninformative, e.g., Uniform or Gaussian.
+We can also encode some knowledge about the tails of the distribution.
+For example, we could use some long-tailed distributions like the LogNormal or GEVD/GPD case.
+We could also put some very narrow priors which would converge to a single value, e.g., Delta or Beta.
 
 ***
 ### Solution Procedure

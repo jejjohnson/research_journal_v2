@@ -57,3 +57,40 @@ $$
 * Is there a covariate that can improve our predictability?
 * Can I explain my process parameterization? 
 * If I add or remove components of my model, does it increase or decrease the predictability or maximize/minimize some given criteria?
+
+
+
+***
+## What can go wrong
+
+### Data, $\mathcal{D}$
+
+* None
+* Sparsity
+* Missingness (MCAR, MAR, MNAR)
+* High-Dimensional 
+* Uncertain
+
+### Domain, $\Omega$
+
+* Outside Spatiotemporal Convex Hull
+* Inside Spatiotemporal Convex Hull
+* Irregular Hull Shape
+* Unstructured Shape, i.e., point clouds
+
+### Transformation, $T,\mathcal{\Theta}$
+
+* Unknown
+* Incorrect, i.e., model specification
+* Approximate (incomplete)
+* Expensive (computation, Memory)
+* Uncertain
+
+### Learning, $p(\mathcal{M}|\mathcal{D})$.
+
+* Solution Exists?
+* Can We find the Solution?
+* How do we find the solution?
+* How do we know we've found the solution?
+* How fast can we find the solution?
+* Where do we start?

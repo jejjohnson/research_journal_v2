@@ -1,6 +1,5 @@
 ---
-title: ML4EO - TOC Apps
-subject: ML4EO
+title: Appendices
 short_title: Appendices
 authors:
   - name: J. Emmanuel Johnson
@@ -15,29 +14,9 @@ keywords: notation
 ---
 
 
-## Parameterizations
-
-**Linear** 
-
-* Fully Connected
-* Convolutions & Differentials
-* Structured
-* Differential
-
-**Non-Linear**
-
-* Fully Connected
-* Spectral Convolution
-
-
-## Databases
-
-* Spatiotemporal Database
-* DVC + GDrive
-
 
 ***
-## Appendix
+## **Appendix**
 
 
 **Database** [`DVC`,`GDrive`].
@@ -53,9 +32,6 @@ We need to mask our data
 
 **Masked Likelihoods** [`GPD`, `TPP`].
 
-**Gaussian Processes** [`GP`, `Kriging`, `Kernel Methods`].
-
-**Sparse Gaussian Processes** [`SGP`].
 
 **Sensitivity Analysis** [`MC`, `Gauss Approx`, `Taylor`, `Unscented`, `Moment Matching`]
 
@@ -64,7 +40,22 @@ We need to mask our data
 **Numpyro + PPL II - Guide** [`MLE`, `MAP`, `Laplace`, `VI`, `MCMC`, `HMC`].
 
 **Missing Data**.
-e.g., Convolutions, Gaussian Processes
-
+e.g., Convolutions, Gaussian Processes, Masked-Likelihoods
 
 **CRS, Transform, Bounds, Resolution**.
+
+
+***
+#### Preprocessing
+
+**Extreme Values** [`BM`, `POT`, `TPP`]
+
+***
+#### Algorithms
+
+**Gaussian Processes** [`GP`, `Kriging`, `Kernel Methods`].
+
+**Sparse Gaussian Processes** [`SGP`].
+
+**Ensemble Kalman Filter** [`EnsKF`]
+

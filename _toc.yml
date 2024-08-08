@@ -119,8 +119,6 @@ chapters:
             - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
             - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
             - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
-            - file: notes/ml4eo/geo_toc/geo_toc_god
-            - file: notes/ml4eo/geo_toc/geo_toc_data_rep
             - file: notes/ml4eo/geo_toc/geo_toc_param
             - file: notes/ml4eo/geo_toc/geo_toc_func_approx
             - file: notes/ml4eo/geo_toc/geo_toc_appendix
@@ -131,9 +129,13 @@ chapters:
             - file: notes/ml4eo/geo_concepts/geo_concepts_model
             - file: notes/ml4eo/geo_concepts/geo_concepts_hsd
             - file: notes/ml4eo/geo_concepts/geo_concepts_pgm
+          - title: Data Representation
+            sections:
+            - file: notes/ml4eo/geo_toc/geo_toc_data_rep
           - title: Parameterizations
             sections:
             - file: notes/ml4eo/geo_param/geo_param_toc
+            - file: notes/ml4eo/geo_toc/geo_toc_god
             - file: notes/ml4eo/geo_param/geo_param_pde
           - title: Inference
             sections:
@@ -184,7 +186,8 @@ chapters:
             - file: notes/ml4eo/geo_toc/geo_toc_app
             - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
             - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
-            - file: notes/ml4eo/geo_toc/geo_toc_god
+            - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
+            
             - file: notes/ml4eo/geo_toc/geo_toc_data_rep
             - file: notes/ml4eo/geo_toc/geo_toc_param
             - file: notes/ml4eo/geo_toc/geo_toc_func_approx
@@ -298,5 +301,7 @@ chapters:
           - file: notes/sensitivity_analysis/sa_gauss_approx
       - title: Algorithms
         sections:
+        - file: notes/algorithms/pod
         - file: notes/algorithms/prob_pca
+        - file: notes/algorithms/prob_pca_missing
           

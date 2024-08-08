@@ -103,3 +103,113 @@ We will be looking at the greats from the field of data assimilation.
 
 **Transfer Learning**.
 We will be reusing components as we repeat the same process over and over again.
+
+***
+### Cyclic
+
+1. Gather Data
+2. Learn Prior via Parameter Estimation
+3. Estimate State via Data Assimilation
+4. Make Predictions
+
+***
+#### Data Cycle
+
+> Below is the data cycle that we wish to use for learning priors.
+
+* Gaussian Processes
+* Simulation Data
+* Clean Observations
+* Interpolated Observations
+* Reanalysis Data
+
+***
+#### Module Cycle
+
+* Parameter Estimation
+* State Estimation
+* Predictions
+
+***
+#### Complexity
+
+* Coordinate-Based Interpolation
+* Field-Based Interpolation
+* Strong-Constrained Dynamical Priors
+* Weak-Constrained Dynamical Priors
+
+
+***
+## Blogs
+
+### Part I
+
+In this part, we will investigate **non-parametric interpolation**.
+
+***
+**Data Download + EDA**
+* Data - Sea Surface Height, Sea Surface Temperature, Ocean Colour
+* EDA - Scatter, Histogram, Statistics
+
+***
+**Metrics**
+* Real Space - RMSE, R2, Correlation
+* Spectral Space - Isotropic PSD, Spatiotemporal PSD, Wavelet PSD
+
+***
+**Discretization I - Histogram**
+* Histogram Interpolation
+
+***
+**Discretization II - Neighbours**
+* KNNs 
+* [RAPIDS](https://docs.rapids.ai/api/cuml/stable/api/#id33)
+
+***
+**Non-Parametric Interpolation I - Nearest Neighbours**
+* KNN + GPUS
+* Weights
+
+***
+**Non-Parametric Interpolation II - Radius Neighbours**
+* Weights
+
+***
+**Scaling - I**
+* KNN + GPUs - [RAPIDS](https://docs.rapids.ai/api/cuml/stable/api/#nearest-neighbors)
+
+***
+**Non-Parametric Interpolation III - KDE**
+* KDE
+
+***
+**Scaling**
+* FFT + Equidistant Grids
+* Patching
+* GPU Hardware - [RAPIDS](https://docs.rapids.ai/api/cuml/stable/api/#kernel-density-estimation)
+
+***
+**Non-Parametric Interpolation IV - Gaussian Processes**
+* Naive Gaussian Processes
+
+
+**Scaling I - GPUs**
+* 
+
+**Scaling II - Inducing Points**
+
+
+**Scaling III - **
+
+***
+### Part II
+
+In this part, we will look at coordinate-based parametric interpolators.
+
+**Linear**
+* Process Convolutions with Gaps
+
+***
+**Neural Fields**
+* Background - Deep Dive
+* Algorithms - MLP, Fourier Features, SIREN

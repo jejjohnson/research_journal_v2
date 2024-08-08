@@ -14,6 +14,8 @@ license: CC-BY-4.0
 keywords: simulations
 ---
 
+Firstly, a POD is simply a decomposition of a spatiotemporal field into two disaparate components: the temporal features and the spatial features.
+The hope is that they will approx
 $$
 \boldsymbol{u}(\mathbf{s},t) = \sum_{k=1}^{\infty}\alpha_k(t)\boldsymbol{\phi}_k(\mathbf{s})
 $$
