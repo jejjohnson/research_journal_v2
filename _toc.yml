@@ -103,9 +103,12 @@ chapters:
             - file: notes/projects/2023_igeo/bayes4evt/eda_gmst
             - file: notes/projects/2023_igeo/bayes4evt/exp1a_theory
             - file: notes/projects/2023_igeo/bayes4evt/formulation_dynamical
+            - file: notes/projects/2023_igeo/bayes4evt/model_comparison
+            - file: notes/projects/2023_igeo/bayes4evt/madrid_comparison
+            - file: notes/projects/2023_igeo/bayes4evt/vlc_case_study_eda
             # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
-            - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
-            - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd_vs_gpd
+            # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
+            # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd_vs_gpd
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_madrid_gevd
             # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_spain_gevd
       - title: ML4EO
@@ -114,7 +117,6 @@ chapters:
           # - file: notes/projects/2024_ml_4_eo/ml4eo_overview
           - title: Table of Contents
             sections:
-            
             - file: notes/ml4eo/geo_toc/geo_toc_app
             - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
             - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
@@ -139,6 +141,9 @@ chapters:
           - title: Inference
             sections:
             - file: notes/ml4eo/geo_inference/geo_inf_toc
+          - title: Geo Blog
+            sections:
+            - file: notes/ml4eo/geo_blog/missing_types
       - title: ITI 2023
         sections:
           - file: notes/projects/2024_iti/writeup

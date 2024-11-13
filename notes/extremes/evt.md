@@ -53,6 +53,7 @@ To estimate the 100-year storm, we would only focus on hurricanes.
 ```{list-table} Extreme Events
 :header-rows: 1
 :name: extreme-events-breakdown
+:align: center
 
 * - Classification
   - Percentile
