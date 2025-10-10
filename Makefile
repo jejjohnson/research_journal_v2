@@ -7,20 +7,14 @@ help:
 	@echo "	build		build jupyter book"
 	@echo " clean 		clean previously built files"
 
-install_jbook:
-	mamba env create -f environment_jb.yml
+install:
+	conda env create -f environment_jb.yml
 
-update_jbook:
-	mamba env update -f environment_jb.yml --prune
+update:
+	conda env update -f environment_jb.yml --prune
 
-install_jaxlib:
-	mamba env create -f code/jax/environment.yaml
-
-update_jaxlib:
-	mamba env update -f code/jax/environment.yaml
-
-jb_build:
-	jupyter-book build research_notebook --all
+start:
+	myst start
 
 clean:
-	jupyter-book clean research_notebook
+	myst clean

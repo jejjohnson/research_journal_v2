@@ -2,11 +2,14 @@ name: jbook
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
-  - conda-forge::jupytext
-  - conda-forge::jupyter-book
-  - conda-forge::myst-parser
-  - conda-forge::pre-commit
+  - python=3.13
+  - mystmd
+  - jupytext
+  - jupyter-book
+  - myst-parser
+  - pre-commit
+  - texlive-core
+  - latexmk
   - pip
   - pip:
       - cookiecutter

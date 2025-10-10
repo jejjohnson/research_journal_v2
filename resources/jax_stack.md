@@ -18,10 +18,31 @@ keywords: data
 
 ## **Tutorials**
 
-* [Jax Tutorial 101](https://jax.readthedocs.io/en/latest/jax-101/index.html)
-* [PyTrees](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/types_and_models/04_pytrees.html) | [Jax PyTrees Tutorial](https://jax.readthedocs.io/en/latest/pytrees.html)
-* [Differentiable Programming](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/differentiation/00_intro.html)
-* [Autodidax: Jax From Scratch](https://jax.readthedocs.io/en/latest/autodidax.html)
+
+[**Advanced Scientific Machine Learning**](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/intro.html).
+This is a set of tutorials which are **Application-Based**.
+I think there is value in learning JAX from an application-based stand point.
+I personally like the scientific machine learning perspective.
+Some highlights include tutorials on [functional programming](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/functional_programming/00_intro.html), [differentiable programming](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/differentiation/00_intro.html), and [optimization](https://predictivesciencelab.github.io/advanced-scientific-machine-learning/optimization/00_intro.html).
+
+[**Bayesian Modelling and Probabilistic Programming with Numpyro, and Deep Generative Surrogates for Epidemiology**](https://elizavetasemenova.github.io/prob-epi/01_intro.html).
+This is easily the best course to learn about probabilistic programming through the lens of JAX and numpyro.
+I find it very useful when thinking probabilistically.
+Some highlights include the [Bayesian Workflow](https://elizavetasemenova.github.io/prob-epi/11_Bayesian_workflow.html), [Gaussian Processes](https://elizavetasemenova.github.io/prob-epi/17_GP_priors.html), and even [ODEs!](https://elizavetasemenova.github.io/prob-epi/22_ODEs.html).
+
+[Jax 101](https://jax.readthedocs.io/en/latest/tutorials.html).
+These set of tutorials are very exhaustive in terms of the features of JAX.
+They are very neural network focused but they cover every aspect of why someone would want to use JAX.
+Some highlights include **jax essentials** like [JIT compilation](https://jax.readthedocs.io/en/latest/jit-compilation.html), [automatic vectorization](https://jax.readthedocs.io/en/latest/automatic-vectorization.html), [automatic differentiation](https://jax.readthedocs.io/en/latest/automatic-differentiation.html).
+However, there are some more interesting tutorials like [PyTrees](https://jax.readthedocs.io/en/latest/working-with-pytrees.html), [Stateful Computations](https://jax.readthedocs.io/en/latest/stateful-computations.html) and even [parallel computing](https://jax.readthedocs.io/en/latest/sharded-computation.html).
+
+
+[Autodidax: JAX from Scratch](https://jax.readthedocs.io/en/latest/autodidax.html).
+This is more for hardcore devs who are very interested in understanding the underlying aspects of JAX.
+It really takes you step-by-step into some of the inner workings in an interesting way.
+I think it's worth it to just take a look for awareness.
+However, unless you plan to develop your own packages, it may not be necessary.
+
 
 ***
 ## **Special DataStructures**
@@ -31,7 +52,7 @@ keywords: data
 * [tree-math](https://github.com/google/tree-math)
 * [xarray_jax](https://github.com/google-deepmind/graphcast)
 * [quax](https://github.com/patrick-kidger/quax)
-* jaxtyping
+* [jaxtyping](https://docs.kidger.site/jaxtyping/)
 
 ***
 ## **Symbolic Math**

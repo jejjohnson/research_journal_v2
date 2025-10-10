@@ -40,4 +40,304 @@ project:
       SF: Survival Function
       CHF: Cumulative Hazard Function
       HF: Hazard Function
-      
+
+  toc:
+    - file: README.md
+    - title: GMTL
+      children:
+        - file: GMTL/overview.md
+        - title: Framework
+          children:
+            - file: GMTL/framework/problem.md
+            - file: GMTL/framework/tasks.md
+    - title: Scientific ML
+      children:
+        - file: sciml/overview.md
+        - title: Physical Models
+          children:
+            - file: sciml/physics/pde_anatomy
+            - file: sciml/physics/qg_formulation
+            - file: sciml/physics/swm_formulation
+            - file: sciml/physics/elliptical_pde_solver
+            - title: Whirlwind Tour
+              children:
+                - file: sciml/param_est
+                - file: sciml/state_est
+    - title: ML Models
+      children:
+        - title: DA with Obs
+          children:
+            - file: sciml/data_assimilation/da_obs/da_obs
+            - file: sciml/data_assimilation/da_obs/interpolation
+            - file: sciml/data_assimilation/da_obs/deq
+            - file: sciml/data_assimilation/da_obs/dyn_model
+            - file: sciml/data_assimilation/da_obs/da_obs_cascade
+    - title: Resources
+      children:
+        - file: resources/learning_ml
+        - file: resources/good_code
+        - file: resources/ides
+        - title: Software Stacks
+          children:
+            - file: resources/dl_stack
+            - file: resources/earthsci_stack
+            - file: resources/scale_stack
+            - file: resources/sci_py_stack
+            - file: resources/xarray_stack
+            - file: resources/jax_stack
+    - title: Remote Computing
+      children:
+        - file: resources/remote_computing/ssh  
+        - file: resources/remote_computing/conda  
+        - file: resources/remote_computing/jlab  
+        - file: resources/remote_computing/organize  
+    - title: Software Reviews
+      children:
+        - file: resources/software_reviews/numpyro
+    - title: Cheatsheets
+      children:
+        - file: cheatsheets/bash
+        - file: cheatsheets/cli
+        - file: cheatsheets/python
+        - file: cheatsheets/pytorch
+        - title: Cookbook
+          children:
+            - file: cookbook/filtering
+            - file: cookbook/anomalies
+            - file: cookbook/spatial_mean
+    - title: My Portfolio
+      children:
+        - file: portfolio/overview
+        - file: portfolio/research
+        - file: portfolio/specialities
+        - file: portfolio/work
+    - title: Project Notes
+      children:
+        - title: IGEO 2023
+          children:
+            - file: notes/projects/2023_igeo/igeo_overview
+            - file: notes/projects/2023_igeo/ai_4_storylines
+            - file: notes/projects/2023_igeo/ai_4_regional_param
+            - title: Bayes4EVT
+              children:
+              - file: notes/projects/2023_igeo/bayes4evt/overview
+              - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_models
+              - file: notes/projects/2023_igeo/bayes4evt/bayes4evt_inf
+              - file: notes/projects/2023_igeo/bayes4evt/eda_madrid
+              - file: notes/projects/2023_igeo/bayes4evt/eda_spain
+              - file: notes/projects/2023_igeo/bayes4evt/eda_gmst
+              - file: notes/projects/2023_igeo/bayes4evt/exp1a_theory
+              - file: notes/projects/2023_igeo/bayes4evt/formulation_dynamical
+              - file: notes/projects/2023_igeo/bayes4evt/model_comparison
+              - file: notes/projects/2023_igeo/bayes4evt/madrid_comparison
+              - file: notes/projects/2023_igeo/bayes4evt/vlc_case_study_eda
+              # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_madrid_gevd
+              # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd
+              # - file: notes/projects/2023_igeo/bayes4evt/exp1_unc_spain_gevd_vs_gpd
+              # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_madrid_gevd
+              # - file: notes/projects/2023_igeo/bayes4evt/exp2_cond_spain_gevd
+    - title: ML4EO
+      children:
+        - file: notes/ml4eo/overview
+        # - file: notes/projects/2024_ml_4_eo/ml4eo_overview
+        - title: Table of Contents
+          children:
+          - file: notes/ml4eo/geo_toc/geo_toc_app
+          - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
+          - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
+          - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
+          - file: notes/ml4eo/geo_toc/geo_toc_func_approx
+          - file: notes/ml4eo/geo_toc/geo_toc_appendix
+        - title: Concepts
+          children:
+          - file: notes/ml4eo/geo_concepts/geo_concepts_problems
+          - file: notes/ml4eo/geo_concepts/geo_concepts_task
+          - file: notes/ml4eo/geo_concepts/geo_concepts_model
+          - file: notes/ml4eo/geo_concepts/geo_concepts_hsd
+          - file: notes/ml4eo/geo_concepts/geo_concepts_pgm
+        - title: Data Representation
+          children:
+          - file: notes/ml4eo/geo_toc/geo_toc_data_rep
+        - title: Parameterizations
+          children:
+          - file: notes/ml4eo/geo_param/geo_param_toc
+          - file: notes/ml4eo/geo_toc/geo_toc_god
+          - file: notes/ml4eo/geo_param/geo_param_pde
+        - title: Inference
+          children:
+          - file: notes/ml4eo/geo_inference/geo_inf_toc
+        - title: Geo Blog
+          children:
+          - file: notes/ml4eo/geo_blog/missing_types
+    - title: ITI 2023
+      children:
+        - file: notes/projects/2024_iti/writeup
+    - title: Notes
+      children:
+        - title: Extremes
+          children:
+            - title: Background
+              children:
+              - file: notes/extremes/evt
+              - file: notes/extremes/eva
+              - file: notes/extremes/evp
+              - file: notes/extremes/eve
+            - title: Distributions
+              children:
+              - file: notes/extremes/evt_dists/evt_dists_background
+              - file: notes/extremes/evt_dists/gev
+              - file: notes/extremes/evt_dists/gpd
+              - file: notes/extremes/evt_dists/pp
+              - file: notes/extremes/evt_dists/evt_params
+            - title: Feature Extraction
+              children:
+              - file: notes/extremes/algo
+              - file: notes/extremes/features/extremes_extract
+              - file: notes/extremes/features/extremes_manual
+            - title: Modeling
+              children:
+              - file: notes/extremes/modeling/modeling_overview
+              - file: notes/extremes/modeling/unconditional
+              - file: notes/extremes/modeling/latent
+              - file: notes/extremes/modeling/covariates
+              - file: notes/extremes/modeling/spatial
+              - file: notes/extremes/modeling/dynamical
+              - file: notes/extremes/modeling/emulator
+        - title: Emulators
+          children:
+            - file: notes/ai4nwp/emulators
+            - file: notes/ai4nwp/ai_forecasters
+        - title: ML4EO
+          children:
+            - file: notes/ml4eo/overview
+            - title: Table of Contents
+              children:
+              - file: notes/ml4eo/geo_toc/geo_toc_app
+              - file: notes/ml4eo/geo_toc/geo_toc_app1_extremes
+              - file: notes/ml4eo/geo_toc/geo_toc_app2_ocn
+              - file: notes/ml4eo/geo_toc/geo_toc_app3_i2i
+              
+              - file: notes/ml4eo/geo_toc/geo_toc_data_rep
+              - file: notes/ml4eo/geo_toc/geo_toc_param
+              - file: notes/ml4eo/geo_toc/geo_toc_func_approx
+              - file: notes/ml4eo/geo_toc/geo_toc_appendix
+            - title: Geo Problems
+              children:
+              - file: notes/ml4eo/geo_probs/ext_toc
+              - file: notes/ml4eo/geo_probs/geo_probs_mvp
+              - file: notes/ml4eo/geo_probs/interpolation
+              - file: notes/ml4eo/geo_probs/inv_problem
+            - title: Geo DataTypes
+              children:
+              - file: notes/ml4eo/geodata_types/observations
+              - file: notes/ml4eo/geodata_types/simulations
+              - file: notes/ml4eo/geodata_types/reanalysis
+            - title: Geo DataStructures
+              children:
+              - file: notes/ml4eo/geodata_structure/geods_overview
+            - title: Geo DataBases
+              children:
+              - file: notes/ml4eo/geodata_access/earthaccess.md
+              - file: notes/ml4eo/geodata_access/aemet.md
+              - file: notes/ml4eo/geodata_access/cdsapi.md
+              - file: notes/ml4eo/geodata_access/mds.md
+              - file: notes/ml4eo/geodata_access/gee.md
+              - file: notes/ml4eo/geodata_access/climetlab.md
+            - title: Geo Operations
+              children:
+              - file: notes/ml4eo/geo_ops/geo_ops_overview
+              - file: notes/ml4eo/geo_ops/software
+              - file: notes/ml4eo/geo_ops/spatial_mean
+              - file: notes/ml4eo/geo_ops/filtering
+              - file: notes/ml4eo/geo_ops/climatology
+              - file: notes/ml4eo/geo_ops/anomalies
+              - file: notes/ml4eo/geo_ops/interpolation
+              - file: notes/ml4eo/geo_ops/geodata
+            - title: Geo Models
+              children:
+              - file: notes/ml4eo/geo_models/whirlwind
+            - title: Geo Interpolation
+              children:
+              - file: notes/ml4eo/geo_interp/geo_interp
+              - file: notes/ml4eo/geo_interp/nonparametric
+              - file: notes/ml4eo/geo_interp/coordinates
+              - file: notes/ml4eo/geo_interp/field_based
+              - file: notes/ml4eo/geo_interp/dynamical
+              - file: notes/ml4eo/geo_interp/geo_interp_mvp
+        - title: Abstractions
+          children:
+          - file: notes/abstractions/overview
+          - file: notes/abstractions/glossary
+        - title: Learning vs Estimation
+          children:
+          - file: notes/abstractions/learning_vs_estimation/lve_overview
+          - title: Examples
+            children:
+            - file: notes/abstractions/learning_vs_estimation/examples/lve_1_density_estimation
+            - file: notes/abstractions/learning_vs_estimation/examples/lve_2_param_estimation
+            - file: notes/abstractions/learning_vs_estimation/examples/lve_3_state_estimation
+            - file: notes/abstractions/learning_vs_estimation/examples/lve_2_prediction
+        - title: Notation
+          children:
+            - file: notes/abstractions/notation/notation_basic
+            - file: notes/abstractions/notation_modeling
+            - file: notes/abstractions/notation/notation_operators
+            - file: notes/abstractions/notation/diff_ops
+            - file: notes/abstractions/notation/notation
+            - file: notes/abstractions/notation/operators
+            - file: notes/abstractions/notation/st_data_rep
+            - file: notes/abstractions/notation/notation_basic
+        - title: Uncertainty
+          children:
+          - file: notes/uncertainty/writeup
+        - title: Bayesian
+          children:
+          - file: notes/bayesian/models
+          - file: notes/bayesian/inference
+          - file: notes/bayesian/variational_inference
+          - file: notes/bayesian/cond_variational_inference
+          - file: notes/bayesian/seq_variational_inference
+          - file: notes/bayesian/confidence_intervals
+          - file: notes/bayesian/gaussians
+        - title: Neural Fields
+          children:
+            - file: notes/nerfs/overview
+            - file: notes/nerfs/formulation
+            - file: notes/nerfs/literature_review
+            - file: notes/nerfs/pinns
+            - file: notes/nerfs/training
+            - file: notes/nerfs/qg
+            - file: notes/nerfs/modulation
+            - file: notes/nerfs/uncertainty
+        - title: State Space Models
+          children:
+            - file: notes/state_space/dyn_sys
+            - file: notes/state_space/markov
+            - file: notes/state_space/lin_gauss_markov
+            - file: notes/state_space/gauss_markov
+            - file: notes/state_space/kalman_filter
+            - file: notes/state_space/ens_kalman_filter
+            - file: notes/state_space/dmm
+        - title: Data Assimilation
+          children:
+            - file: notes/da/oi
+            - file: notes/da/sc4dvar
+            - file: notes/state_space/4dvarnet
+        - title: Sensitivity Analysis
+          children:
+            - file: notes/sensitivity_analysis/overview
+            - file: notes/sensitivity_analysis/demo
+            - file: notes/sensitivity_analysis/sa_problem
+            - file: notes/sensitivity_analysis/sa_gauss_approx
+        - title: Algorithms
+          children:
+          - file: notes/algorithms/pod
+          - file: notes/algorithms/prob_pca
+          - file: notes/algorithms/prob_pca_missing
+        - title: Methane
+          children:
+          - file: notes/methane/1.1_event_modeling
+          - file: notes/methane/1.2_pixels_to_predictions
+          - file: notes/methane/1.3_methane_retrieval_satellites
+
+            
