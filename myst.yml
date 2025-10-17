@@ -41,6 +41,12 @@ project:
       CHF: Cumulative Hazard Function
       HF: Hazard Function
       RTM: Radiative Transfer Model
+      PSF: Point Spread Function
+      SRF: Spectral Response Function
+      GSD: Ground Sample Distance
+      AMF: Air Mass Factor
+      ODE: Ordinary Differential Equation
+      RTE: Radiative Transfer Equation
 
   toc:
     - file: README.md
@@ -340,6 +346,8 @@ project:
           - file: notes/methane/1.1_event_modeling
           - file: notes/methane/1.2_pixels_to_predictions
           - file: notes/methane/1.3_methane_retrieval_satellites
+          - file: notes/methane/2.2_beers_law
+          - file: notes/methane/2.3_beers_law_rs
           - file: notes/methane/2.1_matched_filter
 
             
