@@ -346,8 +346,17 @@ project:
           - file: notes/methane/1.1_event_modeling
           - file: notes/methane/1.2_pixels_to_predictions
           - file: notes/methane/1.3_methane_retrieval_satellites
-          - file: notes/methane/2.2_beers_law
-          - file: notes/methane/2.3_beers_law_rs
+          - title: Beer’s Law
+            children:
+              - file: notes/methane/2.2_beers_law
+              - file: notes/methane/2.3_beers_law_rs
+              - file: notes/methane/beers_law_rtm
+              - file: notes/methane/beers_law_simplified
+              - file: notes/methane/beers_law_analysis
+              - file: notes/methane/beers_law_rtm_hapi
+              - file: notes/methane/beers_law_lut
+              - file: notes/methane/beers_law_ml
+              - file: notes/methane/beers_law_spatial
           - file: notes/methane/2.1_matched_filter
 
             
