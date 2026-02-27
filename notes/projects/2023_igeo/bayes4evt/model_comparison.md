@@ -17,6 +17,13 @@ keywords: data
 
 ### Model Comparison
 
+:::{figure}
+:label: fig:madrid-t2m-bm-ts
+:align: center
+![Madrid Daily Maximum Temperature Time Series](https://drive.google.com/uc?id=1xwwk5C_3lW8kl9yBqw91RvSfzcowZveD)
+A scatter plot with boundaries for the maximum temperatures obtained using the yearly Block maxima method.
+:::
+
 
 #### Model Metrics
 

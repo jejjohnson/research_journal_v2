@@ -40,6 +40,15 @@ project:
       SF: Survival Function
       CHF: Cumulative Hazard Function
       HF: Hazard Function
+      IME: Integrated Mass Enhancement
+      PoD: Probability of Detection
+      LDAR: Leak Detection and Repair
+      MARS: Methane Alert and Response System
+      MMSF: Missing Mass Scaling Factor
+      NHPP: Non-Homogeneous Poisson Process
+      SWIR: Short-Wave Infrared
+      TCCON: Total Carbon Column Observing Network
+      MRV: Measurement Reporting and Verification
       RTM: Radiative Transfer Model
       PSF: Point Spread Function
       SRF: Spectral Response Function
@@ -48,6 +57,8 @@ project:
       ODE: Ordinary Differential Equation
       RTE: Radiative Transfer Equation
 
+  bibliography:
+    - bibliographies/methane.bib
   toc:
     - file: README.md
     - title: GMTL
@@ -357,6 +368,13 @@ project:
               - file: notes/methane/beers_law_lut
               - file: notes/methane/beers_law_ml
               - file: notes/methane/beers_law_spatial
+          - title: Methane Paradox
+            children:
+              - file: notes/methane/paradox/mttpp
+              - file: notes/methane/paradox/mttpp_intensity
+              - file: notes/methane/paradox/missing_methane_paradox
+              - file: notes/methane/paradox/persistency
+              - file: notes/methane/paradox/literature_review
           - file: notes/methane/2.1_matched_filter
 
             

@@ -1,17 +1,21 @@
-.PHONY: help install_jbook update_jbook install_jaxlib update_jaxlib build clear
+.PHONY: help venv install update build clean
 
 help:
 	@echo "The following make targets are available:"
-	@echo "	install		install all dependencies for environment with conda"
-	@echo "	update		update all dependencies for environment with conda"
+	@echo "	venv		create a virtual environment with uv"
+	@echo "	install		install all dependencies for environment with uv"
+	@echo "	update		update all dependencies for environment with uv"
 	@echo "	build		build jupyter book"
-	@echo " clean 		clean previously built files"
+	@echo "	clean 		clean previously built files"
+
+venv:
+	uv venv
 
 install:
-	conda env create -f environment_jb.yml
+	uv pip install -e .
 
 update:
-	conda env update -f environment_jb.yml --prune
+	uv pip install --upgrade -e .
 
 start:
 	myst start

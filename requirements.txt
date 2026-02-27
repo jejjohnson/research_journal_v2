@@ -1,8 +1,2 @@
-jupyter-book
-matplotlib
-numpy
-ghp-import
-sphinx-proof
-myst-parser
-sphinx-copybutton
-sphinxcontrib-mermaid
+# This file is intentionally left empty.
+# Dependencies are now managed in pyproject.toml.

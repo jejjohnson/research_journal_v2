@@ -17,3 +17,7 @@ rbig_consistency.csv
 *.xml
 \.idea/
 \_build/
+
+# uv
+.venv
+.uv_cache

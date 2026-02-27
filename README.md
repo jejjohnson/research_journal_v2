@@ -66,7 +66,8 @@ These are my notes for my research journey.
 If you'd like to develop on and build the research_notebook book, you should:
 
 - Clone this repository and run
-- Run `pip install -r requirements.txt` (it is recommended you do this within a virtual environment)
+- Run `make install` to install the dependencies.
+- **Note:** This project requires a TeX Live installation for building PDFs. Please install it separately on your system. You can find installation instructions at [https://www.tug.org/texlive/](https://www.tug.org/texlive/).
 - (Recommended) Remove the existing `research_notebook/_build/` directory
 - Run `jupyter-book build research_notebook/`
 
