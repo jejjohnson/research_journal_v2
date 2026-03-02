@@ -339,7 +339,7 @@ We can divide the operations into the following: 1) space, 2) time, and 3) quant
 
 ### Same Domain
 
-:::{tip} Example: Arakawa C-Grid
+::::{tip} Example: Arakawa C-Grid
 :class: dropdown
 
 :::{figure} https://veros.readthedocs.io/en/latest/_images/c-grid.svg
@@ -407,7 +407,7 @@ q_on_h: Field = domain_transform(q, h.domain)
 assert h.domain == u_on_h.domain == v_on_h.domain == q_on_h.domain
 ```
 
-:::
+::::
 
 
 

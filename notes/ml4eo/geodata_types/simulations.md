@@ -241,7 +241,7 @@ We don't have observations of the anthropogenic activity, so we need to prescrib
 In general, there are a number of Shared Socioeconomic Pathways (SSP), a.k.a., *scenarios* provided ranging from optimistic to pessimistic.
 
 
-:::{note} SSP Scenarios Summary
+::::{note} SSP Scenarios Summary
 :class: dropdown
 
 :::{list-table} Table of Different Scenarios
@@ -265,7 +265,7 @@ In general, there are a number of Shared Socioeconomic Pathways (SSP), a.k.a., *
 :::
 
 
-:::
+::::
 
 
 

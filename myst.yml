@@ -256,6 +256,9 @@ project:
               - file: notes/ml4eo/geo_concepts/geo_concepts_model
               - file: notes/ml4eo/geo_concepts/geo_concepts_hsd
               - file: notes/ml4eo/geo_concepts/geo_concepts_pgm
+            - title: Data Representation
+              children:
+              - file: notes/ml4eo/geo_toc/geo_toc_data_rep
             - title: Parameterizations
               children:
               - file: notes/ml4eo/geo_param/geo_param_toc
