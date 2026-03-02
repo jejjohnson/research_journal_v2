@@ -1,6 +1,6 @@
-# Python
-
-
+---
+title: Python
+---
 I use python as my primary programming language and I have tried to really make use of what the community has to offer to help me with my tasks. I do things from scratch in the beginning but then I heavily refactor and prefer to use popular, up-to-date libraries with well-tested code. I mostly work with machine learning 
 
 

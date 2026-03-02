@@ -46,7 +46,7 @@ $$
 $$
 
 
-````{admonition} Pseudo-Code
+::::{admonition} Pseudo-Code
 :class: dropdown info
 
 ```python
@@ -59,16 +59,16 @@ d2u_dx2: Array["P"] = derivative(u, step_size=dx, axis=0, order=2, accuracy=2)
 d2u_dy2: Array["P"] = derivative(u, step_size=dy, axis=1, order=2, accuracy=2)
 ```
 
-````
+::::
 
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: dropdown seealso
 
 * 3Blue3Brown - Visualization of Derivatives - [Video](https://www.youtube.com/watch?v=CfW845LNObM)
 * 3Blue3Brown - [Essence of Calculus](https://youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr)
 
-````
+::::
 
 ---
 
@@ -133,7 +133,7 @@ $$
 
 
 
-````{admonition} Pseudo-Code
+::::{admonition} Pseudo-Code
 :class: dropdown info
 
 ```python
@@ -156,9 +156,9 @@ y: Array["NM"] = flatten(Y)
 output: Array["NM"] = vmap(f, args=(0,1))(x,y)
 ```
 
-````
+::::
 
-````{admonition} Example
+::::{admonition} Example
 :class: dropdown info
 
 
@@ -190,11 +190,11 @@ $$
 \end{aligned}
 $$
 
-````
+::::
 
 ### Vector Fields
 
-````{admonition} Psuedo-Code
+::::{admonition} Psuedo-Code
 :class: dropdown info
 
 ```python
@@ -217,18 +217,18 @@ y: Array["NM"] = flatten(Y)
 output: Array["NM"] = vmap(f, args=(0,1))(x,y)
 ```
 
-````
+::::
 
 ---
 ## Jacobian
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: dropdown seealso
 
 * Mathemaniac Visualization of Jacobian - [Video](https://www.youtube.com/watch?v=wCZ1VEmVjVo)
 * Serpentine Integral Visualization of the Change of Variables and the Jacobian - [Video](https://www.youtube.com/watch?v=hhFzJvaY__U&t=515s)
 
-````
+::::
 
 ---
 ## Divergence
@@ -269,7 +269,7 @@ $$
 \text{div}\left[\vec{\boldsymbol{f}}\right](\vec{\mathbf{x}}): \mathbb{R}^D \rightarrow \mathbb{R}
 $$
 
-````{admonition} Pseudo-Code
+::::{admonition} Pseudo-Code
 :class: dropdown info
 
 ```python
@@ -288,7 +288,7 @@ u_div: Array["P"] = np.sum(u_grad, axis=1)
 u_div: Array["P"] = divergence(u, step_size=(dx,dy), accuracy=4)
 ```
 
-````
+::::
 
 
 ## Curl
@@ -330,14 +330,14 @@ $$
 $$
 
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: dropdown seealso
 
 * Explanation using Vorticity - [Part 1](https://youtu.be/M55LbJr_SsQ) | [Part 2](https://youtu.be/lqDx2uiKx_Q)
 
 
 
-````
+::::
 
 
 ## Laplacian
@@ -361,7 +361,7 @@ $$
 \text{Laplacian}[\boldsymbol{f}](\vec{\mathbf{x}}): \mathbf{R}^D \rightarrow \mathbf{R}
 $$
 
-````{admonition} Pseudo-Code
+::::{admonition} Pseudo-Code
 :class: dropdown info
 
 ```python
@@ -380,7 +380,7 @@ u_lap: Array["P"] = divergence(u, step_size=(dx,dy), accuracy=4)
 u_lap: Array["P"] = laplacian(u, step_size=(dx,dy), accuracy=4)
 ```
 
-````
+::::
 
 
 ## Material Derivative
@@ -436,7 +436,7 @@ u_2\frac{\partial \vec{\boldsymbol{F}}}{\partial y} +
 u_3\frac{\partial \vec{\boldsymbol{F}}}{\partial z}
 $$
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: dropdown seealso
 
 * [Good ol' Wikipedia Page](https://en.wikipedia.org/wiki/Material_derivative)
@@ -444,7 +444,7 @@ $$
 * Atmospheric Dynamics Lecture - [Video](https://youtu.be/TPmkx_hfuAc)
 
 
-````
+::::
 
 
 ---
@@ -484,7 +484,7 @@ $$
 \det\boldsymbol{J}[\boldsymbol{f}, \boldsymbol{g}](\vec{\mathbf{x}}): \mathbf{R}^D \rightarrow \mathbf{R}
 $$
 
-````{admonition} Pseudo-Code
+::::{admonition} Pseudo-Code
 :class: dropdown info
 
 ```python
@@ -514,10 +514,10 @@ vu_grad: Array["P D"] = v * u_grad
 u_detj: Array["P"] = curl(vu_grad, step_size=(dx,dy), accuracy=2)
 ```
 
-````
+::::
 
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: seealso dropdown
 
 * Explanation of Jacobian from Flows Perspective - [Slides](https://drive.google.com/file/d/10LqMqk9gT97avcPJqRHA2F0CNSlTpQLx/view)
@@ -525,7 +525,7 @@ u_detj: Array["P"] = curl(vu_grad, step_size=(dx,dy), accuracy=2)
 * Khan Academy Explanation of Determinant - [Video](https://www.youtube.com/watch?v=wCZ1VEmVjVo)
 * 3Blue3Brown Visualization of Determinant Jacobian - [Video](https://www.youtube.com/watch?v=Ip3X9LOh2dk)
 
-````
+::::
 
 
 ---

@@ -1,9 +1,6 @@
-# Training Tips n Tricks
-
-
-
-
-
+---
+title: Training Tips n Tricks
+---
 ## Learning Rate Scheduler
 
 * WarmUp

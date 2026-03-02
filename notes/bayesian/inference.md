@@ -47,7 +47,7 @@ keywords: simulations
 In the case of regression, we can use the MSE as a loss function. This will exactly solve for the negative log-likelihood term above.
 
 
-````{admonition} Proof
+::::{admonition} Proof
 :class: info dropdown
 
 The likelihood of our model is:
@@ -102,7 +102,7 @@ $$
 
 **Note**: If we did not know $\sigma_y^2$ then we would have to optimize this as well.
 
-````
+::::
 
 
 
@@ -125,7 +125,7 @@ $$
 \boldsymbol{\theta}_{\text{MAP}} = \operatorname*{argmax}_{\boldsymbol{\theta}} - \frac{1}{N}\sum_n^N\log p\left(y_n|f(x_n; \theta)\right) + \log p(\theta)
 $$(map_loss)
 
-````{admonition} Proof
+::::{admonition} Proof
 :class: dropdown info
 
 $$
@@ -174,7 +174,7 @@ $$
 $$
 
 
-````
+::::
 
 
 
@@ -190,7 +190,7 @@ $$
 $$
 
 
-````{admonition} Proof
+::::{admonition} Proof
 :class: info dropdown
 
 This is straightforward to derive because we can pick up from the proof of the MAP loss function, eq:{eq}`map_loss`.
@@ -205,16 +205,16 @@ $$
 \theta_{map} = \operatorname*{argmin}_{\theta} - \frac{1}{N}\sum_n^N \log p(y_n| f(x_n;\theta))
 $$
 
-````
+::::
 
 
 
 
-```{prf:remark}
+:::{prf:remark}
 
 You can get an intuition that this will lead to local minimum as there are many possible solutions that would minimize this equation. Or even worse, there are many possible local minimum that we could get stuck in when trying to optimize for this.
 
-```
+:::
 
 #### KL-Divergence (Forward)
 
@@ -226,7 +226,7 @@ This is the distance between the best distribution, $p_*(x)$, for the data and t
 
 There is an equivalence between the (Forward) KL-Divergence and the Maximum Likelihood Estimation. Maximizing the likelihood expresses it as maximizing the likelihood of the data given our estimated distribution. Whereas the KL-divergence is a distance measure between the parameterized distribution and the "true" or "best" distribution of the real data. They are equivalent formulations but the MLE equations shows how this is a proxy for fitting the "real" data distribution to the estimated distribution function.
 
-````{admonition} Proof
+::::{admonition} Proof
 :class: info dropdown
 
 $$
@@ -274,7 +274,7 @@ which exactly the function for the NLL Loss
 
 
 
-````
+::::
 
 
 

@@ -1,6 +1,6 @@
-# Naive Neural Networks
-
-
+---
+title: Naive Neural Networks
+---
 ## Example I: Sea Surface Height
 
 This is an example of how we can use NerFs to train on a physical field, in particular sea surface height.

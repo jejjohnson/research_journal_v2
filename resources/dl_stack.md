@@ -1,5 +1,6 @@
-# Deep Learning Stack
-
+---
+title: Deep Learning Stack
+---
 ## What is Deep Learning?
 
 Before we get into the software, I just wanted to quickly define deep learning. A recent debate on [twitter](https://twitter.com/yudapearl/status/1215174538087948288) got me thinking about an appropriate definition and it helped me think about how this definition relates to the software. It gave me perspective.

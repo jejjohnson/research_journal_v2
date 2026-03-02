@@ -1,6 +1,6 @@
-# Specialties
-
-
+---
+title: Specialties
+---
 ---
 ## Algorithms
 

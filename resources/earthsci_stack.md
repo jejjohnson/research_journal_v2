@@ -1,6 +1,6 @@
-# Earth Science Stack
-
-
+---
+title: Earth Science Stack
+---
 These are a few simple tools that can be helpful with dealing spatial-temporal aware datasets in particular from the [xarray](http://xarray.pydata.org/en/stable/) package. These `xr.Datasets` are in the format (lat x lon x time x variable) and many times we just need X and y. There are a few useful functions in here that will help getting coverting that data into useful arrays for processing.
 
 ---
@@ -22,10 +22,10 @@ These are a few simple tools that can be helpful with dealing spatial-temporal a
 
 This image says a lot: is the default package for handling spatial-temporal-variable datasets. This alone has helped me contain data where I care about the meta-data as well. Numpy Arrays are great but they are limited in their retention of meta-data. In addition, it has many features that allow you to work with it from a numpy array perspective and even better from a pandas perspective. It makes the whole ordeal a lot easier.
 
-```{admonition} info
+:::{admonition} info
 :class: toggle
 * [Tutorials on XArrays Contrib Site](https://xarray-contrib.github.io/xarray-tutorial/index.html)
-```
+:::
 
 ---
 

@@ -297,7 +297,7 @@ In [{cite}`10.48550/arxiv.2204.03911`], they were looking at how the QG model co
 
 Below are some experimental parameters found in  which showcase 3 different flow regimes based on the parameter scheme.
 
-```{list-table} Table with idealized configuration
+:::{list-table} Table with idealized configuration
 :header-rows: 1
 :name: tb:qg_idealized
 
@@ -349,7 +349,7 @@ Below are some experimental parameters found in  which showcase 3 different flow
   - $32e3$
   - $22e4$
   - $34e4$
-```
+:::
 
 :::
 
@@ -443,7 +443,7 @@ The only term in this function that depends upon $y$ is the second term so we ap
 The first table showcases the constants along with the range of values that it can take for the toy model.
 
 
-```{list-table} Table with constants
+:::{list-table} Table with constants
 :header-rows: 1
 :name: tb:qg_constants
 
@@ -488,11 +488,11 @@ The first table showcases the constants along with the range of values that it c
   - 
   - $0\rightarrow \pi/3$
 
-```
+:::
 
 The second table lists some of the derived constants that we can calculate given the above constants.
 
-```{list-table} Table of derived quantities.
+:::{list-table} Table of derived quantities.
 :header-rows: 1
 :name: tb:qg_derived_constants
 
@@ -516,11 +516,11 @@ The second table lists some of the derived constants that we can calculate given
   - $\kappa = \frac{1}{H\sqrt{(\nu_Z f_0)/2}}$ 
   - 
   - $0.0 \rightarrow 1e-5$
-```
+:::
 
 The last table lists the non-dimensional derived quantities which are useful for the non-dimensional version of the toy QG PDE [](#eq:qg_toy).
 
-```{list-table} Table of non-dimensional quantities.
+:::{list-table} Table of non-dimensional quantities.
 :header-rows: 1
 :name: tb:qg_nondimensionals
 
@@ -539,7 +539,7 @@ The last table lists the non-dimensional derived quantities which are useful for
 * - 
   - $\nu_H/(\beta L^3)$ 
   - $1e-7 \rightarrow 1e-4$
-```
+:::
 
 :::
 
@@ -606,7 +606,7 @@ Below is an outline of the configuration.
 
 
 
-```{list-table} Fixed for their Eddy resolving simulations.
+:::{list-table} Fixed for their Eddy resolving simulations.
 :header-rows: 1
 :name: tb:qg_idealized
 
@@ -643,7 +643,7 @@ Below is an outline of the configuration.
   -  
   - `0.2`
   
-```
+:::
 
 
 :::
@@ -783,7 +783,7 @@ We outline in detail their
 Below is a table with the parameter configuration for their experiments.
 
 
-```{list-table} Variable parameters for their Northern and Southern Ocean experiments.
+:::{list-table} Variable parameters for their Northern and Southern Ocean experiments.
 :header-rows: 1
 :name: tb:qg_stacked_gcm
 
@@ -857,7 +857,7 @@ Below is a table with the parameter configuration for their experiments.
   - m$^{-1}$s$^{-1}$
   - `2e-4`
   - `1.313e-11`
-```
+:::
 
 :::
 
@@ -888,7 +888,7 @@ They showcased how the numerical scheme they used was better than explicitly pre
 Below is a table with the parameter configuration for their experiments.
 
 
-```{list-table} Variable parameters for their Eddy resolving simulations.
+:::{list-table} Variable parameters for their Eddy resolving simulations.
 :header-rows: 1
 :name: tb:qg_stacked_louis_variable
 
@@ -952,11 +952,11 @@ Below is a table with the parameter configuration for their experiments.
   - `2.6e10`
   - `1.3e10`
   - `1.7e9`
-```
+:::
 
 Below is a table with the fixed parameters that stayed constant throughout the simulation.
 
-```{list-table} Fixed for their Eddy resolving simulations.
+:::{list-table} Fixed for their Eddy resolving simulations.
 :header-rows: 1
 :name: tb:qg_stacked_louis_fixed
 
@@ -1000,7 +1000,7 @@ Below is a table with the fixed parameters that stayed constant throughout the s
   - $L_d$ 
   - km
   - `[41, 25]`
-```
+:::
 
 ---
 
@@ -1076,7 +1076,7 @@ The parameters, $F_1,F_2$, are the parameters that couple the laters together.
 Below are some experimental parameters for the experimental setup
 
 
-```{list-table} Parameters
+:::{list-table} Parameters
 :header-rows: 1
 :name: tb:qg_stacked_louis_fixed
 
@@ -1124,13 +1124,13 @@ Below are some experimental parameters for the experimental setup
   - ... 
   - ms$^{-1}$
   - `10`
-```
+:::
 
 **Note**: the Coriolis paramater is at the *southern boundary*.
 
 ---
 
-```{list-table} Non-Dimensionalization
+:::{list-table} Non-Dimensionalization
 :header-rows: 1
 :name: tb:qg_stacked_louis_fixed
 
@@ -1174,7 +1174,7 @@ Below are some experimental parameters for the experimental setup
   - $\epsilon$ 
   - ...
   - $\frac{\bar{U}}{f_0 L} = 0.1$
-```
+:::
 
 ---
 
@@ -1199,7 +1199,7 @@ They place a Gaussian hill centered at point `(10,15)` with a dimensional height
 
 **Errors**
 
-```{list-table} Parameters
+:::{list-table} Parameters
 :header-rows: 1
 :name: tb:qg_stacked_louis_fixed
 
@@ -1233,7 +1233,7 @@ They place a Gaussian hill centered at point `(10,15)` with a dimensional height
   - `0.0`
   - `0.8`
   - Grid Pint
-```
+:::
 
 :::
 

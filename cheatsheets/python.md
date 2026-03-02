@@ -1,5 +1,6 @@
-# Python
-
+---
+title: Python
+---
 ## Credentials
 
 ```yaml

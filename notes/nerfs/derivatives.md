@@ -1,7 +1,6 @@
-# Gradients
-
-
-
+---
+title: Gradients
+---
 ## Example I: Sea Surface Height
 
 

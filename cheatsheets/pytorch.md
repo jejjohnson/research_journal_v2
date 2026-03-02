@@ -1,6 +1,6 @@
-# PyTorch
-
-
+---
+title: PyTorch
+---
 ## Skorch
 
 

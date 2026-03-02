@@ -26,13 +26,13 @@ abbreviations:
 ## Shallow Water
 
 
-```{figure} https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjtdkiXdNKeWhSEVqnOImCqztCJKzySLLZNA&usqp=CAU
+:::{figure} https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjtdkiXdNKeWhSEVqnOImCqztCJKzySLLZNA&usqp=CAU
 :name: fig-sw
 :alt: Shallow Water Equations PDE.
 :align: center
 
 The shallow water equations schematic as per [{cite}`10.1017/9781107588431`].
-```
+:::
 
 
 

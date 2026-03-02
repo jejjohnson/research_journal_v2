@@ -63,14 +63,14 @@ where $N$ is the sample size.
 
 
 
-```{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Probability-Probability_plot%2C_quality_characteristic_data.png/600px-Probability-Probability_plot%2C_quality_characteristic_data.png
+:::{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Probability-Probability_plot%2C_quality_characteristic_data.png/600px-Probability-Probability_plot%2C_quality_characteristic_data.png
 :name: earth-sys-decomp
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of p-p plot from wikipedia. [[Source: Wikipedia](https://en.wikipedia.org/wiki/P–P_plot)]
-```
+:::
 
 This is also known as the *probability-probability plot*, the *percent-percent plot*, or the *p-value* plot.
 It is used for assessing how closely two datasets agree and/or the residuals. See [wiki](https://en.wikipedia.org/wiki/P–P_plot) for more details.
@@ -83,14 +83,14 @@ It is used for assessing how closely two datasets agree and/or the residuals. Se
 
 ### Q-Q Plot
 
-```{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Normal_normal_qq.svg/600px-Normal_normal_qq.svg.png
+:::{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Normal_normal_qq.svg/600px-Normal_normal_qq.svg.png
 :name: earth-sys-decomp
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of Q-Q plot from wikipedia. [[Source: Wikipedia](https://en.wikipedia.org/wiki/Q–Q_plot)]
-```
+:::
 
 This is the quantile-quantile plot.
 This is a graphical tool to compare two probability distributions by comparing their quantiles versus one another.
@@ -123,14 +123,14 @@ $$
 
 
 
-```{figure} https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/industry/diagrameva_article.png
+:::{figure} https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/industry/diagrameva_article.png
 :name: earth-sys-decomp
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of return period for temperature. [[Source: MetOffice](https://www.metoffice.gov.uk/services/research-consulting/weather-climate-consultancy/extreme-value-analysis)]
-```
+:::
 
 This is also known as the *recurrence interval* or *repeat interval* which is an average time or an estimated average time between events.
 In the case of extreme events, these can include floods, heatwaves, or droughts.

@@ -1,6 +1,6 @@
-# Physics-Informed Loss
-
-
+---
+title: Physics-Informed Loss
+---
 ---
 ## Function
 

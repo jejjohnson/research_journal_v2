@@ -1,6 +1,6 @@
-# OI Module
-
-
+---
+title: OI Module
+---
 ```bash
 # choose by region
 python oi.py dataset=alongtrack region=NA outputdir="./"

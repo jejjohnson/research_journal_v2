@@ -25,11 +25,11 @@ The Homogeneous Poisson Process is the bedrock of temporal modeling. It is compl
 
 The intensity under an HPP is governed by Eq. {eq}`eq-mmp-poisson-pmf` in the homogeneous case:
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-hpp
 
 \lambda(t) = \lambda
-```
+:::
 
 *(The intensity is a strict constant, completely independent of time or past emission events.)*
 
@@ -60,11 +60,11 @@ We relax the "Stationarity" assumption. The intensity is no longer a constant $\
 * Satellite detections in disjoint intervals are still independent.
 * The only difference is that the underlying "background rate" is allowed to rise and fall according to a set schedule (like a seasonal sine wave modeling rice paddy emissions peaking in summer).
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-ipp
 
 \lambda(t) = g(t)
-```
+:::
 
 *(The intensity $g(t)$ changes over time $t$, but is still strictly deterministic and independent of past emission history.)*
 
@@ -96,14 +96,14 @@ We elevate the deterministic $g(t)$ to a stochastic Gaussian Process (GP).
 * To guarantee the emission rate remains mathematically positive, we place the GP prior on the *logarithm* of the intensity function.
 * The smoothness and volatility of the rate are strictly governed by the GP's covariance kernel (e.g., Exponentiated Quadratic), allowing us to infer the uncertainty of the underlying physics directly from the sparse satellite data.
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-lgcp
 
 \begin{aligned}
 \lambda(t) &= \exp(f(t)) \\
 f(t) &\sim \mathcal{GP}(0, K(t, t'))
 \end{aligned}
-```
+:::
 
 *(The intensity is the exponential of a Gaussian Process, defined by a mean of zero and a covariance function $K$ dictating how smoothly the physical rate evolves over time.)*
 
@@ -134,11 +134,11 @@ We relax the Exponential distribution requirement {cite:p}`weibull_renewal`.
 * The times between satellite-detected plumes ($\Delta t$) are still independent and identically distributed (i.i.d.), but they can follow **any** probability distribution (e.g., Weibull, Gamma, Log-Normal).
 * This allows you to model regular, predictable spacing (like routine maintenance venting schedules) or bursty spacing, giving the model a "local memory" regarding the time elapsed since the last immediate venting event.
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-renewal
 
 \lambda(t) = h(t - t_{\text{last}})
-```
+:::
 
 *(The intensity is defined by a hazard function $h$, which depends purely on the time elapsed since the most recent plume detection, $t_{\text{last}}$.)*
 
@@ -169,11 +169,11 @@ We introduce explicit history dependence. The intensity function $\lambda(t)$ ju
 * $t_i$: The timestamps of strictly past leak events.
 * $\varphi(t - t_i)$ (Excitation Kernel): A decay function (often exponential) that defines how much a past rupture at time $t_i$ boosts the probability of new leaks at time $t$.
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-hawkes
 
 \lambda(t) = \mu + \sum_{t_i < t} \alpha \cdot \exp\bigl(-\beta(t - t_i)\bigr)
-```
+:::
 
 *(The intensity is the sum of a baseline $\mu$ plus an exponentially decaying boost $\alpha$ `[boost in plumes/day]` for every single infrastructure failure $t_i$ that occurred in the past, decaying at rate $\beta$ `[1/days]`.)*
 
@@ -208,14 +208,14 @@ We replace the statistical prior with a mechanistic vector field.
 * The emission rate $\lambda(t)$ is derived by clamping this physical state to strictly positive values using a Softplus transformation.
 * Inference no longer finds arbitrary curves; it finds the exact physical coefficients (e.g., thermal expansion rates, mechanical friction) of the specific pipeline being observed.
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-ode
 
 \begin{aligned}
 \frac{dz(t)}{dt} &= \alpha \cdot (1 + \sin(\omega \cdot t)) - \beta \cdot z(t) \\
 \lambda(t) &= \ln(1 + \exp(z(t)))
 \end{aligned}
-```
+:::
 
 *(The intensity is mathematically tethered to an underlying differential equation, where $\alpha$ is the accumulation amplitude, $\omega$ is the diurnal frequency, and $\beta$ is the structural dissipation constant.)*
 
@@ -250,14 +250,14 @@ We abandon hand-crafted mathematical kernels and physics equations, relying enti
 * The intensity is then calculated as a non-linear function of this hidden state.
 * This allows the model to learn incredibly complex patterns straight from the satellite data---capturing both excitation (cascading failures boosting the rate) and inhibition (regulatory crackdowns lowering the rate), as well as complex seasonalities and long-term dependencies that previous mathematical frameworks could never fit.
 
-```{math}
+:::{math}
 :label: eq-mmp-intensity-neural
 
 \begin{aligned}
 \mathbf{h}(t) &= \text{RNN}(\mathbf{h}(t_{i-1}), \, t - t_{i-1}) \\
 \lambda(t) &= f(\mathbf{W}^\top \cdot \mathbf{h}(t) + b)
 \end{aligned}
-```
+:::
 
 *(The hidden state $\mathbf{h}(t)$ continuously evolves based on neural network weights capturing regional dynamics, and the expected leak intensity is mapped from this highly non-linear, historically aware state.)*
 
@@ -276,6 +276,6 @@ Intensity λ(t) [Plumes/Day]               Inter-arrival Distribution
  economics, weather, and past leaks)
 ```
 
-```{bibliography}
+:::{bibliography}
 :filter: docname in docnames
-```
+:::

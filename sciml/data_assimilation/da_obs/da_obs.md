@@ -1,5 +1,6 @@
-# DA for Observations
-
+---
+title: DA for Observations
+---
 $$
 \begin{aligned}
 \boldsymbol{y} &= \boldsymbol{y}(\mathbf{x},t) 

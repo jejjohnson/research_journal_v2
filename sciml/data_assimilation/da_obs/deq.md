@@ -1,6 +1,6 @@
-# Deep Equilibrium Models
-
-
+---
+title: Deep Equilibrium Models
+---
 ### Model
 
 ```python

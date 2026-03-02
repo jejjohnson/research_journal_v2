@@ -25,7 +25,7 @@ So first and foremost, I am going to suggest that you use [JupyterLab](https://j
 
 
 
-```{admonition} Resources
+:::{admonition} Resources
 * [Blog](https://towardsdatascience.com/jupyter-lab-evolution-of-the-jupyter-notebook-5297cacde6b) - JupyterLab: Evolution of the Jupyter Notebook
     > A nice walkthrough of the lab interface.
 * [Blog](https://florianwilhelm.info/2018/11/working_efficiently_with_jupyter_lab/) - Working Efficiently with JupyterLab Notebooks
@@ -34,7 +34,7 @@ So first and foremost, I am going to suggest that you use [JupyterLab](https://j
     * [Blog](https://alexanderlabwhoi.github.io/post/2019-03-08_jpn-slurm/) - Running Jupyter Notebooks Remotely with Slurm
     * [Blog](https://benjlindsay.com/posts/running-jupyter-lab-remotely) - Running Jupyter Lab Remotely
     * [JupyterLab Extension](https://github.com/NERSC/jupyterlab-slurm)
-```
+:::
 
 
 **Jumping Feet First Into Code**
@@ -81,9 +81,9 @@ I would suggest that you learn VIM and hack your way into creating an IDE for yo
 **Source**: [Vim as a Python IDE, or Python IDE as Vim](https://blog.jetbrains.com/pycharm/2013/06/vim-as-a-python-ide-or-python-ide-as-vim/) (2013) - Dmitry Filippov
 
 
-```{admonition} Resources
+:::{admonition} Resources
 * [Blog: Real Python](https://realpython.com/vim-and-python-a-match-made-in-heaven/) - VIM and Python: A Match Made in Heaven 
-```
+:::
 
 ---
 
@@ -104,8 +104,8 @@ If you're coming from MATLAB and want to minimize the amount of changes you do d
 
 So there are ways to utilize remote kernels (i.e. python environments in other locations). I personally haven't tested any way to do it but I'll like some resources below.
 
-```{admonition} Resources
+:::{admonition} Resources
 * [Spyder Docs](http://docs.spyder-ide.org/ipythonconsole.html#connect-to-an-external-kernel) - Connect to an external kernel
 * [Blog](https://medium.com/@halmubarak/connecting-spyder-ide-to-a-remote-ipython-kernel-25a322f2b2be) - Connecting Spyder IDE to a remote IPython kernel (2019)
 * [Blog](https://medium.com/@mazzine.r/how-to-connect-your-spyder-ide-to-an-external-ipython-kernel-with-ssh-putty-tunnel-e1c679e44154) - How to connect your Spyder IDE to an external ipython kernel with SSH PuTTY tunnel (2019)
-```
+:::

@@ -1,5 +1,6 @@
-# Literature Review
-
+---
+title: Literature Review
+---
 **Source**: [Awesome-Neural-Rendering](https://github.com/weihaox/awesome-neural-rendering)
 
 

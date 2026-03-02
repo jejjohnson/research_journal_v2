@@ -18,13 +18,13 @@ keywords: data-assimilation, open-science
 
 
 
-```{figure} ./assets/oi_grid.png
+:::{figure} ./assets/oi_grid.png
 ---
 height: 500px
 name: nkf_page
 ---
 Here is my figure caption! Source: [tweet](https://twitter.com/docmilanfar/status/1498195905433853952/photo/1)
-```
+:::
 
 Referece: {ref}`One Page Summary <nkf_page>`
 

@@ -1,5 +1,6 @@
-# Dynamical Model
-
+---
+title: Dynamical Model
+---
 Now, we're going back to basics.
 
 Assume we have a physical model

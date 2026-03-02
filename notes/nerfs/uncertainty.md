@@ -1,6 +1,6 @@
-# Predictive Uncertainty
-
-
+---
+title: Predictive Uncertainty
+---
 ## Example I: Gaussian Distribution
 
 

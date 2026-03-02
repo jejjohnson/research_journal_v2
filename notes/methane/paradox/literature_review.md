@@ -361,6 +361,6 @@ These clusters map directly to the six core components of the paradox write-up:
 
 *Bibliography compiled February 2026. ~95 references across 14 thematic sections + TPP theory foundations.*
 
-```{bibliography}
+:::{bibliography}
 :filter: docname in docnames
-```
+:::

@@ -122,13 +122,13 @@ $$
 
 ### [Hierarchical Decisions](./framework/problem_decisions.md) (**TODO**)
 
-```{mermaid}
+:::{mermaid}
 graph LR
     Processes --> Representation
     Representation --> Relationships
     Relationships --> Uncertainty
     Uncertainty --> Solution-Methodology
-```
+:::
 
 > In order to have a general ontology of how one can include information into a model, we need some standards for how we can describe the decisions we make.
 > This outlines the notion of a Hierarchical system where a user can outline all of their assumptions from the idea down to the modeling decisions.

@@ -22,7 +22,7 @@ Thus, when we do analysis for example, the return period, we will only obtain a 
 ***
 ## Results
 
-```{list-table} Table with results for each model
+:::{list-table} Table with results for each model
 :header-rows: 1
 :name: tb:madrid_unc_det_model
 
@@ -66,7 +66,7 @@ Thus, when we do analysis for example, the return period, we will only obtain a 
   - -113.75 (8.82)
   - 233.506
   - 
-```
+:::
 
 
 ***

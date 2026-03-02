@@ -1,5 +1,6 @@
-# Jupyter Lab 4 Remote Servers
-
+---
+title: Jupyter Lab 4 Remote Servers
+---
 ---
 ## Intro
 

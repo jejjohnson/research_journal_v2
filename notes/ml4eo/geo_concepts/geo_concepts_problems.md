@@ -59,13 +59,13 @@ This is the exclusive case when we are trying to predict outside of the period o
 ***
 ## Feature Representation
 
-```{figure} https://github.com/zhu-xlab/DOFA/blob/master/assets/DOFA-main.png
+:::{figure} https://github.com/zhu-xlab/DOFA/blob/master/assets/DOFA-main.png
 :label: myFigure
 :alt: Sunset at the beach
 :align: center
 
 A Model from DOFA whereby they train their model on different modalities for Remote sensing data. Source: [GitHub](https://github.com/zhu-xlab/DOFA) | [Paper (arxiv)](https://arxiv.org/abs/2403.15356)
-```
+:::
 
 This is also known as Representation Learning, Foundational Models
 

@@ -100,26 +100,26 @@ This further restricts the trajectories.
 This also determines the spatial variability!
 
 
-```{figure} https://www.science.org/cms/10.1126/sciadv.abn3488/asset/8f8eb61b-8789-44f5-9315-cd0c6f02bbbd/assets/images/large/sciadv.abn3488-f1.jpg
+:::{figure} https://www.science.org/cms/10.1126/sciadv.abn3488/asset/8f8eb61b-8789-44f5-9315-cd0c6f02bbbd/assets/images/large/sciadv.abn3488-f1.jpg
 :label: myFigure
 :alt: Sunset at the beach
 :align: center
 
 Schematic representation of space and time scales of atmospheric phenomena from aerosols and cloud drops/crystals at the “microscale” to clouds, tornadoes, and thunderstorms at the “mesoscale” up to tropical cyclones (hurricanes), and extratropical cyclones at the “synoptic scale” up to the general circulation and global climate scale. Types of models and their approximate ranges are colored. The “resolved” scale of a model is typically three to five times the spatial scale, so the effective spatial scale should be shifted to the right. DNS, direct numerical simulation. Source: [Paper (Science)](https://www.science.org/doi/10.1126/sciadv.abn3488)
-```
+:::
 
 [For example](https://www.science.org/cms/10.1126/sciadv.abn3488/asset/8f8eb61b-8789-44f5-9315-cd0c6f02bbbd/assets/images/large/sciadv.abn3488-f1.jpg)
 
 
 
 
-```{figure} https://www.worldclimateservice.com/wp-content/uploads/2020/08/longrangeforecasts_timescale.png
+:::{figure} https://www.worldclimateservice.com/wp-content/uploads/2020/08/longrangeforecasts_timescale.png
 :label: myFigure
 :alt: Sunset at the beach
 :align: center
 
 Schematic representation of space and time scales of atmospheric phenomena from aerosols and cloud drops/crystals at the “microscale” to clouds, tornadoes, and thunderstorms at the “mesoscale” up to tropical cyclones (hurricanes), and extratropical cyclones at the “synoptic scale” up to the general circulation and global climate scale. Types of models and their approximate ranges are colored. The “resolved” scale of a model is typically three to five times the spatial scale, so the effective spatial scale should be shifted to the right. DNS, direct numerical simulation. Source: [Paper (Science)](https://www.science.org/doi/10.1126/sciadv.abn3488)
-```
+:::
 
 ***
 ### Process Parameterization

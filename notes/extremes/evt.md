@@ -50,7 +50,7 @@ Simply precipitation makes up the bulk of observations, storms could make up the
 One could fit a mean regressor on the thunderstorms (given precipitation) and treat the hurricanes as outliers.
 To estimate the 100-year storm, we would only focus on hurricanes.
 
-```{list-table} Extreme Events
+:::{list-table} Extreme Events
 :header-rows: 1
 :name: extreme-events-breakdown
 :align: center
@@ -67,7 +67,7 @@ To estimate the 100-year storm, we would only focus on hurricanes.
 * - Extreme Events
   - 0.01
   - Hurricanes
-```
+:::
 
 
 
@@ -90,14 +90,14 @@ There are many instances of ways to measure extreme values.
 In particular, there are 3 ways of defining extremes: 1) maxima, 2) thresholding, 3) counting exceedences. 
 The  most common methods are the maxima
 
-```{figure} ./assets/evt_trifecta.jpeg
+:::{figure} ./assets/evt_trifecta.jpeg
 :name: extremes
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 A figure from Philippe showcasing how we can model extreme values with three different perspectives: 1) maxima values and GEV, 2) tail behaviour with GPD, and 3) counting exceedences with Poisson processes. [[Source]()]
-```
+:::
 
 
 

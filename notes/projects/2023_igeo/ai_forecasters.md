@@ -1,5 +1,6 @@
-# AI-Forecast
-
+---
+title: AI-Forecast
+---
 > In general, we have a few candidate models that were proposed by different organisations. The architectures are:
 > 1. Neural Operator
 > 2. Graphical Model

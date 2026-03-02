@@ -67,7 +67,7 @@ The give radiance values.
 
 It is better to organize these products by the actual variable of interest.
 
-```{list-table} Table with idealized configuration
+:::{list-table} Table with idealized configuration
 :header-rows: 1
 :name: tb:qg_idealized
 
@@ -87,7 +87,7 @@ It is better to organize these products by the actual variable of interest.
   - `5 Hz`
   - 
 
-```
+:::
 
 #### Sea Surface Height
 

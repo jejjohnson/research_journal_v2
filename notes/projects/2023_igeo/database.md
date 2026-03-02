@@ -90,14 +90,14 @@ Essentially, we will decompose the operator, $\boldsymbol{F}$, into core compone
 
 ### Dynamical Components
 
-```{figure} https://www.energy.gov/sites/default/files/styles/full_article_width/public/2021-08/gpawg-climate-earth-systems-models.png?itok=dgA97vSK
+:::{figure} https://www.energy.gov/sites/default/files/styles/full_article_width/public/2021-08/gpawg-climate-earth-systems-models.png?itok=dgA97vSK
 :name: earth-sys-decomp
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of a decomposition of the Earth system based on a domain. [[Source](https://www.energy.gov/science/doe-explainsearth-system-and-climate-models)]
-```
+:::
 
 The first way to decompose the operator is into the core dynamical system that represents processes within the Earth system.
 
@@ -128,14 +128,14 @@ However, all other scenarios include each of these dynamical systems within thei
 
 ### Forcings
 
-```{figure} https://skepticalscience.com/pics/meehle_2004.jpg
+:::{figure} https://skepticalscience.com/pics/meehle_2004.jpg
 :name: natural-vs-anthro
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 A figure from [[Meehl et. al., 2004](https://doi.org/10.1175/1520-0442(2004)017<3721:CONAAF>2.0.CO;2)] showing the anthropogenic plus natural vs. just natural radiative forcing temperature change vs. observed global surface temperature increase. [[Source](https://skepticalscience.com/print.php?n=348)]
-```
+:::
 
 
 
@@ -199,7 +199,7 @@ $$
 
 Below, we have a summary table of the different CMIPX simulations that are available and what distinguishes them.
 
-```{list-table} Table of Different CMIP6
+:::{list-table} Table of Different CMIP6
 :header-rows: 1
 :name: cmip6-table
 
@@ -227,7 +227,7 @@ Below, we have a summary table of the different CMIPX simulations that are avail
   - Atm, Land
   - Yes
   - Yes
-```
+:::
 
 
 ***
@@ -253,7 +253,7 @@ In general, there are a number of Shared Socioeconomic Pathways (SSP), a.k.a., *
 :::{note} SSP Scenarios Summary
 :class: dropdown
 
-```{list-table} Table of Different Scenarios
+:::{list-table} Table of Different Scenarios
 :header-rows: 1
 :name: scenarios-table
 
@@ -271,7 +271,7 @@ In general, there are a number of Shared Socioeconomic Pathways (SSP), a.k.a., *
   - Inequality
 * - SSP5
   - Fossil-Fueled Development
-```
+:::
 
 
 :::
@@ -279,14 +279,14 @@ In general, there are a number of Shared Socioeconomic Pathways (SSP), a.k.a., *
 
 
 
-```{figure} https://oceanhealthindex.org/images/cmip6/surface_air_temp.jpg
+:::{figure} https://oceanhealthindex.org/images/cmip6/surface_air_temp.jpg
 :name: ssp-scenarios
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of projections with different scenarios for surface air temperature [[Source](https://oceanhealthindex.org/news/cmip_1_what_is_this/)]
-```
+:::
 
 
 ***
@@ -300,14 +300,14 @@ In the database, there is an option to choose the CMIP6 simulations at [pressure
 ## Reanalysis
 
 
-```{figure} https://www.issibern.ch/teams/dataassimsphere/wp-content/uploads/sites/20/2014/11/anim_assim.gif
+:::{figure} https://www.issibern.ch/teams/dataassimsphere/wp-content/uploads/sites/20/2014/11/anim_assim.gif
 :name: da-gif
 :width: 600px
 :alt: Random image of the beach or ocean!
 :align: center
 
 A simple example of data assimilation for an upper atmosphere variable. [[Source](https://www.issibern.ch/teams/dataassimsphere/)]
-```
+:::
 
 
 

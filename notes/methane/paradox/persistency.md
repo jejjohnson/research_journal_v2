@@ -28,19 +28,19 @@ This suite of metrics translates the abstract true intensity $\lambda_{\text{tru
 
 * **Homogeneous:** If it's a continuously stressed, cracked pipe, the wait time is constant. If $\mathbb{E}[\Delta t]$ is 1.5 hours, you dispatch a crew immediately.
 
-```{math}
+:::{math}
 :label: eq-mmp-interarrival-time
 
 \mathbb{E}[\Delta t] = \frac{1}{\lambda_{\text{true}}}
-```
+:::
 
 * **Inhomogeneous:** If it is a solar-heated storage tank, the rate changes over time {cite:p}`allen2017temporal, biener2024gulf`. The expected wait time depends entirely on *when* you start the clock ($t_0$). We must integrate the survival function over the future timeline.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-wait-inhomo
 
 \mathbb{E}[\Delta t \mid t_0] = \int_{t_0}^{\infty} \exp\!\left( -\int_{t_0}^{t} \lambda_{\text{true}}(u) \, du \right) dt
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -88,28 +88,28 @@ This suite of metrics translates the abstract true intensity $\lambda_{\text{tru
 
 The foundation is the Poisson PMF. Assuming the underlying points have stabilized into a memoryless state, the probability of observing exactly $k$ un-thinned events during a future window $t$ `[hours]` is:
 
-```{math}
+:::{math}
 :label: eq-mmp-poisson-pmf
 
 P\bigl(N(t) = k\bigr) = \frac{(\lambda_{\text{true}} \cdot t)^k \; e^{-\lambda_{\text{true}} \cdot t}}{k!}
-```
+:::
 
 MARS calculates the probability of a successful mitigation trip (catching *at least one* leak in the act) by computing the probability of the void ($k = 0$) and subtracting from 1:
 
-```{math}
+:::{math}
 :label: eq-mmp-mitigation-success
 
 P(\text{Mitigation Success}) = 1 - e^{-\lambda_{\text{true}} \cdot t}
-```
+:::
 
 * **Homogeneous:** $P(N(T) \geq 1) = 1 - \exp(-\lambda_{\text{true}} \cdot T)$
 * **Inhomogeneous:** We replace the flat rate multiplied by duration ($\lambda_{\text{true}} \cdot T$) with the definite integral of the fluctuating intensity curve between the exact start and end of the shift {cite:p}`plant2024geostationary`. By integrating the inhomogeneous curve, MARS aligns the crew's shift with the absolute mathematical peak of the facility's emission probability.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-occur-inhomo
 
 P(N(t_1, t_2) \geq 1) = 1 - \exp\!\left( -\int_{t_1}^{t_2} \lambda_{\text{true}}(t) \, dt \right)
-```
+:::
 
 ```text
 =============================================================================
@@ -175,11 +175,11 @@ Survival analysis is the mathematical heartbeat of **Persistency** {cite:p}`fran
 * **Homogeneous:** $S(t) = \exp(-\lambda_{\text{true}} \cdot t)$
 * **Inhomogeneous:** The probability of surviving from a known quiet state $t_0$ up to a future time $t$. As time advances, or as the integral passes through a diurnal peak, the survival probability violently collapses toward zero.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-survival-inhomo
 
 S(t \mid t_0) = \exp\!\left( -\int_{t_0}^{t} \lambda_{\text{true}}(u) \, du \right)
-```
+:::
 
 ### 2.2 The Hazard Function (The Instantaneous Risk)
 
@@ -191,11 +191,11 @@ S(t \mid t_0) = \exp\!\left( -\int_{t_0}^{t} \lambda_{\text{true}}(u) \, du \rig
 * **Homogeneous (Broken Flange):** $h(t) = \lambda_{\text{true}}$. The risk is a flat constant. The probability of it leaking right now is exactly the same as tomorrow.
 * **Inhomogeneous (Valve Recharge):** If the source is a pressure valve that needs to physically "recharge," the timeline has memory {cite:p}`weibull_renewal, chavez_nhpp_airpollution`. $h(t)$ starts at exactly zero right after a leak, and aggressively climbs upward over time as the physical pressure builds back up inside the pipe.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-hazard-memory
 
 h(t) = \frac{f_{\text{time}}(t)}{S(t)}
-```
+:::
 
 where $f_{\text{time}}(t)$ is the PDF of the wait times.
 
@@ -233,21 +233,21 @@ These metrics translate the true, un-thinned mark distribution $f_{\text{true}}(
 
 * **Homogeneous Marks:**
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-mass-event-homo
 
 \mathbb{E}[M_{\text{event}}] = \left[ \int_0^{\infty} Q \cdot f_{\text{true}}(Q) \, dQ \right] \cdot \mathbb{E}[D]
-```
+:::
 
 where $\mathbb{E}[D]$ is the expected duration in hours {cite:p}`cusworth2026duration, brandt2016extreme`.
 
 * **Inhomogeneous Marks:** If the *size* of the leak depends on the time of day (e.g., higher pressure at noon forces larger physical blowouts), the true mark distribution becomes a dynamic function of time: $f_{\text{true}}(Q, t)$.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-mass-event-inhomo
 
 \mathbb{E}[M_{\text{event}}(t)] = \mathbb{E}[D] \cdot \left[ \int_0^{\infty} Q \cdot f_{\text{true}}(Q, t) \, dQ \right]
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -275,11 +275,11 @@ where $\mathbb{E}[D]$ is the expected duration in hours {cite:p}`cusworth2026dur
 * **Homogeneous:** $\mathbb{E}[M_{\text{total}}] = \lambda_{\text{true}} \cdot T \cdot \mathbb{E}[M_{\text{event}}]$
 * **Inhomogeneous:** We replace the flat count with the true cumulative intensity function (Eq. {eq}`eq-mmp-true-event-count`), integrating the fluctuating rate over the operational year $T$.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-mass-total-inhomo
 
 \mathbb{E}[M_{\text{total}}] = \left[ \int_0^{T} \lambda_{\text{true}}(t) \, dt \right] \cdot \mathbb{E}[M_{\text{event}}]
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -308,11 +308,11 @@ where $\mathbb{E}[D]$ is the expected duration in hours {cite:p}`cusworth2026dur
 
 **The Translation:** If a catastrophic threshold $Q_{\text{crit}}$ is 5,000 `[kg/hr]`, this represents the heavy-tail risk {cite:p}`lauvaux2022ultraemitters, zavala2015functional`. A site might have a tiny average mass per event, but if its underlying true Lognormal curve has a "fat tail," the probability of a headline-making blowout remains dangerously high {cite:p}`brandt2016extreme, zavala2017superemitters`.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-extreme-risk
 
 P(Q > Q_{\text{crit}}) = \int_{Q_{\text{crit}}}^{\infty} f_{\text{true}}(Q) \, dQ
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -343,19 +343,19 @@ How does MARS systematically correct historical national greenhouse gas inventor
 
 **The Translation:** The Missing Mass Scaling Factor `[unitless multiplier]` is the ratio of the True Expected Total Mass `[kg]` divided by the observed, Thinned Expected Total Mass `[kg]`.
 
-```{math}
+:::{math}
 :label: eq-mmp-mmsf
 
 \text{MMSF} = \frac{\mathbb{E}[M_{\text{total,true}}]}{\mathbb{E}[M_{\text{total,obs}}]}
-```
+:::
 
 Because the Points ($\Lambda_{\text{true}}$) and Duration ($D$) cancel out (as proven in the paradox document), MARS defines the correction purely as the ratio of the un-thinned Marks divided by the thinned Marks {cite:p}`conrad2023alberta, daniels2025bayesian`.
 
-```{math}
+:::{math}
 :label: eq-mmp-mmsf-expanded
 
 \text{MMSF} = \frac{\displaystyle\int_0^\infty Q \, f(Q) \, dQ}{\displaystyle\int_0^\infty Q \, P_d(Q) \, f(Q) \, dQ}
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -424,19 +424,19 @@ How do we prove that a continuous Point Process is just the ultimate, infinite e
 **The Limit Equation:**
 We start with the standard Binomial probability of exactly $k$ events occurring in $n$ slices:
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-binomial-pmf
 
 P(X = k) = \binom{n}{k} \cdot p^k \cdot (1 - p)^{n - k}
-```
+:::
 
 Substitute our definition of $p$:
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-binomial-sub
 
 P(X = k) = \binom{n}{k} \cdot \left(\frac{\lambda T}{n}\right)^k \cdot \left(1 - \frac{\lambda T}{n}\right)^{n - k}
-```
+:::
 
 Now, we take the limit as $n \to \infty$. We can break this into three interacting pieces:
 
@@ -446,11 +446,11 @@ Now, we take the limit as $n \to \infty$. We can break this into three interacti
 
 **The Result:** When we multiply the surviving pieces together, the discrete Binomial formula perfectly transforms into the continuous Poisson PMF (cf. Eq. {eq}`eq-mmp-poisson-pmf`):
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-poisson-result
 
 P(X = k) = \frac{(\lambda T)^k \cdot e^{-\lambda T}}{k!}
-```
+:::
 
 ```text
 +---------------------------------------------------------------+
@@ -650,30 +650,30 @@ Imagine your satellite observes a site for 1 whole day. It currently takes $n$ d
 The probability of seeing a leak in one exact picture is $p$.
 Therefore, the expected total number of physical leaks you see in a day is your rate, $\lambda$.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-lambda-rate
 
 \lambda = n \cdot p \qquad \Longleftrightarrow \qquad p = \frac{\lambda}{n}
-```
+:::
 
 Now, we calculate the Binomial probability of seeing exactly $k$ leaks in $n$ total pictures.
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-binom-standard
 
 P(X = k) = \binom{n}{k} \cdot p^k \cdot (1 - p)^{n - k}
-```
+:::
 
 **The Limit ($n \to \infty$):**
 What happens if we upgrade our satellite to take an infinite number of pictures per day ($n \to \infty$)? Because $\lambda$ (total leaks per day) is a physical constant bound by the pipe's pressure, as the number of pictures $n$ goes to infinity, the chance of catching a leak in any exact microsecond ($p$) must approach zero.
 
 Let's substitute $p = \lambda / n$ into the Binomial equation and take the limit as $n \to \infty$:
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-limit-expansion
 
 \lim_{n \to \infty} \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} \cdot \left(\frac{\lambda}{n}\right)^k \cdot \left(1 - \frac{\lambda}{n}\right)^n \cdot \left(1 - \frac{\lambda}{n}\right)^{-k}
-```
+:::
 
 To see the mathematical collapse, we group the interacting terms and evaluate them as $n$ becomes infinitely large:
 
@@ -685,11 +685,11 @@ To see the mathematical collapse, we group the interacting terms and evaluate th
 **The Result:**
 When the dust settles and all the $1$s multiply out, the discrete, clunky Binomial formula has collapsed into the exact PMF for a continuous Poisson Point Process:
 
-```{math}
+:::{math}
 :label: eq-mmp-persist-poisson-converged
 
 P(X = k) = \frac{\lambda^k \cdot e^{-\lambda}}{k!}
-```
+:::
 
 ```text
 =============================================================================
@@ -729,6 +729,6 @@ This stochastic leap is not a novel academic exercise; it is the gold standard f
 
 ---
 
-```{bibliography}
+:::{bibliography}
 :filter: docname in docnames
-```
+:::

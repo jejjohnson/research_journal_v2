@@ -1,6 +1,6 @@
-# Modulations
-
-
+---
+title: Modulations
+---
 $$
 \phi_\ell = \sigma\left( \omega_\ell\left(\mathbf{wx} + \mathbf{b} \right) \right)
 $$ (eq:nerf_mod)

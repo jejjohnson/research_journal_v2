@@ -24,14 +24,14 @@ keywords: notation
 ***
 ### Definitions
 
-```{figure} https://gmd.copernicus.org/articles/15/4569/2022/gmd-15-4569-2022-f01-thumb.png
+:::{figure} https://gmd.copernicus.org/articles/15/4569/2022/gmd-15-4569-2022-f01-thumb.png
 :scale: 50 %
 :align: center
 :alt: map to buried treasure
 
 A simple schematic for different types of *missingness*.
 Source: [Bessenbacher, 2022](https://doi.org/10.5194/gmd-15-4569-2022).
-```
+:::
 
 **Missing Completely At Random**.
 If the missingness is a completely independent of any process, then we consider it MCAR.
