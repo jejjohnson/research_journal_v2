@@ -38,7 +38,7 @@ Some standard methods include:
 * BIC
 
 
-```{list-table} Table of methods
+:::{list-table} Table of methods
 :header-rows: 1
 :name: tb-methods-exp1 
 
@@ -60,7 +60,7 @@ Some standard methods include:
 * - 1b
   - $M_1$
   - PP-GPD-GEVD
-```
+:::
 
 
 ***

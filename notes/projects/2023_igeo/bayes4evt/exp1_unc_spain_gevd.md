@@ -24,7 +24,7 @@ keywords: data
 
 ## Log-Likelihood
 
-```{list-table} Table with results for each model
+:::{list-table} Table with results for each model
 :header-rows: 1
 :name: tb:madrid_unc_det_model
 
@@ -43,7 +43,7 @@ keywords: data
 * - Spatiotemporal Model
   - -15198.35183499
   - 59.1095967
-```
+:::
 
 ::::{tab-set}
 

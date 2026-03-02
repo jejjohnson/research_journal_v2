@@ -1,6 +1,6 @@
-# Command Line
-
-
+---
+title: Command Line
+---
 ## Check The Size of a File
 
 ```bash

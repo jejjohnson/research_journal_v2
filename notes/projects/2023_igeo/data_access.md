@@ -1,6 +1,6 @@
-# Data Access
-
-
+---
+title: Data Access
+---
 A few resources for quickly accessing datasets.
 
 ## Database

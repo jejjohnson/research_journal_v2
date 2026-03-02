@@ -35,13 +35,13 @@ Notes on Deep Markov Models (DMM) (aka Deep Kalman Filters (DKF))
 ## State Space Model
 
 
-```{figure} ./assets/dmm_graph.png
+:::{figure} ./assets/dmm_graph.png
 ---
 height: 300px
 name: dmm_chain_graph
 ---
 This showcases the interaction between the hidden state and the observations wrt time. The most important property is the Markovian property which dictates that the future state only depends upon the current state and no other previous states obtained before. Source: pyro Deep Markov Model Tutorial.
-```
+:::
 
 
 

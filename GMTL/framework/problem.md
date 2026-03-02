@@ -18,11 +18,11 @@ abbreviations:
 
 
 
-```{mermaid}
+:::{mermaid}
 graph TD
     State --> Observations
     State --> Quantity-of-Interest
-```
+:::
 
 This document provides an overview of the components needed to understand the modern 4DVar formulation. We introduce the three main components: 1) the quantity of interest, 2) the observations and 3) the state. Afterwards, we describe how they are related to one another through a factor graph. We also give a brief overview of an amortized approach which simply relates the observations and the quantity of interest. 
 
@@ -32,10 +32,10 @@ This document provides an overview of the components needed to understand the mo
 
 
 
-```{mermaid}
+:::{mermaid}
 graph TD
     Quantity-of-Interest
-```
+:::
 
 Let's start with the quantity of interest (QOI). This is the thing that we are interested in estimating. We define our quantity of interest as a field which, given some coordinates within a domain, we get scalar or vector values of our QOI. Mathematically, we can write this as
 
@@ -55,11 +55,11 @@ where $(\vec{\mathbf{x}},t)$ are spatiotemporal coordinates defined within some 
 
 ## Observations
 
-```{mermaid}
+:::{mermaid}
 graph LR
     Observations
     
-```
+:::
 
 
 We define *observations* as quantities that we can measure which could be useful to help us infer the QOI we wish to estimate. If we're lucky, the observations are the exact QOI we wish to infer, perhaps with just some small noise corruption. However, in most real world problems, we often do not have access to the exact quantity of interest we are interested in estimating. So we need to use auxilary variables in the form of observations which we believe are useful and can help us infer the state.
@@ -84,10 +84,10 @@ In most cases, the observations are corrupted or auxillary variables that we bel
 ---
 ## State
 
-```{mermaid}
+:::{mermaid}
 graph LR
     State
-```
+:::
 
 The state acts as a latent variable which encapsulate all of the necessary information to generate the quantity of interest. It can be exactly the same as our quantity of interest or it can be some latent embedding. We define our state as another field which, given some coordinates within a domain, we get a scalar or vector value of our state. Mathematically, we can write this as 
 
@@ -135,10 +135,10 @@ In the above section, we outlined all three components within this system. It is
 ---
 ### State & Quantity of Interest
 
-```{mermaid}
+:::{mermaid}
 graph LR
     State --> Quantity-of-Interest
-```
+:::
 
 We can assume that the state and the QOI are jointly distributed in some fashion. Looking at the factor graph above, we explicitly state that the QOI comes from the state. This is an intuitive assumption because we acknowledge that our QOI is a subset of the true underlying process of the system. So it makes sense that the QOI is conditionally dependent upon the state and not the other way around. Using the Bayesian formulation, we can write the conditional distribution and prior for both quantities.
 
@@ -163,10 +163,10 @@ $$
 ### State & Observations
 
 
-```{mermaid}
+:::{mermaid}
 graph LR
     State --> Observations
-```
+:::
 
 We can assume that the state and the observations are jointly distributed in some fashion. Looking at the factor graph above, we explicitly state that the observations is dependent upon the state. This is an intuitive assumption because we acknowledge that our observations are a subset of the true underlying process of the system; otherwise there is no reason to believe that the observations would help infer the QOI. So it makes sense that the observations is conditionally dependent upon the state and not the other way around. Using the Bayesian formulation, we can write the conditional distribution and prior for both quantities.
 
@@ -182,11 +182,11 @@ This states that we have a prior distribution on our state and a conditional dis
 ### State, QOI & Observations
 
 
-```{mermaid}
+:::{mermaid}
 graph LR
     State --> Quantity-of-Interest
     State --> Observations
-```
+:::
 
 Like the QOI and the observations, we can also assume that the QOI, the state and the observations are jointly distributed in some fashion. The above factor graph combines the two factor graphs whereby the QOI and observations are dependent upon the state but have no dependence on each other directly. Using the Bayesian formulation, we can write the conditional distributions and priors for all quantities.
 
@@ -204,10 +204,10 @@ This states that we have a prior distribution on our state and two conditional d
 ### Direct Learning
 
 
-```{mermaid}
+:::{mermaid}
 flowchart LR
     Observations --> Quantity-of-Interest
-```
+:::
 
 
 We can ask ourselves why do we bother with this intermediate step of defining a state space. Learning the joint distribution of $p(\boldsymbol{u},\boldsymbol{y},\boldsymbol{z})$ can be philosophically easy to justify why this is necessary. But it could be hard to justify it from a practical perspective when we ultimately want to just use the observations to infer a QOI directly, i.e. $p(\boldsymbol{u}|\boldsymbol{y})$. Given a pairwise dataset of QOI and observations, $\mathcal{D}=\{\boldsymbol{u}_n, \boldsymbol{y}\}_{n=1}^{N}$, we can just *learn* some parameterized model that seeks  predict the QOI given some observations by minimizing an objective function that measures the closeness to our predictions on historical data.

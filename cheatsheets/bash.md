@@ -1,5 +1,6 @@
-# Bash
-
+---
+title: Bash
+---
 ## Functions in `.sh` files
 
 

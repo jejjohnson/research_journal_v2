@@ -1,6 +1,6 @@
-# SurVAE Flows
-
-
+---
+title: SurVAE Flows
+---
 ## Flow Model
 
 

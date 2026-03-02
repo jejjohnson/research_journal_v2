@@ -68,13 +68,13 @@ How do we find an appropriate generative model for this sequence of measurements
 
 This method seeks to decouple time by enforcing the Markov assumption.
 
-```{figure} https://www.researchgate.net/profile/Pierre-Jacob-2/publication/234140260/figure/fig1/AS:652600408023049@1532603470889/The-state-space-model.png
+:::{figure} https://www.researchgate.net/profile/Pierre-Jacob-2/publication/234140260/figure/fig1/AS:652600408023049@1532603470889/The-state-space-model.png
 :alt: markov_model
 :width: 500px
 :align: center
 
 A graphical model for the dependencies between the variables x and z. Notice how z only depends on the previous time step. 
-```
+:::
 
 This gives us the classical state-space formulation
 
@@ -210,12 +210,12 @@ $$(posterior)
 
 This equation is the posterior probability of $\boldsymbol{z}_t$ given the present measurement, $\boldsymbol{y}_t$, and all of the past measurements, $\boldsymbol{y}_{1:t-1}$. We can compute this using the Bayes method (eq {eq}`bayes`) in a sequential way.
 
-```{prf:remark}
+:::{prf:remark}
 :label: filter-name
 
 The term *filter* comes from the idea that we reduce the noise of current time step, $p(\boldsymbol{z}_t|\boldsymbol{y}_t)$, by taking into account the information within previous time steps, $\boldsymbol{y}_{1:t-1}$.
 
-```
+:::
 
 This is given by the predict-update equations:
 
@@ -315,12 +315,12 @@ $$
 
 We condition on the past and the future to significantly reduce the uncertainty.
 
-```{prf:remark}
+:::{prf:remark}
 :label: hindsight
 
 We can see parallels to our own lives. Take the quote "Hindsight is 22". This implies that we can easily explain an action in our past once we have all of the information available. However, it's harder to explain our present action given only the past information.
 
-```
+:::
 
 This use case is very common when we want to *understand* and *learn* from data. In a practical sense, many reanalysis datasets take this into account.
 
@@ -399,7 +399,7 @@ $$
 This is very informative because it can show us plausible interpretations of possible state spaces that could fit the measurements.
 
 
-```{prf:remark}
+:::{prf:remark}
 :label: markov_useful
 
 In terms of information, we can show the following relationship.
@@ -407,7 +407,7 @@ In terms of information, we can show the following relationship.
 $$
 \text{MAP} << \text{Smoothing} << \text{Posterior Samples}
 $$
-```
+:::
 
 ### Marginal Likelihood
 
@@ -475,7 +475,7 @@ One way to overcome this is to assume
 
 
 ---
-```{bibliography}
+:::{bibliography}
 :filter: docname in docnames
 :style: alpha
-```
+:::

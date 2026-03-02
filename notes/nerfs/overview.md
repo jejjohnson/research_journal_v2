@@ -1,5 +1,6 @@
-# Neural Fields
-
+---
+title: Neural Fields
+---
 * [Formulation](./formulation.md)
 * [Literature Review](./literature_review.md)
 

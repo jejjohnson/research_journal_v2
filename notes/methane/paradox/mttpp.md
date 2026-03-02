@@ -24,11 +24,11 @@ Physically, imagine a pressure-relief valve on a liquid natural gas storage tank
 
 **The Translation:** The True Cumulative Intensity Function `[events]` is the expected total number of physical events up to time $t$. It is the fundamental link between the rate and the count, defined strictly as the integral of the intensity over the time window (cf. Eq. {eq}`eq-mmp-true-event-count`).
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-cumulative-intensity
 
 \Lambda_{\text{true}}(t) = \int_0^t \lambda_{\text{true}}(u) \, du
-```
+:::
 
 ```text
 =============================================================================
@@ -62,19 +62,19 @@ Physically, the mark is the severity of the valve's vent---the exact mass flux o
 
 **The Translation:** The True Expected Mark `[kg/hr]` is the mathematical center of mass of the true physical leaks. It is the integral of the flux rate multiplied by its true probability distribution (cf. Eq. {eq}`eq-mmp-true-expected-mark`).
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-expected-mark
 
 \mathbb{E}[Q_{\text{true}}] = \int_0^{\infty} Q \cdot f_{\text{true}}(Q) \, dQ
-```
+:::
 
 * $\lambda_{\text{true}}(t, Q)$: The True Joint Intensity Function. Assuming the size of the leak is independent of when it happens, the entire physical system is defined by multiplying the temporal rate by the mark distribution:
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-joint-intensity
 
 \lambda_{\text{true}}(t, Q) = \lambda_{\text{true}}(t) \cdot f_{\text{true}}(Q)
-```
+:::
 
 ```text
 =============================================================================
@@ -144,35 +144,35 @@ The physical process has been temporally sparsified (events appear to occur much
 
 **The Translation:** The Expected Probability of Detection `[unitless scalar]` is the denominator that anchors our skewed distribution, found by integrating the detection curve against the true physical leak sizes (cf. Eq. {eq}`eq-mmp-expected-pod`).
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-expected-pd
 
 \mathbb{E}[P_d] = \int_0^{\infty} P_d(Q) \cdot f_{\text{true}}(Q) \, dQ
-```
+:::
 
 * $\lambda_{\text{obs}}(t)$: The Observed Intensity `[events / hour]`. The rate at which MARS actually records detections. It is the true intensity severely crippled by the overall expectation of detection (cf. Eq. {eq}`eq-mmp-thinned-events`):
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-observed-intensity
 
 \lambda_{\text{obs}}(t) = \lambda_{\text{true}}(t) \cdot \mathbb{E}[P_d]
-```
+:::
 
 **The Translation:** The Observed Mark Distribution `[unitless]` is the skewed distribution of the plumes MARS caught. We multiply the physical truth by the hardware filter, and divide by the expectation scalar to force the area under the new curve to remain 1.0 (cf. Eq. {eq}`eq-mmp-observed-pdf`).
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-observed-mark-dist
 
 f_{\text{obs}}(Q) = \frac{P_d(Q) \cdot f_{\text{true}}(Q)}{\mathbb{E}[P_d]}
-```
+:::
 
 **The Translation:** The Observed Expected Mark `[kg/hr]` is the center of mass of the leaks the satellite *actually saw*. Because the small leaks were deleted by the Bernoulli trial, this is mathematically forced to be drastically larger than $\mathbb{E}[Q_{\text{true}}]$ {cite:p}`williams2025small, jacob2022quantifying` (cf. Eq. {eq}`eq-mmp-observed-expected-mark`).
 
-```{math}
+:::{math}
 :label: eq-mmp-tpp-expected-obs-mark
 
 \mathbb{E}[Q_{\text{obs}}] = \int_0^{\infty} Q \cdot f_{\text{obs}}(Q) \, dQ
-```
+:::
 
 ```text
 =============================================================================
@@ -203,6 +203,6 @@ f_{\text{obs}}(Q) = \frac{P_d(Q) \cdot f_{\text{true}}(Q)}{\mathbb{E}[P_d]}
 
 To successfully mitigate a methane facility, you cannot trust Step 4. You must take the biased, sparse data from Step 4 and use stochastic inversion to mathematically reverse-engineer it all the way back to the physical reality of Step 2 {cite:p}`cusworth2025multiscale`.
 
-```{bibliography}
+:::{bibliography}
 :filter: docname in docnames
-```
+:::

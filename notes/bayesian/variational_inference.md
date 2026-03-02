@@ -525,7 +525,7 @@ If we optimize $\mathcal{F}$ with respect to $q(\mathbf x)$, the KL is minimized
  -->
 
 
-````{admonition} Resources
+::::{admonition} Resources
 :class: seealso dropdown
 
 * Tutorial Series - [Why?](https://chrisorm.github.io/VI-Why.html) | [ELBO](https://chrisorm.github.io/VI-ELBO.html) | [MC ELBO](https://chrisorm.github.io/VI-MC.html) | [Reparameterization](https://chrisorm.github.io/VI-reparam.html) | [MC ELBO unBias](https://chrisorm.github.io/VI-ELBO-MC-approx.html) | [MC ELBO PyTorch](https://chrisorm.github.io/VI-MC-PYT.html) | [Talk](https://chrisorm.github.io/pydata-2018.html)
@@ -591,4 +591,4 @@ If we optimize $\mathcal{F}$ with respect to $q(\mathbf x)$, the KL is minimized
 * https://www.ritchievink.com/blog/2019/06/10/bayesian-inference-how-we-are-able-to-chase-the-posterior/
 * https://www.ritchievink.com/blog/2019/09/16/variational-inference-from-scratch/
 
-````
+::::

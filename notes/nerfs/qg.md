@@ -1,5 +1,6 @@
-# QG PDE
-
+---
+title: QG PDE
+---
 <p align="center">
 <img src="https://ggos.org/wp-content/uploads/2021/04/satellite_altimetry_ggos-web-2020-1024x893.png" alt="drawing" width="400"/>
 <figcaption align = "center">

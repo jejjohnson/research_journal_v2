@@ -1,5 +1,6 @@
-# Research Notebook
-
+---
+title: Research Notebook
+---
 * Author: J. Emmanuel Johnson
 * Email: [jemanjohnson34@gmail.com](mailto:jemanjohnson34@gmail.com)
 * Twitter: [jejjohnson](https://twitter.com/jejjohnson)

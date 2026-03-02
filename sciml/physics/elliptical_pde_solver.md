@@ -202,13 +202,13 @@ $$
 where $\theta=\{\alpha,\beta\}$
 
 
-````{admonition} Example: Poisson Equation
+::::{admonition} Example: Poisson Equation
 :class: dropdown, info
 
-````
+::::
 
 
-````{admonition} Example: Quasi-Geostrophic Equations
+::::{admonition} Example: Quasi-Geostrophic Equations
 :class: dropdown, info
 
 We have many approximate models for sea surface height (SSH), $\eta$. One such model is called the Quasi-Geostrophic (QG) Equations.
@@ -293,13 +293,13 @@ $$
 \eta^{t+1} = \eta^t + \boldsymbol{g}(\Delta t, \eta^t, \mathbf{L}_\mathrm{H}^{-1}\mathbf{F})
 $$
 
-````
+::::
 
 
-````{admonition} Example: Navier-Stokes
+::::{admonition} Example: Navier-Stokes
 :class: dropdown, info
 
-````
+::::
 
 
 

@@ -124,14 +124,14 @@ $$
 
 
 
-```{figure} http://portaldoclima.pt/media/images/gcm_rcm_1_.width-800.jpg
+:::{figure} http://portaldoclima.pt/media/images/gcm_rcm_1_.width-800.jpg
 :name: da-gif
 :width: 600px
 :alt: Random image of the beach or ocean!
 :align: center
 
 A simple example of data assimilation for an upper atmosphere variable. [[Source](https://www.issibern.ch/teams/dataassimsphere/)]
-```
+:::
 
 
 ***

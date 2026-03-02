@@ -21,14 +21,14 @@ keywords: simulations
 * Apply
 * Combine
 
-```{figure} https://comptools.climatematch.io/_images/t5_split_apply_combine.png
+:::{figure} https://comptools.climatematch.io/_images/t5_split_apply_combine.png
 :name: earth-sys-decomp
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Example of a decomposition of the Earth system based on a domain. [[Source](https://www.energy.gov/science/doe-explainsearth-system-and-climate-models)]
-```
+:::
 
 
 ***

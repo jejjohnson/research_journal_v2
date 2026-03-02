@@ -23,13 +23,13 @@ keywords: data-assimilation, open-science
 ***
 ## Overview
 
-```{figure} https://github.com/AllenDowney/ModSim/raw/main/figs/modeling_framework.png
+:::{figure} https://github.com/AllenDowney/ModSim/raw/main/figs/modeling_framework.png
 :label: myFigure
 :alt: Sunset at the beach
 :align: center
 
 A schematic for Modeling and Simulating Physical Systems. Source: [Book (Modeling and Simulation in Python)](https://allendowney.github.io/ModSimPy/chap01.html)
-```
+:::
 
 We have a *system* which represents the state, $z$.
 We **never** observe the state. **Never**.

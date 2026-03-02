@@ -1,8 +1,6 @@
-# Spherical Coordinates
-
-
-
-
+---
+title: Spherical Coordinates
+---
 ```python
 def derivative_lon(
         u: Array["Nlon Nlat"], 

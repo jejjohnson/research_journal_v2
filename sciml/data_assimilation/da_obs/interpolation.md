@@ -1,5 +1,6 @@
-# Interpolation
-
+---
+title: Interpolation
+---
 In this case, we try to directly parameterize the field.
 
 

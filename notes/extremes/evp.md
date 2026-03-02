@@ -145,18 +145,18 @@ Flip through the tabs below to see some examples of these extreme events.
 Let's say that we directly *observe* a sequence of extreme events.
 We could believe that they are connected due to our statistical model.
 
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Drought) --> B(Flooding)
-```
+:::
 However, we could have the true causal relationship between includes some intermediate processes,i.e.:
  
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Drought) --> B
   B(Wildfire) --> C
   C(Precipitation) --> D(Flooding)
-```
+:::
 One could very easily get a dataset which links wildfires to floods but this would not be the correct explanation.
 The best way to prevent this is to have a domain scientist validate the claims of the model.
 However, for extremely complex datasets, one would need a better model or stronger assumptions.
@@ -166,18 +166,18 @@ However, for extremely complex datasets, one would need a better model or strong
 
 Let's say we have combination of extreme events with underlying conditions that amplify the impact of other events.
 For example, we could observe two sequential extreme events:
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Sea Level Rise) --> B(Flooding)
-```
+:::
 
 One could easily connect the notion of sea level rise directly to flooding.
 However, a better explanation might be the fact that the flooding was caused by the cyclone extreme event which increased the intensity of the flood due to the strong winds.
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Sea Level Rise) --> B(Tropical Cyclone Landfall)
   B --> C(Flooding)
-```
+:::
 Again, the best way to prevent this is to have a domain scientist validate the claims.
 In addition, one should also try alternative, plausible explanations and compare the results. 
 :::
@@ -187,18 +187,18 @@ In addition, one should also try alternative, plausible explanations and compare
 We could also have a combination of events which are not classified an extreme event itself however, it leads to an extreme event when combined.
 For example, we could observe many cumulative days of no precipitation which could lead to drought.
 
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Cumulative Days without Precipitation) --> B(Drought)
-```
+:::
 
 We could impose other explanations of drought, e.g., high temperatures, but this is not what we directly observe.
 
-```{mermaid}
+:::{mermaid}
 flowchart LR
   A(Cumulative Days without Precipitation) --> B(Drought)
   C(Cumulative Days of High Temperature) --> B
-```
+:::
 
 Again, the best way to prevent this is to have a domain scientist validate the claims.
 In addition (again), one should also try alternative, plausible explanations and compare the results. 

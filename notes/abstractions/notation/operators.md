@@ -339,17 +339,17 @@ We can divide the operations into the following: 1) space, 2) time, and 3) quant
 
 ### Same Domain
 
-:::{tip} Example: Arakawa C-Grid
+::::{tip} Example: Arakawa C-Grid
 :class: dropdown
 
-```{figure} https://veros.readthedocs.io/en/latest/_images/c-grid.svg
+:::{figure} https://veros.readthedocs.io/en/latest/_images/c-grid.svg
 :name: fig-arakawa-cgrid
 :alt: arakawa C Grid.
 :align: center
 :width: 400px
 
 Structure of Arakawa C-Grid. The $\zeta$ represents the $h$ in our case. Source: [veros-documentation](https://veros.readthedocs.io/en/latest/introduction/introduction.html)
-```
+:::
 
 $$
 \begin{aligned}
@@ -407,7 +407,7 @@ q_on_h: Field = domain_transform(q, h.domain)
 assert h.domain == u_on_h.domain == v_on_h.domain == q_on_h.domain
 ```
 
-:::
+::::
 
 
 

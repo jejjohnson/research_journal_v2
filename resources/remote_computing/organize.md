@@ -1,6 +1,6 @@
-# Getting Organized
-
-
+---
+title: Getting Organized
+---
 * Automating Everything
 * 
 

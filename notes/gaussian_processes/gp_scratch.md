@@ -1,7 +1,6 @@
-# Gaussian Processes from Scratch
-
-
-
+---
+title: Gaussian Processes from Scratch
+---
 ```python
 # initialize data
 X: Array["Nx D"] = ...

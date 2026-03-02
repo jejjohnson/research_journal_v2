@@ -1,5 +1,6 @@
-# Optimal Interpolation
-
+---
+title: Optimal Interpolation
+---
 > *Points close together in space are more likely to have similar values than points far apart* - Tobler's First Law of Geography, 1970
 
 
@@ -52,14 +53,14 @@ In other words, we assume that similar values *cluster* together in a spatiotemp
 Another way to state this is that points are *spatially autocorrelated* or have *similar z-values*.
 Conversely, we cannot interpolate values which are not spatially autocorrelated.
 
-```{figure} https://climatereanalyzer.org/wx/todays-weather/maps/gfs_world-wt_t2_d1.png
+:::{figure} https://climatereanalyzer.org/wx/todays-weather/maps/gfs_world-wt_t2_d1.png
 :name: myFigure
 :width: 300
 :alt: Random image of the beach or ocean!
 :align: center
 
 An example image of 2m temperature. [Source](https://climatereanalyzer.org/wx/todays-weather/maps/gfs_world-wt_t2_d1.png).
-```
+:::
 
 
 
@@ -210,7 +211,7 @@ t&\in[t_0, t_1]\in\mathbb{R}^{+}\\
 \end{aligned}
 $$
 
-```{list-table} Table with idealized configuration
+:::{list-table} Table with idealized configuration
 :header-rows: 1
 :name: tb:qg_idealized
 
@@ -230,7 +231,7 @@ $$
   - Inside/Outside 
   - Outside
   - Inside/Outside
-```
+:::
 
 
 ---

@@ -218,10 +218,10 @@ state: State = TimeStepper(F, params, state, t0, t1, dt)
 
 
 
-```{figure} https://upload.wikimedia.org/wikipedia/commons/c/ce/Mor-diagram.png
+:::{figure} https://upload.wikimedia.org/wikipedia/commons/c/ce/Mor-diagram.png
 :name: myFigure
 :alt: Random image of the beach or ocean!
 :align: center
 
 [Source (Wikipedia: POD)](https://en.wikipedia.org/wiki/Proper_orthogonal_decomposition)
-```
+:::

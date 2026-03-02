@@ -1,6 +1,6 @@
-# Formulation
-
-
+---
+title: Formulation
+---
 ---
 
 ## Trade-offs

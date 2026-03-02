@@ -1,6 +1,6 @@
-# Conda 4 Remote Servers
-
-
+---
+title: Conda 4 Remote Servers
+---
 It's advisable to create personal conda environments in your `/path/to/workdir` directory. Preconfigured environments are great for quickly prototyping. But, inevitably, you always end up needing more fine-tune control over your environments whenever you are prototyping. In addition, too many people using the same environment results in massive environments with unnecessary packages. Having control over your environment will lead to more reproducible settings especially if you keep track.
 
 Look at the table of contents to see what could be of interest. If it's your first time, I would suggest going through all of it first before you start tinkering.

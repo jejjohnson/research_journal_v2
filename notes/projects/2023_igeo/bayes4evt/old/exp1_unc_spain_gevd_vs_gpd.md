@@ -23,7 +23,7 @@ keywords: data
 
 ## Log-Likelihood
 
-```{list-table} Table with results for each model
+:::{list-table} Table with results for each model
 :header-rows: 1
 :name: tb:madrid_unc_det_model
 
@@ -42,7 +42,7 @@ keywords: data
 * - GPD (Q99, 3D)
   - -291.28153454
   - 11.48212622
-```
+:::
 
 ::::{tab-set}
 

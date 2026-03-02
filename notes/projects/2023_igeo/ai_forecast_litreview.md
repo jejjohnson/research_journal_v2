@@ -1,18 +1,18 @@
-# Literature Review
-
-
+---
+title: Literature Review
+---
 ## Background
 
 
 
-```{figure} https://climateset.github.io/AIWeatherClimateFigure.png
+:::{figure} https://climateset.github.io/AIWeatherClimateFigure.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Overview of Different Platforms [[Source](https://climateset.github.io/)]
-```
+:::
 
 **Focus**. 
 Some things I'll focus on are the following engineering details:
@@ -53,14 +53,14 @@ It uses the same variables available for the ERA5 Dataset.
 
 
 
-```{figure} https://production-media.paperswithcode.com/datasets/01ce33a2-4b0e-41d6-b04c-dfbf0d7d2d4d.png
+:::{figure} https://production-media.paperswithcode.com/datasets/01ce33a2-4b0e-41d6-b04c-dfbf0d7d2d4d.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Picture of WeatherBench2 Logo. [[Source]()]
-```
+:::
 
 ***
 
@@ -72,7 +72,7 @@ Picture of WeatherBench2 Logo. [[Source]()]
 
 The graphcast paper [Lam et al, 2023](doi:10.1126/science.adi2336) uses a GNN to learn a mapping from time $t$ to time, $t+\Delta t$ where $\Delta t$ is 6 hours. 
 
-```{figure} https://cdn.arstechnica.net/wp-content/uploads/2023/11/graphcast_illustration.jpg
+:::{figure} https://cdn.arstechnica.net/wp-content/uploads/2023/11/graphcast_illustration.jpg
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
@@ -80,7 +80,7 @@ The graphcast paper [Lam et al, 2023](doi:10.1126/science.adi2336) uses a GNN to
 
 A picture of the GraphCast model
 
-```
+:::
 
 :::{note} Variables
 :class: dropdown
@@ -126,14 +126,14 @@ However, the most recent edition [[]()]using Spherical Harmonics to encode the s
 
 
 
-```{figure} https://imageio.forbes.com/specials-images/imageserve/624a2218c3ca2edec266a522/FourCastNet-is-a-weather-digital-twin-that-feeds-on-ground-truth-data-to-predict/960x0.jpg?height=399&width=711&fit=bounds
+:::{figure} https://imageio.forbes.com/specials-images/imageserve/624a2218c3ca2edec266a522/FourCastNet-is-a-weather-digital-twin-that-feeds-on-ground-truth-data-to-predict/960x0.jpg?height=399&width=711&fit=bounds
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Picture of FourCastNet. [[Source](https://www.forbes.com/sites/karlfreund/2022/04/03/nvidia-earth-2-leveraging-the-omniverse-to-help-understand-climate-change/)]
-```
+:::
 
 :::{note} Variables
 :class: dropdown
@@ -169,14 +169,14 @@ Pressure Levels: `50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 100
 Pangu-Weather [Bi et al, 2023](https://doi.org/10.1038/s41586-023-06185-3) is Hwawei's contribution to the SOTA landscape.
 They use the Transformer architecture.
 
-```{figure} https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41586-023-06185-3/MediaObjects/41586_2023_6185_Fig1_HTML.png?as=webp
+:::{figure} https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41586-023-06185-3/MediaObjects/41586_2023_6185_Fig1_HTML.png?as=webp
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Figure of the Pangu-Framework
-```
+:::
 
 ***
 
@@ -187,14 +187,14 @@ They use a Transformer architecture (similar to Pangu-Weather and FuXi) but thei
 
 
 
-```{figure} https://tung-nd.github.io/stormer/resources/approach.png
+:::{figure} https://tung-nd.github.io/stormer/resources/approach.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Figure for Stormer Addition.
-```
+:::
 
 
 
@@ -217,14 +217,14 @@ ClimateBench [[Watson-Parris, et al, 2022](https://doi.org/10.1029/2021MS002954)
 The *ClimateSet* [[Kaltenborn, et. al., 2023](https://doi.org/10.48550/arXiv.2311.03721)] platform offers uses access to some climate datasets
 
 
-```{figure} https://climateset.github.io/climate_set_overview.png
+:::{figure} https://climateset.github.io/climate_set_overview.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Figure of the ClimateSet Framework - [[Source](https://climateset.github.io/)]
-```
+:::
 
 ***
 
@@ -233,14 +233,14 @@ Figure of the ClimateSet Framework - [[Source](https://climateset.github.io/)]
 The *ClimateSim* platform [[Yu, et. al., 2023](https://doi.org/10.48550/arXiv.2306.08754)] offers uses access to some climate datasets.
 
 
-```{figure} https://leap-stc.github.io/ClimSim/_images/fig_1.png
+:::{figure} https://leap-stc.github.io/ClimSim/_images/fig_1.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Figure of the ClimSim Framework - [[Source](https://leap-stc.github.io/ClimSim/README.html)]
-```
+:::
 
 
 ***
@@ -251,14 +251,14 @@ Figure of the ClimSim Framework - [[Source](https://leap-stc.github.io/ClimSim/R
 
 
 
-```{figure} https://microsoft.github.io/ClimaX/assets/images/climax-coverfigure.png
+:::{figure} https://microsoft.github.io/ClimaX/assets/images/climax-coverfigure.png
 :name: myFigure
 :width: 490px
 :alt: Random image of the beach or ocean!
 :align: center
 
 Figure of the ClimaX Framework - [[Source](https://microsoft.github.io/ClimaX/)]
-```
+:::
 
 **Note**: I think this is the most relevant to many people who wish to do transfer learning from weather to climate (and vice-versa).
 

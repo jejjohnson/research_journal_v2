@@ -16,14 +16,14 @@ keywords: reanalysis, era5
 
 
 
-```{figure} https://www.issibern.ch/teams/dataassimsphere/wp-content/uploads/sites/20/2014/11/anim_assim.gif
+:::{figure} https://www.issibern.ch/teams/dataassimsphere/wp-content/uploads/sites/20/2014/11/anim_assim.gif
 :name: da-gif
 :width: 600px
 :alt: Random image of the beach or ocean!
 :align: center
 
 A simple example of data assimilation for an upper atmosphere variable. [[Source](https://www.issibern.ch/teams/dataassimsphere/)]
-```
+:::
 
 
 

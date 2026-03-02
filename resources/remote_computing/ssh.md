@@ -1,7 +1,6 @@
-# SSH Configuration
-
-
-
+---
+title: SSH Configuration
+---
 ---
 
 We will go over 2 cases:

@@ -29,9 +29,9 @@ $$
 y \sim p(y|x)
 $$
 
-```{note}
+:::{note}
 With a tip!
-```
+:::
 
 We write some sort of approximation of the *true* (or best) underlying distribution via some parameterized form like so
 

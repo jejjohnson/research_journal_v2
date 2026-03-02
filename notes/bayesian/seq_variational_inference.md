@@ -219,7 +219,7 @@ $$
 We can push the summations outside of the logs and expectations
 
 
-```{math}
+:::{math}
 :label: seq-vi-elbo-gen
 \boldsymbol{L}_\text{ELBO} :=
 \sum_{t=1}^T
@@ -233,7 +233,7 @@ p_{\boldsymbol{\theta}}\left(\boldsymbol{z}_t|\boldsymbol{z}_{t-1}\right)
  -
     \log q_{\boldsymbol{\phi}}(\boldsymbol{z}_{t-1})
 \right]
-```
+:::
 
 
 

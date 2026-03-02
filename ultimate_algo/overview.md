@@ -1,5 +1,6 @@
-# Full DA Pipeline
-
+---
+title: Full DA Pipeline
+---
 ## Interpolate Observations
 
 
