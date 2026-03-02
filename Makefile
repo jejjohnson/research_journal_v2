@@ -5,7 +5,7 @@ help:
 	@echo "	venv		create a virtual environment with uv"
 	@echo "	install		install all dependencies for environment with uv"
 	@echo "	update		update all dependencies for environment with uv"
-	@echo "	build		build jupyter book"
+	@echo "	build		build MyST site"
 	@echo "	clean 		clean previously built files"
 
 venv:

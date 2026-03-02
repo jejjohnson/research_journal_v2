@@ -1,26 +1,19 @@
 [project]
 name = "research-journal"
 version = "0.1.0"
-description = "A research journal built with Jupyter Book"
+description = "A research journal built with MyST Markdown"
 authors = [{ name = "Eman", email = "eman@details.com" }]
 requires-python = ">=3.11"
 dependencies = [
     "mystmd",
     "jupytext",
-    "jupyter-book",
-    "myst-parser",
     "pre-commit",
-    "cookiecutter",
     "matplotlib",
     "numpy",
-    "ghp-import",
-    "sphinx-proof",
-    "sphinx-copybutton",
-    "sphinxcontrib-mermaid",
 ]
 
 [tool.setuptools]
-packages = ["algorithms", "bibliographies", "cheatsheets", "cookbook", "GMTL", "notes", "portfolio", "presentation", "resources", "sciml", "ultimate_algo"]
+packages = ["bibliographies", "cheatsheets", "cookbook", "GMTL", "notes", "portfolio", "presentation", "resources", "sciml", "ultimate_algo"]
 
 [tool.uv]
 # Add any uv-specific configuration here
