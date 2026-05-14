@@ -29,49 +29,39 @@ re-execution.
 Each sub-section is a curated landing page that leads with the math,
 numerics, and references before pointing at the notebooks themselves.
 
-## [Foundations](./foundations/README.md)
+## [Foundations](./content/foundations/README.md)
 
 | Notebook | Topic |
 |---|---|
-| [`foundations/01_create_datasets.ipynb`](./foundations/01_create_datasets.ipynb) | Wrapping arrays as `Field` objects with `LabeledAxis` / `SizedAxis` |
-| [`foundations/02_ops_unary_binary.ipynb`](./foundations/02_ops_unary_binary.ipynb) | Arithmetic, comparison, and unary ops on `Field`; broadcasting rules |
-| [`foundations/03_ops_coordinates.ipynb`](./foundations/03_ops_coordinates.ipynb) | `isel`, `sel`, reindexing, `CartesianProduct`, coordinate composition |
-| [`foundations/04_reductions.ipynb`](./foundations/04_reductions.ipynb) | Coordinate-aware reductions: sum, mean, max over named dims |
+| [`foundations/01_create_datasets.ipynb`](./content/foundations/01_create_datasets.ipynb) | Wrapping arrays as `Field` objects with `LabeledAxis` / `SizedAxis` |
+| [`foundations/02_ops_unary_binary.ipynb`](./content/foundations/02_ops_unary_binary.ipynb) | Arithmetic, comparison, and unary ops on `Field`; broadcasting rules |
+| [`foundations/03_ops_coordinates.ipynb`](./content/foundations/03_ops_coordinates.ipynb) | `isel`, `sel`, reindexing, `CartesianProduct`, coordinate composition |
+| [`foundations/04_reductions.ipynb`](./content/foundations/04_reductions.ipynb) | Coordinate-aware reductions: sum, mean, max over named dims |
 
-## [Derivatives](./derivatives/README.md)
-
-| Notebook | Topic |
-|---|---|
-| [`derivatives/05_finite_difference.ipynb`](./derivatives/05_finite_difference.ipynb) | Periodic + non-uniform finite-difference derivatives; `cmap` pattern |
-| [`derivatives/06_spherical_harmonics_derivatives.ipynb`](./derivatives/06_spherical_harmonics_derivatives.ipynb) | Spherical-harmonic derivatives on a Gauss-Legendre lat-lon grid (no FD pole singularity); Laplacian; vorticity and divergence |
-| [`derivatives/07_finite_volume.ipynb`](./derivatives/07_finite_volume.ipynb) | Cell-centred FV operators; flux divergence; conservative schemes |
-
-## [Dynamics](./dynamics/README.md)
+## [Derivatives](./content/derivatives/README.md)
 
 | Notebook | Topic |
 |---|---|
-| [`dynamics/08_ode_integration.ipynb`](./dynamics/08_ode_integration.ipynb) | Integrating ODEs (advection-diffusion) with `diffrax`; state as `Field` |
-| [`dynamics/09_ode_parameter_state_estimation.ipynb`](./dynamics/09_ode_parameter_state_estimation.ipynb) | Joint parameter/state estimation via `optax` + `jax.value_and_grad` |
-| [`dynamics/10_pde_parameter_estimation.ipynb`](./dynamics/10_pde_parameter_estimation.ipynb) | Learning PDE parameters from data; coordinate-aware residuals |
+| [`derivatives/05_finite_difference.ipynb`](./content/derivatives/05_finite_difference.ipynb) | Periodic + non-uniform finite-difference derivatives; `cmap` pattern |
+| [`derivatives/06_spherical_harmonics_derivatives.ipynb`](./content/derivatives/06_spherical_harmonics_derivatives.ipynb) | Spherical-harmonic derivatives on a Gauss-Legendre lat-lon grid (no FD pole singularity); Laplacian; vorticity and divergence |
+| [`derivatives/07_finite_volume.ipynb`](./content/derivatives/07_finite_volume.ipynb) | Cell-centred FV operators; flux divergence; conservative schemes |
+
+## [Dynamics](./content/dynamics/README.md)
+
+| Notebook | Topic |
+|---|---|
+| [`dynamics/08_ode_integration.ipynb`](./content/dynamics/08_ode_integration.ipynb) | Integrating ODEs (advection-diffusion) with `diffrax`; state as `Field` |
+| [`dynamics/09_ode_parameter_state_estimation.ipynb`](./content/dynamics/09_ode_parameter_state_estimation.ipynb) | Joint parameter/state estimation via `optax` + `jax.value_and_grad` |
+| [`dynamics/10_pde_parameter_estimation.ipynb`](./content/dynamics/10_pde_parameter_estimation.ipynb) | Learning PDE parameters from data; coordinate-aware residuals |
 
 ## Running locally
 
 These notebooks depend on `coordax` and its ML stack (JAX, diffrax, optax,
 equinox). The committed `.ipynb` files carry their cell outputs, so MyST
-renders them without needing the kernel installed.
+renders them inline without needing the kernel installed — no extra setup
+is required to view the site.
 
-A dedicated pixi environment bundles everything needed to re-execute them:
-
-```bash
-pixi install -e coordax                  # install coordax + JAX stack
-pixi run -e coordax execute-coordax      # nbconvert --execute --inplace on all 10
-# or interactively:
-pixi run -e coordax jupyter lab
-```
-
-### chex dependency note
-
-The `coordax` feature pins `chex` explicitly because coordax unconditionally
-imports `chex` at package init (`coordax/testing.py`) without declaring it as
-a runtime dependency. Remove the pin once coordax either declares the dep or
-guards the import.
+Re-executing the notebooks is not part of this repo's tooling. The source
+environment lives in [`jej_vc_snippets/jax/coordax`](https://github.com/jejjohnson/jej_vc_snippets/tree/main/jax/coordax),
+which ships a pixi environment with `coordax`, JAX, diffrax, optax, and
+equinox pinned together.

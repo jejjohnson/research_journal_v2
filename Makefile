@@ -6,7 +6,7 @@ help:
 	@echo "	install		install all dependencies for environment with uv"
 	@echo "	update		update all dependencies for environment with uv"
 	@echo "	build		build MyST site"
-	@echo "	docs		build MyST site as HTML (alias of docs-build)"
+	@echo "	docs		build MyST site as HTML"
 	@echo "	docs-serve	live preview on http://localhost:3000"
 	@echo "	docs-deploy	build + publish to GitHub Pages via ghp-import"
 	@echo "	precommit	run pre-commit hooks on all files"

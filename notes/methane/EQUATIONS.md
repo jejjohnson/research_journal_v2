@@ -15,15 +15,13 @@ license: CC-BY-4.0
 keywords: [plumax, equations, labels, audit, developer-aid]
 ---
 
-# `plumax` — Offline equation registry
+# `plumax` — equation registry
 
-> **Not rendered with mystmd.** This file is a bookkeeping index of every labelled equation across the `plumax` roadmap notes. It exists so that authors can sanity-check label uniqueness, plan future cross-references, and audit equation numbering without spinning up the mystmd build.
+> **Developer aid.** This file is a bookkeeping index of every labelled equation across the `plumax` roadmap notes. It exists so that authors can sanity-check label uniqueness, plan future cross-references, and audit equation numbering at a glance.
 >
-> **Scope:** all `{math}` blocks under `projects/plume_simulation/notes/`.
+> **Scope:** all `{math}` blocks under [`roadmap/`](roadmap/README.md).
 > **Convention:** every block label is `eq-<page>-<short-name>`. `<page>` matches the file basename (`tier1`, `tier2`, …) or sub-page tag (`va`, `vb`, `vc`, `vd`, `rtm`, `prereqs`).
 > **Total:** 77 labelled equations across 11 pages.
-
-This document is not in `myst.yml`'s toc; do not link to it from other myst pages. It's a developer aid only.
 
 ---
 

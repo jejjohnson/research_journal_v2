@@ -30,13 +30,12 @@ The full 27-row catalog is loaded from a sibling file ([`satellites_table.html`]
 mystmd's HTML sanitization strips `<script>` tags from included content, so the filter buttons (Past / Present / Future, PSI / AFM) and the search input render as inert controls — all 27 rows are always visible. The legacy notebook cell rendered the same HTML inside a sandboxed iframe where the JS *did* run; restoring that interactive UX would require either embedding via `srcdoc=` or keeping a one-cell `.ipynb` companion. Treat this as a static catalog for now.
 :::
 
-::::{table} MARS satellite constellation — past, present, and future missions tasked for methane retrieval, with spatial / spectral / SNR characteristics and per-row references into `methane.bib`.
-:label: tbl-mars-satellites
+(tbl-mars-satellites)=
+
+**Table — MARS satellite constellation.** Past, present, and future missions tasked for methane retrieval, with spatial / spectral / SNR characteristics and per-row references into `methane.bib`.
 
 :::{include} satellites_table.html
 :::
-
-::::
 
 ## Notes
 

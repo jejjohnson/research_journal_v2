@@ -22,7 +22,7 @@ This is the **inventory-grade output** of `plumax` — the number that gets repo
 (vd-paradox)=
 ## The missing-mass paradox
 
-The full Monte Carlo proof is in [`methane_pod/notebooks/03_missing_mass_paradox`](../../../methane_pod/notebooks/03_missing_mass_paradox.ipynb). The result, in one sentence:
+The full Monte Carlo proof is in `methane_pod/notebooks/03_missing_mass_paradox`. The result, in one sentence:
 
 :::{important} The paradox
 A POD-thinned plume catalog simultaneously **overestimates the average emission rate** (because it oversamples big leaks) and **underestimates the total emitted mass** (because it misses many small leaks).
@@ -90,7 +90,7 @@ Without these, the estimator is just a number.
 - **MC ground truth (bias direction).** Reproduce the qualitative result of the paradox notebook: simulate a known $(\lambda^{*}, f^{*}, P_d^{*})$, compute $M_\text{true}$ exactly, and check that the corrected estimator recovers $M_\text{true}$ while $M_\text{naive}$ is biased low.
 - **MC ground truth (calibration).** Across 1000 replicates of the previous test, the 95% credible interval on $M_\text{total}$ should contain $M_\text{true}$ ~95% of the time.
 - **Per-satellite sensitivity.** Same population, two different $P_d$ (e.g. GHGSat-floor {cite:p}`ghgsat` vs. TROPOMI-floor {cite:p}`s5p_tropomi`) → corrected estimator should give the same $M_\text{total}$ posterior. The naive estimator gives wildly different $M_\text{naive}$. This is the test that *proves* the correction is doing its job.
-- **Real-data benchmark.** Once [`07_pod_fitting_mcmc`](../../../methane_pod/notebooks/07_pod_fitting_mcmc.md) lands with IMEO + Tanager data, compare the corrected total for a well-studied basin (Permian) to published bottom-up inventories ({cite:p}`epa_ghgi,scarpelli2020sectoral`, GHGRP) and to top-down inverse-modelling estimates ({cite:p}`maasakkers2023ghgi,jacob2022quantifying`, Sherwin et al.). They will disagree; the question is whether the corrected estimator is *closer* to the top-down number than the naive one.
+- **Real-data benchmark.** Once `07_pod_fitting_mcmc` lands with IMEO + Tanager data, compare the corrected total for a well-studied basin (Permian) to published bottom-up inventories ({cite:p}`epa_ghgi,scarpelli2020sectoral`, GHGRP) and to top-down inverse-modelling estimates ({cite:p}`maasakkers2023ghgi,jacob2022quantifying`, Sherwin et al.). They will disagree; the question is whether the corrected estimator is *closer* to the top-down number than the naive one.
 
 ---
 
@@ -102,8 +102,8 @@ Without these, the estimator is just a number.
 
 | Concern | Module | Status |
 | --- | --- | --- |
-| Missing-mass MC simulator | [`methane_pod.paradox`](../../../methane_pod/src/methane_pod/paradox.py) | ✓ (NumPy) |
-| Posterior fit | [`methane_pod.fitting`](../../../methane_pod/src/methane_pod/fitting.py) | ✓ (synthetic); 🚧 (real data) |
+| Missing-mass MC simulator | `methane_pod.paradox` | ✓ (NumPy) |
+| Posterior fit | `methane_pod.fitting` | ✓ (synthetic); 🚧 (real data) |
 | $M_\text{total}$ estimator + uncertainty | `plume_simulation.population.totals` | ☐ |
 | Per-satellite calibration loader | `plume_simulation.population.satellite_pod` | ☐ |
 | Multi-satellite fusion | `plume_simulation.population.fusion` | ☐ |
@@ -140,7 +140,7 @@ Currently temporal-only. Aggregating $M_\text{total}$ over a basin requires eith
 :::
 
 :::{attention} POD parameter sources
-Per-satellite POD parameters can come from (a) fits in [`methane_pod`](../../../methane_pod/) on a held-out catalog, (b) published values from {cite:p}`varon2018quantifying` / Cusworth et al., or (c) joint inference with the population. Each has trade-offs around identifiability.
+Per-satellite POD parameters can come from (a) fits in `methane_pod` on a held-out catalog, (b) published values from {cite:p}`varon2018quantifying` / Cusworth et al., or (c) joint inference with the population. Each has trade-offs around identifiability.
 :::
 
 :::{attention} Reporting cadence
