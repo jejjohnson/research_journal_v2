@@ -571,32 +571,20 @@ The paradox exists because while the *scalars* correct themselves beautifully ou
 
 ## Citation Map to Paradox Document Sections
 
-:::{list-table} Primary citation map
-:header-rows: 1
-:widths: 30 70
+:::{table} Primary citation map
 
-* - Paradox Section
-  - Key Supporting References
-* - **Section 1** Problem Statement
-  - {cite:p}`williams2025small`, {cite:p}`alvarez2018supply`, {cite:p}`jacob2022quantifying`, {cite:p}`omara2022methane`
-* - **Section 2** Temporal Point Process ($\lambda(t)$)
-  - {cite:p}`cusworth2021intermittency`, {cite:p}`biener2024gulf`, {cite:p}`plant2024geostationary`, {cite:p}`allen2017temporal`, {cite:p}`johnson2021temporal`, {cite:p}`omara2018temporal`, {cite:p}`zhu2022temporal`, {cite:p}`alden2021longterm`
-* - **Section 3.1** IME Quantification ($Q$)
-  - {cite:p}`varon2018ime`, {cite:p}`varon2024uplume`, {cite:p}`nist8575_2025`, {cite:p}`jrc_sentinel_hotspot`, {cite:p}`guanter2025enmap_tight`, {cite:p}`cusworth2022landfills`
-* - **Section 3.2** Mark Distribution $f(Q)$
-  - {cite:p}`brandt2016extreme`, {cite:p}`frankenberg2016fourgcorners`, {cite:p}`zavala2017superemitters`, {cite:p}`chen2023extension`, {cite:p}`duren2019california`, {cite:p}`og_supply_chain2025`
-* - **Section 4** Probability of Detection $P_d(Q)$
-  - {cite:p}`ayasse2025probability`, {cite:p}`cusworth2025multiscale`, {cite:p}`roger2025offshore`, {cite:p}`sherwin2024singleblind`, {cite:p}`nist8575_2025`, {cite:p}`tadi2026controlled`
-* - **Section 5** Visual Proof (Thinning)
-  - {cite:p}`wald1943survivorship`, {cite:p}`williams2025small`, {cite:p}`cusworth2025multiscale`, {cite:p}`omara2022methane`
-* - **Section 6** Mathematical Proof (Marked TPP)
-  - {cite:p}`brandt2016extreme`, {cite:p}`ayasse2025probability`, {cite:p}`cusworth2025multiscale`, {cite:p}`hawkes_coating2025`, {cite:p}`daniels2025bayesian`
-* - **TPP Theory** (Section 2+)
-  - {cite:p}`chavez_nhpp_airpollution`, {cite:p}`hawkes_applications2024`, {cite:p}`hawkes_coating2025`, {cite:p}`weibull_renewal`, {cite:p}`stelfi2024hawkes`, {cite:p}`nhpp_air_quality`
-* - **Platform Architecture** (MARS roster)
-  - {cite:p}`esa_medusa2024`, {cite:p}`schneising2024tropomi_persistent`, {cite:p}`zhang2024methaneSAT`, {cite:p}`gordan2025flaring`, {cite:p}`irakulis2021permian`
+| Paradox Section | Key Supporting References |
+| --- | --- |
+| **Section 1** Problem Statement | {cite:p}`williams2025small`, {cite:p}`alvarez2018supply`, {cite:p}`jacob2022quantifying`, {cite:p}`omara2022methane` |
+| **Section 2** Temporal Point Process ($\lambda(t)$) | {cite:p}`cusworth2021intermittency`, {cite:p}`biener2024gulf`, {cite:p}`plant2024geostationary`, {cite:p}`allen2017temporal`, {cite:p}`johnson2021temporal`, {cite:p}`omara2018temporal`, {cite:p}`zhu2022temporal`, {cite:p}`alden2021longterm` |
+| **Section 3.1** IME Quantification ($Q$) | {cite:p}`varon2018ime`, {cite:p}`varon2024uplume`, {cite:p}`nist8575_2025`, {cite:p}`jrc_sentinel_hotspot`, {cite:p}`guanter2025enmap_tight`, {cite:p}`cusworth2022landfills` |
+| **Section 3.2** Mark Distribution $f(Q)$ | {cite:p}`brandt2016extreme`, {cite:p}`frankenberg2016fourgcorners`, {cite:p}`zavala2017superemitters`, {cite:p}`chen2023extension`, {cite:p}`duren2019california`, {cite:p}`og_supply_chain2025` |
+| **Section 4** Probability of Detection $P_d(Q)$ | {cite:p}`ayasse2025probability`, {cite:p}`cusworth2025multiscale`, {cite:p}`roger2025offshore`, {cite:p}`sherwin2024singleblind`, {cite:p}`nist8575_2025`, {cite:p}`tadi2026controlled` |
+| **Section 5** Visual Proof (Thinning) | {cite:p}`wald1943survivorship`, {cite:p}`williams2025small`, {cite:p}`cusworth2025multiscale`, {cite:p}`omara2022methane` |
+| **Section 6** Mathematical Proof (Marked TPP) | {cite:p}`brandt2016extreme`, {cite:p}`ayasse2025probability`, {cite:p}`cusworth2025multiscale`, {cite:p}`hawkes_coating2025`, {cite:p}`daniels2025bayesian` |
+| **TPP Theory** (Section 2+) | {cite:p}`chavez_nhpp_airpollution`, {cite:p}`hawkes_applications2024`, {cite:p}`hawkes_coating2025`, {cite:p}`weibull_renewal`, {cite:p}`stelfi2024hawkes`, {cite:p}`nhpp_air_quality` |
+| **Platform Architecture** (MARS roster) | {cite:p}`esa_medusa2024`, {cite:p}`schneising2024tropomi_persistent`, {cite:p}`zhang2024methaneSAT`, {cite:p}`gordan2025flaring`, {cite:p}`irakulis2021permian` |
 :::
-
 ---
 
 :::{bibliography}

@@ -6,12 +6,23 @@ site:
       url: https://mystmd.org/guide
   domains: []
   template: book-theme
+  options:
+    style: notes/geotoolz/diagrams.css
 project:
   title: Research Notebook
   github: https://github.com/jejjohnson/research_journal_v2
   keywords: []
   open_access: true
   license: CC-BY-4.0
+  numbering:
+    enumerator: "(%s)"
+    headings: false
+    figure:
+      enabled: true
+    equation:
+      enabled: true
+    table:
+      enabled: true
   abbreviations:
       POT: Peak-Over-Threshold
       BM: Block Maxima
@@ -363,5 +374,126 @@ project:
               - file: notes/methane/paradox/persistency
               - file: notes/methane/paradox/literature_review
           - file: notes/methane/2.1_matched_filter
+          - title: Plume simulation — equations & satellites
+            children:
+              - file: notes/methane/EQUATIONS.md
+              - file: notes/methane/satellites.md
+              - file: notes/methane/roadmap.md
+              - title: Plumax roadmap
+                children:
+                  - file: notes/methane/roadmap/README.md
+                  - file: notes/methane/roadmap/00_prerequisites.md
+                  - file: notes/methane/roadmap/01_tier1_gaussian.md
+                  - file: notes/methane/roadmap/02_tier2_lagrangian.md
+                  - file: notes/methane/roadmap/03_tier3_eulerian.md
+                  - file: notes/methane/roadmap/04_rtm_stack.md
+                  - file: notes/methane/roadmap/05_tier4_coupled.md
+                  - file: notes/methane/roadmap/06_tier5_population.md
+                  - file: notes/methane/roadmap/06a_instantaneous.md
+                  - file: notes/methane/roadmap/06b_point_process.md
+                  - file: notes/methane/roadmap/06c_persistency.md
+                  - file: notes/methane/roadmap/06d_total_emission.md
+        - title: geotoolz
+          children:
+            - file: notes/geotoolz/geostack_notes.md
+            - file: notes/geotoolz/operational_attribution.md
+            - title: Tutorials
+              children:
+                - file: notes/geotoolz/tutorials/spatiotemporal_data.md
+                - file: notes/geotoolz/tutorials/spatiotemporal_operators.md
+            - title: Plans
+              children:
+                - title: geotoolz
+                  children:
+                    - file: notes/geotoolz/plans/geotoolz/README.md
+                    - file: notes/geotoolz/plans/geotoolz/geotoolz.md
+                    - title: Examples
+                      children:
+                        - file: notes/geotoolz/plans/geotoolz/examples/usecases.md
+                        - file: notes/geotoolz/plans/geotoolz/examples/tips_n_tricks.md
+                    - title: scikit-image bridge
+                      children:
+                        - file: notes/geotoolz/plans/geotoolz/skimage/design_skimage.md
+                        - file: notes/geotoolz/plans/geotoolz/skimage/examples_skimage.md
+                    - title: scikit-learn bridge
+                      children:
+                        - file: notes/geotoolz/plans/geotoolz/sklearn/design_sklearn.md
+                        - file: notes/geotoolz/plans/geotoolz/sklearn/examples_sklearn.md
+                - title: geopatcher
+                  children:
+                    - file: notes/geotoolz/plans/geopatcher/README.md
+                    - file: notes/geotoolz/plans/geopatcher/design.md
+                    - file: notes/geotoolz/plans/geopatcher/examples.md
+                    - file: notes/geotoolz/plans/geopatcher/scaling.md
+                - title: Reader reconciliation
+                  children:
+                    - file: notes/geotoolz/plans/georeader/README.md
+                    - file: notes/geotoolz/plans/georeader/reader_protocol.md
+                    - file: notes/geotoolz/plans/georeader/reader_rasterio.md
+                    - file: notes/geotoolz/plans/georeader/reader_async_geotiff.md
+                - title: Core types
+                  children:
+                    - file: notes/geotoolz/plans/types/README.md
+                    - file: notes/geotoolz/plans/types/geoslice.md
+                    - file: notes/geotoolz/plans/types/credentials.md
+                    - file: notes/geotoolz/plans/types/bytestore.md
+                - title: Geodatabase
+                  children:
+                    - file: notes/geotoolz/plans/geodatabase/README.md
+                    - file: notes/geotoolz/plans/geodatabase/geocatalog.md
+                    - file: notes/geotoolz/plans/geodatabase/geoduckdb.md
+                - title: Sensor readers
+                  children:
+                    - file: notes/geotoolz/plans/readers/README.md
+                    - file: notes/geotoolz/plans/readers/geostationary.md
+                    - file: notes/geotoolz/plans/readers/modis.md
+                - file: notes/geotoolz/plans/geostack.md
+            - title: georeader tutorial
+              children:
+                - file: notes/geotoolz/georeader_tutorial/00_index.md
+                - file: notes/geotoolz/georeader_tutorial/01_geotensor.md
+                - file: notes/geotoolz/georeader_tutorial/02_abstract_reader.md
+                - file: notes/geotoolz/georeader_tutorial/03_rasterio_reader.md
+                - file: notes/geotoolz/georeader_tutorial/04_window_utils.md
+                - file: notes/geotoolz/georeader_tutorial/05_read.md
+                - file: notes/geotoolz/georeader_tutorial/06_slices.md
+                - file: notes/geotoolz/georeader_tutorial/07_griddata.md
+                - file: notes/geotoolz/georeader_tutorial/08_mosaic.md
+                - file: notes/geotoolz/georeader_tutorial/09_rasterize.md
+                - file: notes/geotoolz/georeader_tutorial/10_vectorize.md
+                - file: notes/geotoolz/georeader_tutorial/11_reflectance.md
+                - file: notes/geotoolz/georeader_tutorial/12_save.md
+                - file: notes/geotoolz/georeader_tutorial/13_misc_io.md
+                - file: notes/geotoolz/georeader_tutorial/14_sentinel2.md
+                - file: notes/geotoolz/georeader_tutorial/15_hyperspectral.md
+                - file: notes/geotoolz/georeader_tutorial/16_earth_engine.md
+                - file: notes/geotoolz/georeader_tutorial/17_legacy_sensors.md
+                - file: notes/geotoolz/georeader_tutorial/18_query_and_download.md
+    - title: Tutorials
+      children:
+        - title: coordax
+          children:
+            - file: tutorials/coordax/README.md
+            - title: Content
+              children:
+                - title: Foundations
+                  children:
+                    - file: tutorials/coordax/content/foundations/README.md
+                    - file: tutorials/coordax/content/foundations/01_create_datasets.ipynb
+                    - file: tutorials/coordax/content/foundations/02_ops_unary_binary.ipynb
+                    - file: tutorials/coordax/content/foundations/03_ops_coordinates.ipynb
+                    - file: tutorials/coordax/content/foundations/04_reductions.ipynb
+                - title: Derivatives
+                  children:
+                    - file: tutorials/coordax/content/derivatives/README.md
+                    - file: tutorials/coordax/content/derivatives/05_finite_difference.ipynb
+                    - file: tutorials/coordax/content/derivatives/06_spherical_harmonics_derivatives.ipynb
+                    - file: tutorials/coordax/content/derivatives/07_finite_volume.ipynb
+                - title: Dynamics
+                  children:
+                    - file: tutorials/coordax/content/dynamics/README.md
+                    - file: tutorials/coordax/content/dynamics/08_ode_integration.ipynb
+                    - file: tutorials/coordax/content/dynamics/09_ode_parameter_state_estimation.ipynb
+                    - file: tutorials/coordax/content/dynamics/10_pde_parameter_estimation.ipynb
 
             
