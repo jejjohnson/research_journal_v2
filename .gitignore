@@ -15,6 +15,11 @@ rbig_consistency.csv
 *.css
 *.woff
 *.xml
+
+# Allow stylesheets that ship with migrated content. These power
+# `site.options.style:` entries in myst.yml; without them the diagrams
+# render unstyled. Add additional negations here as more content lands.
+!notes/geotoolz/diagrams.css
 \.idea/
 \_build/
 
