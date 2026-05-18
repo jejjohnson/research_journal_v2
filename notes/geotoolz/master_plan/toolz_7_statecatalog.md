@@ -285,6 +285,7 @@ class CycleStateReader(Operator):
 ### 4.1 Writing forecast outputs from a cycle
 
 ```python
+import pipekit as pk
 import statecatalog as sc
 import pipekit_cycle as pc
 

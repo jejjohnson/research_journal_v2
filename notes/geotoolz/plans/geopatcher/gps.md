@@ -102,12 +102,18 @@ def joint_nll(theta):
 theta_star = minimize(joint_nll, theta_init)
 
 # ── Predict: per-patch posterior with shared θ, merge with uncertainty ──
-def operator(patch):
-    gp = GP(kernel=Matern(theta_star)).fit(patch.coords, patch.values)
-    return gp.predict_with_var(patch.query_coords)        # → (μ, σ²)
+# Fit GP on the local *training* neighborhood; predict at the corresponding
+# *query* coordinates. The query field carries no observed values, so the
+# training patch supplies (coords, values) and the query patch supplies
+# the prediction coordinates.
+def operator(train_patch, query_patch):
+    gp = GP(kernel=Matern(theta_star)).fit(train_patch.coords, train_patch.values)
+    return gp.predict_with_var(query_patch.coords)        # → (μ, σ²)
 
 mu, var = patcher.merge(
-    (operator(p) for p in patcher.split(query_field)),
+    (operator(tp, qp)
+     for tp, qp in zip(patcher.split(training_field),
+                       patcher.split(query_field))),
     query_field.domain,
 )
 ```
@@ -145,13 +151,17 @@ patcher = Patcher(
 training_patches = list(patcher.split(training_field))
 thetas = [fit_gp_hyperparams(p.coords, p.values) for p in training_patches]
 
-# ── Predict: per-patch GP with its own θᵢ, merge ──
-def operator(patch, theta_i):
-    return GP(kernel=Matern(theta_i)).fit(patch.coords, patch.values) \
-                                     .predict_with_var(patch.query_coords)
+# ── Predict: per-patch GP with its own θᵢ, fit on training patch, predict at query coords ──
+def operator(train_patch, query_patch, theta_i):
+    return (GP(kernel=Matern(theta_i))
+            .fit(train_patch.coords, train_patch.values)
+            .predict_with_var(query_patch.coords))
 
 mu, var = patcher.merge(
-    (operator(p, t) for p, t in zip(patcher.split(query_field), thetas)),
+    (operator(tp, qp, t)
+     for tp, qp, t in zip(patcher.split(training_field),
+                          patcher.split(query_field),
+                          thetas)),
     query_field.domain,
 )
 ```
@@ -195,17 +205,19 @@ training_patches = list(patcher.split(training_field))
 #   yᵢ | xᵢ, θᵢ ~ GP(0, k_θᵢ)(xᵢ)
 posterior = run_hmc(hierarchical_gp_model, training_patches)
 
-# ── Predict: marginalize over the posterior of θᵢ ──
-def operator(patch, theta_samples_i):
+# ── Predict: marginalize over the posterior of θᵢ; fit on training patch ──
+def operator(train_patch, query_patch, theta_samples_i):
     mus, vars_ = zip(*[
-        GP(Matern(t)).fit(patch.coords, patch.values).predict_with_var(patch.query_coords)
+        GP(Matern(t)).fit(train_patch.coords, train_patch.values)
+                     .predict_with_var(query_patch.coords)
         for t in theta_samples_i
     ])
     return law_of_total_variance(mus, vars_)              # → (μ, σ²) marginalized
 
 mu, var = patcher.merge(
-    (operator(p, posterior.theta_samples(i))
-     for i, p in enumerate(patcher.split(query_field))),
+    (operator(tp, qp, posterior.theta_samples(i))
+     for i, (tp, qp) in enumerate(zip(patcher.split(training_field),
+                                      patcher.split(query_field)))),
     query_field.domain,
 )
 ```

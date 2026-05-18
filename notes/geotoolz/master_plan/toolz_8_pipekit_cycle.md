@@ -78,8 +78,14 @@ class Cycle(StatefulOperator):
     Equivalent shape to jax.lax.scan but works on any carrier.
     Outputs: (final_carrier, final_state, history) where history is
     an optional sequence of intermediate states.
+    
+    `step_op` may be any `StatefulOperator`, or a `ForwardModel` —
+    a ForwardModel is wrapped on construction via the
+    `ForwardModel → StatefulOperator` shim, so domain libraries can
+    pass their `ForwardModel` adapters directly without importing
+    pipekit-cycle internals.
     """
-    step_op: StatefulOperator
+    step_op: StatefulOperator | ForwardModel
     n_steps: int
     save_history: bool = False
     history_stride: int = 1   # save every nth step
@@ -347,6 +353,7 @@ The pattern: each algorithm library has its own `adapters/pipekit.py` module, ga
 import pipekit as pk
 import pipekit_cycle as pc
 import geocatalog as gc
+import geotoolz as gz
 from filterx.adapters.pipekit import EnKFAnalysis
 from plumax.adapters.pipekit import ChemistryForward, ColumnObs
 from statecatalog import StateCatalog

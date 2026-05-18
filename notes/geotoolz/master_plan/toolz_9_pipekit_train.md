@@ -226,7 +226,7 @@ class TrainingLoop(StatefulOperator):
     n_epochs: int
     batch_size: int
     backend: Literal["lightning", "equinox", "keras"] = "lightning"
-    callbacks: list[Callback] = []
+    callbacks: list[Callback] | None = None   # None → no callbacks; avoid mutable default
     seed: int = 0
 
 class ValidationStep(Operator):
@@ -314,6 +314,7 @@ import pipekit_train as pt
 import pipekit_array as pa
 import geocatalog as gc
 import geopatcher as gp
+import geotoolz as gz
 
 # The inference-time preprocess pipeline — re-used at train time
 preprocess = pk.Sequential([

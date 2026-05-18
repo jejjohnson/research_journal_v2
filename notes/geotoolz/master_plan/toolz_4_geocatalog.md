@@ -26,12 +26,12 @@ keywords: geotoolz, geocatalog, spatiotemporal-index, STAC, GeoParquet, GeoSlice
 |**Inputs**             |`jejjohnson/geotoolz` @ main (rescraped 2026-05-16), specifically `geotoolz.catalog` (~3,600 LOC) and `geotoolz.types.GeoSlice` (~200 LOC)                            |
 
 > **STAC background.** For the standards `geocatalog` builds on, see the
-> tutorial group: [STAC primer](../../tutorials/stac/stac_primer.md),
-> [REST API primer](../../tutorials/stac/rest_api_primer.md),
-> [Storing STAC catalogs](../../tutorials/stac/stac_catalog.md) (GeoJSON /
-> GeoParquet / PostGIS), [pystac](../../tutorials/stac/stac_pystac.md) and
-> [rustac](../../tutorials/stac/stac_rustac.md) clients, and a
-> [curated catalog survey](../../tutorials/stac/stac_survey.md).
+> tutorial group: [STAC primer](../tutorials/stac/stac_primer.md),
+> [REST API primer](../tutorials/stac/rest_api_primer.md),
+> [Storing STAC catalogs](../tutorials/stac/stac_catalog.md) (GeoJSON /
+> GeoParquet / PostGIS), [pystac](../tutorials/stac/stac_pystac.md) and
+> [rustac](../tutorials/stac/stac_rustac.md) clients, and a
+> [curated catalog survey](../tutorials/stac/stac_survey.md).
 
 ## Part 1 — Where `geocatalog` sits in the stack
 

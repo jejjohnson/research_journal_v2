@@ -290,6 +290,6 @@ Report 2 takes this background and turns it into a concrete pipekit shipped surf
 - Observers, control flow, building blocks.
 - Shape inference (`Signature`) and a parallelism story.
 
-Report 3 covers the sister modules (`pipekit-numpy`-or-similar, geotoolz, xr_toolz).
+Report 3 covers the sister modules (`pipekit-array`, geotoolz, xr_toolz).
 
 Report 4 maps it all back to the 13 use cases in your usecases.md.

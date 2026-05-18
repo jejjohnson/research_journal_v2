@@ -84,7 +84,7 @@ NASA’s CMR exposes STAC per-provider. The root is `https://cmr.earthdata.nasa.
 |**ASF**                    |`/ASF`         |Sentinel-1, ALOS PALSAR, NISAR (when launched) 📡                                                             |
 |**OB_DAAC**                |`/OB_CLOUD`    |MODIS Aqua/Terra ocean color, VIIRS, SeaWiFS chlorophyll 🌊                                                   |
 |**LARC_CLOUD**             |`/LARC_CLOUD`  |CERES, MOPITT, MISR, TES, CALIPSO 🌫️                                                                          |
-|**GHRC_CLOUD**             |`/GHRSC_DAAC`  |Hurricane Hunter, AMPR, hydro precipitation                                                                  |
+|**GHRC_CLOUD**             |`/GHRC_DAAC`   |Hurricane Hunter, AMPR, hydro precipitation                                                                  |
 
 **Auth pattern across all of these:** Earthdata Login → `/s3credentials` endpoint per-DAAC → temporary STS keys → obstore `S3Store` in us-west-2. Use the `obstore.auth.earthdata.NasaEarthdataCredentialProvider` with the per-DAAC credentials URL.
 

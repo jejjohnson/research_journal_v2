@@ -56,7 +56,7 @@ The research loop. Start simple, simulate, validate, refine.
 :::{include} ../diagrams/10_modeling_cycle.html
 :::
 
-_Figure — The modeling cycle ([](#fig-modeling-cycle)). The conceptual model fans out into two complementary representations (equations for analysis, code for simulation), which both produce predictions; predictions are validated against observations and the comparison drives model refinement._
+_[Figure: The modeling cycle](#fig-modeling-cycle). The conceptual model fans out into two complementary representations (equations for analysis, code for simulation), which both produce predictions; predictions are validated against observations and the comparison drives model refinement._
 
 Start simple. Add complexity only when validation demands it. All models are wrong; the goal is the model most suited to its purpose.
 
