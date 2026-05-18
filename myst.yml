@@ -387,6 +387,7 @@ project:
                   - file: notes/methane/roadmap/02_tier2_lagrangian.md
                   - file: notes/methane/roadmap/03_tier3_eulerian.md
                   - file: notes/methane/roadmap/04_rtm_stack.md
+                  - file: notes/methane/models/rtm_4_jax.md
                   - file: notes/methane/roadmap/05_tier4_coupled.md
                   - file: notes/methane/roadmap/06_tier5_population.md
                   - file: notes/methane/roadmap/06a_instantaneous.md
@@ -397,10 +398,43 @@ project:
           children:
             - file: notes/geotoolz/geostack_notes.md
             - file: notes/geotoolz/operational_attribution.md
+            - title: Master plan
+              children:
+                - file: notes/geotoolz/master_plan/README.md
+                - file: notes/geotoolz/master_plan/toolz_0_overview.md
+                - file: notes/geotoolz/master_plan/toolz_1_primer.md
+                - file: notes/geotoolz/master_plan/toolz_2_pipekit.md
+                - file: notes/geotoolz/master_plan/toolz_3_pipekit_array.md
+                - file: notes/geotoolz/master_plan/toolz_12_pipekit_jax.md
+                - file: notes/geotoolz/master_plan/toolz_4_geocatalog.md
+                - file: notes/geotoolz/master_plan/toolz_5_geopatcher.md
+                - file: notes/geotoolz/master_plan/toolz_6_usecases.md
+                - file: notes/geotoolz/master_plan/toolz_8_pipekit_cycle.md
+                - file: notes/geotoolz/master_plan/toolz_9_pipekit_train.md
+                - file: notes/geotoolz/master_plan/toolz_10_pipekit_experiment.md
+                - file: notes/geotoolz/master_plan/toolz_7_statecatalog.md
+                - file: notes/geotoolz/master_plan/toolz_11_pipekit_evaluate.md
+            - title: Supporting info
+              children:
+                - file: notes/geotoolz/supporting_info/README.md
+                - file: notes/geotoolz/supporting_info/geostack_vision.md
+                - file: notes/geotoolz/supporting_info/geodata_lifecycle.md
+                - file: notes/geotoolz/supporting_info/modeling_cycle.md
+                - file: notes/geotoolz/supporting_info/benchmark.md
+                - file: notes/geotoolz/supporting_info/benchmark_gallery.md
             - title: Tutorials
               children:
                 - file: notes/geotoolz/tutorials/spatiotemporal_data.md
                 - file: notes/geotoolz/tutorials/spatiotemporal_operators.md
+                - title: STAC
+                  children:
+                    - file: notes/geotoolz/tutorials/stac/stac_primer.md
+                    - file: notes/geotoolz/tutorials/stac/rest_api_primer.md
+                    - file: notes/geotoolz/tutorials/stac/stac_catalog.md
+                    - file: notes/geotoolz/tutorials/stac/stac_pystac.md
+                    - file: notes/geotoolz/tutorials/async_primer.md
+                    - file: notes/geotoolz/tutorials/stac/stac_rustac.md
+                    - file: notes/geotoolz/tutorials/stac/stac_survey.md
             - title: Plans
               children:
                 - title: geotoolz
@@ -425,6 +459,7 @@ project:
                     - file: notes/geotoolz/plans/geopatcher/design.md
                     - file: notes/geotoolz/plans/geopatcher/examples.md
                     - file: notes/geotoolz/plans/geopatcher/scaling.md
+                    - file: notes/geotoolz/plans/geopatcher/gps.md
                 - title: Reader reconciliation
                   children:
                     - file: notes/geotoolz/plans/georeader/README.md

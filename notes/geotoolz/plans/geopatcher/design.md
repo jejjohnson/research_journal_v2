@@ -18,6 +18,11 @@ short_title: Design
 
 This report builds up a unified picture of spatiotemporal operator learning in four layers: **patching** (locality of data presentation), **models** (locality of parameters via pooling), **algorithm families** (chosen by data domain), and **backends** (Field/Domain adapter layer). At the end, we add **time** as a peer axis with its own structure that composes with the spatial framework.
 
+> **Worked vertical.** For a concrete instantiation of the framework on Gaussian
+> processes — covering the six canonical fit patterns (global, per-patch, joint
+> hierarchical, sparse, spectral, amortized) and inverse-variance-weighted
+> posterior pooling — see [Fitting Gaussian Processes with the Patcher framework](gps.md).
+
 ## 1. Patching: The Locality Layer
 
 > Patching acts as a locality operator that controls the receptive field of the operator.
