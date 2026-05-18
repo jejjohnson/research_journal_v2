@@ -20,6 +20,14 @@ abbreviations:
 ---
 
 
+> **Architectural context.** This page is the foundational Beer–Lambert /
+> HAPI primer that feeds the **v0** stage of the differentiable RTM roadmap.
+> For the full staged design (v0 → v4: matched-filter generator → clear-sky
+> OE retrieval → in-JAX LBL → single-scattering Mie → multi-stream
+> doubling-adding), see [RTM 4 JAX](models/rtm_4_jax.md). The
+> roadmap-level integration into Plumax is on the
+> [RTM stack page](roadmap/04_rtm_stack.md).
+
 ## Introduction and Physical Motivation
 
 ### The Absolute Radiance Model

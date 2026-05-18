@@ -15,6 +15,13 @@ keywords: [radiative transfer, HITRAN, HAPI, Beer-Lambert, optimal estimation, S
 
 The RTM is the **observation operator** $\mathbf{H}_\text{obs} : c(\mathbf{x},t) \to \mathbf{y}_\text{radiance}$. It connects Tiers II–IV to actual satellite measurements. Independent of transport tier — can be developed in parallel by a different person without coordination.
 
+> **Deep design.** This page is the *roadmap-level* view of the RTM —
+> what each stage delivers and how it slots into Plumax. For the architectural
+> deep dive (Equinox-modular `atmosphere → spectroscopy → optical_properties →
+> solver → instrument → loss` pipeline, the v0–v4 staged differentiable
+> roadmap, and the ExoJAX / VLIDORT / ARTS / SHDOM analysis), see
+> [RTM 4 JAX](../models/rtm_4_jax.md).
+
 If you're working with **Level-2 XCH₄ products** (e.g. TROPOMI official retrieval; {cite:p}`s5p_tropomi`), the entire RTM stack collapses to just the [averaging-kernel operator](00_prerequisites.md#prereqs-ak-operator); this whole page becomes "use the published L2." This page assumes Level-1 (radiance) work, where you build the retrieval yourself.
 
 ---
